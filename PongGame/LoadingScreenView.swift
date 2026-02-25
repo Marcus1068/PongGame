@@ -103,7 +103,7 @@ struct LoadingScreenView: View {
             }
             
             // Dismiss loading screen after delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 withAnimation(.easeOut(duration: 0.5)) {
                     onComplete()
                 }

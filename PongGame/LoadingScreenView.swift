@@ -98,12 +98,14 @@ struct LoadingScreenView: View {
             }
             
             // Start ball animation
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            Task {
+                try? await Task.sleep(for: .seconds(0.3))
                 ballOffset = 50
             }
             
             // Dismiss loading screen after delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            Task {
+                try? await Task.sleep(for: .seconds(3.0))
                 withAnimation(.easeOut(duration: 0.5)) {
                     onComplete()
                 }

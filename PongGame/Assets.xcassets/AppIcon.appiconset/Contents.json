@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "PongGame-iOS-ClearDark-1024x1024@1x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -12,6 +13,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "PongGame-iOS-ClearLight-1024x1024@1x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "PongGame-iOS-Dark-1024x1024@1x.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -68,11 +71,13 @@
       "size" : "256x256"
     },
     {
+      "filename" : "PongGame-iOS-ClearDark-1024x1024@1x 1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
+      "filename" : "PongGame-iOS-ClearDark-1024x1024@1x 2.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

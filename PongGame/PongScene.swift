@@ -241,9 +241,9 @@ class PongScene: SKScene {
                 // Track consecutive hits
                 trackConsecutiveHit(byPlayer: true)
                 
-                // Add angle based on where ball hits paddle
+                // Set angle based on where ball hits paddle (not additive — prevents unbounded dy)
                 let hitPosition = (ball.position.y - playerPaddle.position.y) / paddleHalfHeight
-                ballVelocity.dy += hitPosition * 200
+                ballVelocity.dy = hitPosition * abs(ballVelocity.dx)
                 
                 // Visual feedback
                 createPaddleHitEffect(at: ball.position, color: .cyan)
@@ -267,8 +267,9 @@ class PongScene: SKScene {
                 // Track consecutive hits
                 trackConsecutiveHit(byPlayer: false)
                 
+                // Set angle based on where ball hits paddle (not additive — prevents unbounded dy)
                 let hitPosition = (ball.position.y - computerPaddle.position.y) / paddleHalfHeight
-                ballVelocity.dy += hitPosition * 200
+                ballVelocity.dy = hitPosition * abs(ballVelocity.dx)
                 
                 // Visual feedback
                 createPaddleHitEffect(at: ball.position, color: .magenta)

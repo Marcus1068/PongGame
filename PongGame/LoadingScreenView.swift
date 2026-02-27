@@ -45,7 +45,7 @@ struct LoadingScreenView: View {
                         .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: ballOffset)
                     
                     // App name
-                    Text("PingPong Sample")
+                    Text("PingPong Retro")
                         .font(.system(size: 48, weight: .bold, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(

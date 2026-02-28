@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+
 struct ContentView: View {
     @State private var gameState = GameState()
     @State private var showLoadingScreen = true

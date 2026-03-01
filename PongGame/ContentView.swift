@@ -12,6 +12,7 @@ import SwiftData
 struct ContentView: View {
     @State private var gameState = GameState()
     @State private var showLoadingScreen = true
+    @State private var showAbout = false
     
     var body: some View {
         ZStack {
@@ -97,10 +98,32 @@ struct ContentView: View {
                                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)
+                            
+                            // About button
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    showAbout = true
+                                }
+                            } label: {
+                                Label("About", systemImage: "info.circle")
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 8)
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                            }
+                            .buttonStyle(.plain)
                         }
                         .padding()
                     }
                     Spacer()
+                }
+                
+                // About overlay
+                if showAbout {
+                    AboutView {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            showAbout = false
+                        }
+                    }
                 }
             }
         }

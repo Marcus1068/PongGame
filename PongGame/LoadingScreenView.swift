@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct LoadingScreenView: View {
     @State private var isAnimating = false
     @State private var ballOffset: CGFloat = 0
     @State private var showContent = false
+    @State private var audioEngine: AVAudioEngine?
     
     let onComplete: () -> Void
     
@@ -103,6 +105,9 @@ struct LoadingScreenView: View {
                 ballOffset = 50
             }
             
+            // Play retro arcade startup sound
+            playRetroArcadeSound()
+            
             // Dismiss loading screen after delay
             Task {
                 try? await Task.sleep(for: .seconds(3.0))
@@ -110,6 +115,68 @@ struct LoadingScreenView: View {
                     onComplete()
                 }
             }
+        }
+    }
+    
+    // Synthesized retro arcade melody using square waves
+    private func playRetroArcadeSound() {
+        let engine = AVAudioEngine()
+        let playerNode = AVAudioPlayerNode()
+        engine.attach(playerNode)
+        
+        let sampleRate: Double = 44100
+        guard let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1) else { return }
+        engine.connect(playerNode, to: engine.mainMixerNode, format: format)
+        
+        // Classic ascending arcade jingle (coin / level-start style)
+        let notes: [(freq: Double, dur: Double)] = [
+            (261.63, 0.07),  // C4
+            (329.63, 0.07),  // E4
+            (392.00, 0.07),  // G4
+            (523.25, 0.07),  // C5
+            (659.25, 0.07),  // E5
+            (783.99, 0.07),  // G5
+            (1046.5, 0.18),  // C6 – hold
+            (783.99, 0.07),  // G5
+            (1046.5, 0.30),  // C6 – long finish
+        ]
+        
+        let totalFrames = AVAudioFrameCount(notes.reduce(0.0) { $0 + $1.dur } * sampleRate)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: totalFrames) else { return }
+        buffer.frameLength = totalFrames
+        
+        let data = buffer.floatChannelData![0]
+        var frameOffset = 0
+        
+        for note in notes {
+            let count = Int(note.dur * sampleRate)
+            let attackLen = max(1, Int(0.005 * sampleRate))
+            let releaseStart = max(0, count - Int(0.025 * sampleRate))
+            
+            for f in 0..<count {
+                // Square wave for authentic retro timbre
+                let t = Double(f) / sampleRate
+                let wave: Float = sin(2.0 * .pi * note.freq * t) >= 0 ? 0.28 : -0.28
+                
+                // Attack / release envelope
+                var env: Float = 1.0
+                if f < attackLen {
+                    env = Float(f) / Float(attackLen)
+                } else if f >= releaseStart {
+                    env = Float(count - f) / Float(count - releaseStart)
+                }
+                data[frameOffset + f] = wave * env
+            }
+            frameOffset += count
+        }
+        
+        do {
+            try engine.start()
+            playerNode.play()
+            playerNode.scheduleBuffer(buffer, at: nil, completionHandler: nil)
+            audioEngine = engine  // retain so it stays alive
+        } catch {
+            // Sound is non-critical; silently ignore failures
         }
     }
 }

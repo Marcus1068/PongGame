@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 class PongScene: SKScene {
     // Game objects
@@ -28,6 +29,12 @@ class PongScene: SKScene {
     private let paddleWidth: CGFloat = 20
     private let paddleHeight: CGFloat = 100
     
+    // Audio
+    private var blipEngine: AVAudioEngine?
+    private var blipPlayerNode = AVAudioPlayerNode()
+    private var playerBlipBuffer: AVAudioPCMBuffer?
+    private var computerBlipBuffer: AVAudioPCMBuffer?
+    
     // Game state reference
     weak var gameState: GameState?
     
@@ -41,6 +48,7 @@ class PongScene: SKScene {
         setupBall()
         setupPaddles()
         resetBall()
+        setupAudio()
     }
     
     private func setupScene() {
@@ -247,6 +255,7 @@ class PongScene: SKScene {
                 
                 // Visual feedback
                 createPaddleHitEffect(at: ball.position, color: .cyan)
+                playBlipSound(frequency: 480)
                 let pulse = SKAction.sequence([
                     SKAction.scale(to: 1.2, duration: 0.05),
                     SKAction.scale(to: 1.0, duration: 0.05)
@@ -273,6 +282,7 @@ class PongScene: SKScene {
                 
                 // Visual feedback
                 createPaddleHitEffect(at: ball.position, color: .magenta)
+                playBlipSound(frequency: 320)
                 let pulse = SKAction.sequence([
                     SKAction.scale(to: 1.2, duration: 0.05),
                     SKAction.scale(to: 1.0, duration: 0.05)
@@ -402,6 +412,56 @@ class PongScene: SKScene {
         let wait = SKAction.wait(forDuration: 0.5)
         let remove = SKAction.removeFromParent()
         particles.run(SKAction.sequence([wait, remove]))
+    }
+    
+    // MARK: - Audio
+
+    private func setupAudio() {
+        let sampleRate: Double = 44100
+        guard let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1) else { return }
+        
+        let engine = AVAudioEngine()
+        engine.attach(blipPlayerNode)
+        engine.connect(blipPlayerNode, to: engine.mainMixerNode, format: format)
+        
+        playerBlipBuffer   = makeBlipBuffer(frequency: 480, sampleRate: sampleRate, format: format)
+        computerBlipBuffer = makeBlipBuffer(frequency: 320, sampleRate: sampleRate, format: format)
+        
+        do {
+            try engine.start()
+            blipPlayerNode.play()
+            blipEngine = engine
+        } catch { /* audio is non-critical */ }
+    }
+    
+    private func makeBlipBuffer(frequency: Double, sampleRate: Double, format: AVAudioFormat) -> AVAudioPCMBuffer? {
+        let duration: Double = 0.055
+        let frameCount = AVAudioFrameCount(duration * sampleRate)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return nil }
+        buffer.frameLength = frameCount
+        
+        let data = buffer.floatChannelData![0]
+        let attackLen = Int(0.003 * sampleRate)
+        let releaseStart = Int(Double(frameCount) * 0.6)
+        
+        for f in 0..<Int(frameCount) {
+            let t = Double(f) / sampleRate
+            let wave: Float = sin(2.0 * .pi * frequency * t) >= 0 ? 0.35 : -0.35
+            var env: Float = 1.0
+            if f < attackLen {
+                env = Float(f) / Float(attackLen)
+            } else if f >= releaseStart {
+                env = Float(Int(frameCount) - f) / Float(Int(frameCount) - releaseStart)
+            }
+            data[f] = wave * max(0, env)
+        }
+        return buffer
+    }
+    
+    private func playBlipSound(frequency: Double = 480.0) {
+        let buffer = frequency > 400 ? playerBlipBuffer : computerBlipBuffer
+        guard let buffer else { return }
+        blipPlayerNode.scheduleBuffer(buffer, at: nil, completionHandler: nil)
     }
     
     private func checkScore() {

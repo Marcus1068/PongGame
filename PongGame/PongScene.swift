@@ -166,8 +166,8 @@ class PongScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         guard let gameState = gameState else { return }
         
-        // Control pause state for animations
-        let shouldBePaused = gameState.isPaused || !gameState.isGameActive
+        // Don't update game logic if paused, not active, or waiting for player to start
+        let shouldBePaused = gameState.isPaused || !gameState.isGameActive || !gameState.hasStarted
         
         // Pause/unpause ball trail
         if let trail = ball.childNode(withName: "//ballTrail") as? SKEmitterNode ?? ballTrail {

@@ -26,6 +26,50 @@ struct ContentView: View {
                 PongGameView(gameState: gameState)
                     .transition(.opacity)
                 
+                // Start overlay — shown before the first serve
+                if !gameState.hasStarted {
+                    ZStack {
+                        Color.black.opacity(0.55)
+                            .ignoresSafeArea()
+                        
+                        VStack(spacing: 32) {
+                            Text("PingPong Retro")
+                                .font(.system(size: 44, weight: .bold, design: .rounded))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.cyan, .purple],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .shadow(color: .cyan.opacity(0.5), radius: 10)
+                            
+                            Button {
+                                withAnimation(.easeIn(duration: 0.25)) {
+                                    gameState.hasStarted = true
+                                }
+                            } label: {
+                                Text("Start Game")
+                                    .font(.title2.bold())
+                                    .foregroundStyle(.black)
+                                    .padding(.horizontal, 48)
+                                    .padding(.vertical, 18)
+                                    .background(
+                                        LinearGradient(
+                                            colors: [.cyan, .purple],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        ),
+                                        in: Capsule()
+                                    )
+                                    .shadow(color: .cyan.opacity(0.6), radius: 12)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .transition(.opacity)
+                }
+                
                 // Restart and Pause button overlay
                 VStack {
                     HStack {

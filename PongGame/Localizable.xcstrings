@@ -15,163 +15,131 @@
     },
     "⚡ SPEED BOOST! ⚡" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "⚡ TEMPO-BOOST! ⚡"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "⚡ TEMPO-BOOST! ⚡" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "⚡ TURBO! ⚡" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "⚡ TURBO-BOOST! ⚡" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "⚡ TURBO! ⚡" } }
       }
     },
     "About" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Info"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Info" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Info" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Info" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Info" } }
       }
     },
     "All Rights Reserved" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alle Rechte vorbehalten"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Alle Rechte vorbehalten" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Todos los derechos reservados" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous droits réservés" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Tutti i diritti riservati" } }
       }
     },
     "Ball Speed" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ballgeschwindigkeit"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Ballgeschwindigkeit" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Velocidad de la pelota" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Vitesse de la balle" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Velocità della palla" } }
       }
     },
     "Black/White" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schwarz/Weiß"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Schwarz/Weiß" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Blanco/Negro" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Noir/Blanc" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Bianco/Nero" } }
       }
     },
     "Built with SwiftUI · SpriteKit · AVFoundation" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entwickelt mit SwiftUI · SpriteKit · AVFoundation"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Entwickelt mit SwiftUI · SpriteKit · AVFoundation" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Creado con SwiftUI · SpriteKit · AVFoundation" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Développé avec SwiftUI · SpriteKit · AVFoundation" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Sviluppato con SwiftUI · SpriteKit · AVFoundation" } }
       }
     },
     "Classic Pong reimagined with a retro-neon look, synthesised arcade sounds, and a speed-boost rally system." : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klassisches Pong mit Retro-Neon-Look, synthetisierten Arcade-Sounds und Rally-Geschwindigkeitssystem."
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Klassisches Pong mit Retro-Neon-Look, synthetisierten Arcade-Sounds und Rally-Geschwindigkeitssystem." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "El clásico Pong reinventado con estética retro neón, sonidos arcade sintetizados y un sistema de aceleración por rally." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le Pong classique réinventé avec un look rétro néon, des sons arcade synthétisés et un système d'accélération par rallye." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il classico Pong reinventato con un look retro neon, suoni arcade sintetizzati e un sistema di accelerazione rally." } }
       }
     },
     "Close" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schließen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Schließen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cerrar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Fermer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Chiudi" } }
       }
     },
     "Color" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Farbe"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Farbe" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Color" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Couleur" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Colore" } }
       }
     },
     "Computer" : {
       "comment" : "Score label for the computer player",
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Computer"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Computer" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ordenador" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ordinateur" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Computer" } }
       }
     },
     "Computer Wins!" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Computer gewinnt!"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Computer gewinnt!" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "¡Gana el ordenador!" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "L'ordinateur gagne !" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Vince il computer!" } }
       }
     },
     "Final Score: %lld - %lld" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Endergebnis: %lld - %lld"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Endergebnis: %lld - %lld" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Puntuación final: %lld - %lld" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Score final : %lld - %lld" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Punteggio finale: %lld - %lld" } }
       }
     },
     "First player to reach 5 points wins. Every 3 alternating rally hits triggers a speed boost!" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wer zuerst 5 Punkte erreicht, gewinnt. Jede 3. abwechselnde Ballrückgabe aktiviert einen Geschwindigkeitsschub!"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Wer zuerst 5 Punkte erreicht, gewinnt. Jede 3. abwechselnde Ballrückgabe aktiviert einen Geschwindigkeitsschub!" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "El primero en llegar a 5 puntos gana. ¡Cada 3 golpes alternos de rally activan un turbo de velocidad!" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le premier à atteindre 5 points gagne. Chaque série de 3 échanges consécutifs déclenche un turbo de vitesse !" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Il primo a raggiungere 5 punti vince. Ogni 3 scambi alternati attiva un turbo di velocità!" } }
       }
     },
     "Game Paused" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spiel pausiert"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Spiel pausiert" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Juego en pausa" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Jeu en pause" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Gioco in pausa" } }
       }
     },
     "Options" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Einstellungen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Opciones" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Options" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Opzioni" } }
       }
     },
     "Pause" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pause"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Pause" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Pausa" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Pause" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Pausa" } }
       }
     },
     "PingPong Retro" : {
@@ -180,103 +148,83 @@
     },
     "Play Again" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nochmal spielen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Nochmal spielen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Jugar de nuevo" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rejouer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Gioca ancora" } }
       }
     },
     "Player" : {
       "comment" : "Score label for the human player",
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spieler"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Spieler" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Jugador" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Joueur" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Giocatore" } }
       }
     },
     "Player Wins!" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spieler gewinnt!"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Spieler gewinnt!" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "¡Gana el jugador!" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Le joueur gagne !" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Vince il giocatore!" } }
       }
     },
     "Press Resume to continue" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zum Weiterspielen auf Fortsetzen tippen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Zum Weiterspielen auf Fortsetzen tippen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Pulsa Continuar para seguir jugando" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Appuyez sur Reprendre pour continuer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Premi Riprendi per continuare" } }
       }
     },
     "Restart" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neustart"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Neustart" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Reiniciar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Recommencer" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Ricomincia" } }
       }
     },
     "Resume" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fortsetzen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Fortsetzen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Continuar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Reprendre" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Riprendi" } }
       }
     },
     "Start Game" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spiel starten"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Spiel starten" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Iniciar juego" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Démarrer le jeu" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Inizia il gioco" } }
       }
     },
     "Touch and drag to move" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tippen und Ziehen zum Bewegen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "Tippen und Ziehen zum Bewegen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Toca y arrastra para moverte" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Toucher et glisser pour bouger" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Tocca e trascina per muoverti" } }
       }
     },
     "Use W / S or the Arrow Keys to move your paddle on macOS. Drag on screen to play on iOS." : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W / S oder Pfeiltasten zum Bewegen auf macOS. Auf dem Bildschirm ziehen zum Spielen auf iOS."
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "W / S oder Pfeiltasten zum Bewegen auf macOS. Auf dem Bildschirm ziehen zum Spielen auf iOS." } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Usa W / S o las teclas de flecha para mover la paleta en macOS. Arrastra en la pantalla para jugar en iOS." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Utilisez W / S ou les touches fléchées pour déplacer la raquette sur macOS. Glissez sur l'écran pour jouer sur iOS." } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Usa W / S o i tasti freccia per muovere la racchetta su macOS. Trascina sullo schermo per giocare su iOS." } }
       }
     },
     "Use W/S or Arrow Keys to move" : {
       "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W/S oder Pfeiltasten zum Bewegen"
-          }
-        }
+        "de" : { "stringUnit" : { "state" : "translated", "value" : "W/S oder Pfeiltasten zum Bewegen" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "W/S o teclas de flecha para mover" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "W/S ou touches fléchées pour bouger" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "W/S o tasti freccia per muoversi" } }
       }
     },
     "Version 1.0" : {

@@ -29,8 +29,12 @@ class PongScene: SKScene {
     private var consecutiveHits: Int = 0
     private var lastHitByPlayer: Bool? = nil
     
-    // Paddle dimensions
+    // Paddle dimensions — 30 % thicker on iPhone to clear the Dynamic Island
+    #if os(iOS)
+    private let paddleWidth: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 26 : 20
+    #else
     private let paddleWidth: CGFloat = 20
+    #endif
     private let paddleHeight: CGFloat = 100
     
     // Audio

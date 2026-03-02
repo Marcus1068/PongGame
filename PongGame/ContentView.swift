@@ -84,7 +84,7 @@ struct ContentView: View {
                                 Label("Restart", systemImage: "arrow.counterclockwise")
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)
                             
@@ -96,7 +96,7 @@ struct ContentView: View {
                                       systemImage: gameState.isPaused ? "play.fill" : "pause.fill")
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)
                             
@@ -109,7 +109,7 @@ struct ContentView: View {
                                 Label("About", systemImage: "info.circle")
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)
                             
@@ -123,7 +123,7 @@ struct ContentView: View {
                                 Label("Options", systemImage: "gearshape")
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)
                         }

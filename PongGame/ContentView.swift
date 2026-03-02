@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var gameState = GameState()
     @State private var showLoadingScreen = true
     @State private var showAbout = false
+    @State private var showOptions = false
     
     var body: some View {
         ZStack {
@@ -111,6 +112,20 @@ struct ContentView: View {
                                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
                             }
                             .buttonStyle(.plain)
+                            
+                            // Options button
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    showOptions = true
+                                    gameState.isPaused = true
+                                }
+                            } label: {
+                                Label("Options", systemImage: "gearshape")
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 8)
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 10))
+                            }
+                            .buttonStyle(.plain)
                         }
                         .padding()
                     }
@@ -122,6 +137,16 @@ struct ContentView: View {
                     AboutView {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             showAbout = false
+                        }
+                    }
+                }
+                
+                // Options overlay
+                if showOptions {
+                    OptionsView(gameState: gameState) {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            showOptions = false
+                            gameState.isPaused = false
                         }
                     }
                 }

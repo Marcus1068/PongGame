@@ -29,6 +29,9 @@ class GameState {
     /// False until the player presses Start; keeps the ball frozen on the title screen.
     var hasStarted: Bool = false
 
+    /// When true the scene renders in retro black-and-white style.
+    var isBlackAndWhite: Bool = false
+
     /// Current ball-speed multiplier; increases as rallies build up (0.5 – 2.0).
     var ballSpeed: Double = 1.0
 

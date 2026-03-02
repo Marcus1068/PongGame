@@ -31,34 +31,8 @@ struct PongGameView: View {
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.computerScore)")
                                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                                .foregroundStyle(.purple)
+                                .foregroundStyle(gameState.isBlackAndWhite ? .white : .purple)
                         }
-                        .frame(maxWidth: .infinity)
-                        
-                        // Speed control slider (centered)
-                        HStack(spacing: 6) {
-                            Image(systemName: "tortoise.fill")
-                                .font(.caption2)
-                                .foregroundStyle(.white.opacity(0.3))
-                            
-                            Slider(value: $gameState.ballSpeed, in: 0.5...2.0, step: 0.1) {
-                                Text("Speed")
-                            }
-                            .tint(.cyan.opacity(0.6))
-                            .frame(width: 120)
-                            
-                            Image(systemName: "hare.fill")
-                                .font(.caption2)
-                                .foregroundStyle(.white.opacity(0.3))
-                            
-                            Text("\(gameState.ballSpeed, specifier: "%.1f")x")
-                                .font(.caption2)
-                                .foregroundStyle(.white.opacity(0.4))
-                                .frame(width: 35)
-                        }
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 6)
-                        .background(.ultraThinMaterial.opacity(0.5), in: Capsule())
                         .frame(maxWidth: .infinity)
                         
                         // Player score (right)
@@ -68,7 +42,7 @@ struct PongGameView: View {
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.playerScore)")
                                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                                .foregroundStyle(.cyan)
+                                .foregroundStyle(gameState.isBlackAndWhite ? .white : .cyan)
                         }
                         .frame(maxWidth: .infinity)
                     }

@@ -15,6 +15,10 @@ class PongScene: SKScene {
     private var computerPaddle: SKShapeNode!
     private var centerLine: SKShapeNode!
     private var ballTrail: SKEmitterNode!
+    private var sceneBg: SKShapeNode!
+    
+    // Color scheme tracking
+    private var lastIsBlackAndWhite: Bool?
     
     // Ball physics
     private var ballVelocity = CGVector(dx: 400, dy: 400)
@@ -53,12 +57,12 @@ class PongScene: SKScene {
     
     private func setupScene() {
         // Gradient background
-        let background = SKShapeNode(rectOf: frame.size)
-        background.fillColor = SKColor(red: 0.05, green: 0.05, blue: 0.15, alpha: 1.0)
-        background.strokeColor = .clear
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        background.zPosition = -1
-        addChild(background)
+        sceneBg = SKShapeNode(rectOf: frame.size)
+        sceneBg.fillColor = SKColor(red: 0.05, green: 0.05, blue: 0.15, alpha: 1.0)
+        sceneBg.strokeColor = .clear
+        sceneBg.position = CGPoint(x: frame.midX, y: frame.midY)
+        sceneBg.zPosition = -1
+        addChild(sceneBg)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.gravity = .zero
@@ -78,6 +82,7 @@ class PongScene: SKScene {
             dash.strokeColor = .clear
             dash.position = CGPoint(x: lineX, y: yPosition + dashLength / 2)
             dash.zPosition = -0.5
+            dash.name = "centerLineDash"
             addChild(dash)
             
             yPosition += dashLength + gapLength
@@ -137,6 +142,38 @@ class PongScene: SKScene {
         addChild(computerPaddle)
     }
     
+    // MARK: - Color Scheme
+    
+    private func applyColorScheme(isBlackAndWhite: Bool) {
+        if isBlackAndWhite {
+            sceneBg.fillColor = .black
+            ball.strokeColor = .white
+            ball.glowWidth = 0
+            ballTrail.particleBirthRate = 0
+            playerPaddle.fillColor = .white
+            playerPaddle.strokeColor = .white
+            playerPaddle.glowWidth = 0
+            computerPaddle.fillColor = .white
+            computerPaddle.strokeColor = .white
+            computerPaddle.glowWidth = 0
+        } else {
+            sceneBg.fillColor = SKColor(red: 0.05, green: 0.05, blue: 0.15, alpha: 1.0)
+            ball.strokeColor = .cyan
+            ball.glowWidth = 3.0
+            ballTrail.particleBirthRate = 50
+            ballTrail.particleColor = .cyan
+            playerPaddle.fillColor = .cyan
+            playerPaddle.strokeColor = SKColor.cyan.withAlphaComponent(0.8)
+            playerPaddle.glowWidth = 5.0
+            computerPaddle.fillColor = .magenta
+            computerPaddle.strokeColor = SKColor.magenta.withAlphaComponent(0.8)
+            computerPaddle.glowWidth = 5.0
+        }
+        enumerateChildNodes(withName: "centerLineDash") { node, _ in
+            (node as? SKShapeNode)?.fillColor = SKColor.white.withAlphaComponent(isBlackAndWhite ? 0.5 : 0.3)
+        }
+    }
+    
     private func resetBall() {
         ball.position = CGPoint(x: frame.midX, y: frame.midY)
         
@@ -165,6 +202,13 @@ class PongScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         guard let gameState = gameState else { return }
+        
+        // Apply color scheme if it changed
+        let isBlackAndWhite = gameState.isBlackAndWhite
+        if lastIsBlackAndWhite != isBlackAndWhite {
+            lastIsBlackAndWhite = isBlackAndWhite
+            applyColorScheme(isBlackAndWhite: isBlackAndWhite)
+        }
         
         // Don't update game logic if paused, not active, or waiting for player to start
         let shouldBePaused = gameState.isPaused || !gameState.isGameActive || !gameState.hasStarted
@@ -254,7 +298,7 @@ class PongScene: SKScene {
                 ballVelocity.dy = hitPosition * abs(ballVelocity.dx)
                 
                 // Visual feedback
-                createPaddleHitEffect(at: ball.position, color: .cyan)
+                createPaddleHitEffect(at: ball.position, color: gameState?.isBlackAndWhite == true ? .white : .cyan)
                 playBlipSound(frequency: 480)
                 let pulse = SKAction.sequence([
                     SKAction.scale(to: 1.2, duration: 0.05),
@@ -281,7 +325,7 @@ class PongScene: SKScene {
                 ballVelocity.dy = hitPosition * abs(ballVelocity.dx)
                 
                 // Visual feedback
-                createPaddleHitEffect(at: ball.position, color: .magenta)
+                createPaddleHitEffect(at: ball.position, color: gameState?.isBlackAndWhite == true ? .white : .magenta)
                 playBlipSound(frequency: 320)
                 let pulse = SKAction.sequence([
                     SKAction.scale(to: 1.2, duration: 0.05),
@@ -507,6 +551,11 @@ class PongScene: SKScene {
     
 #if os(macOS)
     override func keyDown(with event: NSEvent) {
+        // Space bar toggles pause
+        if event.keyCode == 49 {
+            Task { @MainActor in gameState?.togglePause() }
+            return
+        }
         keysPressed.insert(event.charactersIgnoringModifiers ?? "")
         updatePlayerPaddleForKeyboard()
     }

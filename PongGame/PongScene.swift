@@ -355,16 +355,17 @@ class PongScene: SKScene {
                     print("DEBUG: Speed boost triggered! New multiplier: \(currentSpeedMultiplier)")
                     
                     // Visual feedback for speed increase
+                    let bwMode = gameState?.isBlackAndWhite ?? false
                     let speedBoostLabel = SKLabelNode(text: String(localized: "⚡ SPEED BOOST! ⚡"))
                     speedBoostLabel.fontName = "AvenirNext-Bold"
                     speedBoostLabel.fontSize = 48
-                    speedBoostLabel.fontColor = .white
+                    speedBoostLabel.fontColor = bwMode ? .black : .white
                     speedBoostLabel.position = CGPoint(x: frame.midX, y: frame.midY + 100)
                     speedBoostLabel.zPosition = 1000
                     
                     // Add colorful background
                     let background = SKShapeNode(rectOf: CGSize(width: 450, height: 80), cornerRadius: 20)
-                    background.fillColor = SKColor.yellow
+                    background.fillColor = bwMode ? .white : SKColor.yellow
                     background.strokeColor = .white
                     background.lineWidth = 4
                     background.alpha = 0
@@ -411,7 +412,7 @@ class PongScene: SKScene {
                     
                     // Screen flash effect
                     let flashNode = SKShapeNode(rectOf: frame.size)
-                    flashNode.fillColor = SKColor.yellow
+                    flashNode.fillColor = bwMode ? .white : SKColor.yellow
                     flashNode.strokeColor = .clear
                     flashNode.alpha = 0
                     flashNode.position = CGPoint(x: frame.midX, y: frame.midY)

@@ -18,8 +18,11 @@ struct PongGameView: View {
         GeometryReader { geometry in
             ZStack {
                 // SpriteKit Scene
-                SpriteView(scene: createScene(size: geometry.size))
-                    .ignoresSafeArea()
+                if let scene {
+                    SpriteView(scene: scene)
+                        .ignoresSafeArea()
+                }
+
                 
                 // Scoreboard overlay
                 VStack {
@@ -155,6 +158,13 @@ struct PongGameView: View {
                 }
             }
         }
+        .onAppear {
+            guard scene == nil else { return }
+            let newScene = PongScene()
+            newScene.scaleMode = .resizeFill
+            newScene.gameState = gameState
+            scene = newScene
+        }
     }
     
     // MARK: - Audio
@@ -239,21 +249,6 @@ struct PongGameView: View {
         } catch { /* audio is non-critical */ }
     }
 
-    // MARK: - Scene
-
-    private func createScene(size: CGSize) -> PongScene {
-        if let existingScene = scene {
-            return existingScene
-        }
-        
-        let newScene = PongScene()
-        newScene.size = size
-        newScene.scaleMode = .aspectFill
-        newScene.gameState = gameState
-        
-        self.scene = newScene
-        return newScene
-    }
 }
 
 #Preview {

@@ -38,6 +38,7 @@ class PongScene: SKScene {
     private var blipPlayerNode = AVAudioPlayerNode()
     private var playerBlipBuffer: AVAudioPCMBuffer?
     private var computerBlipBuffer: AVAudioPCMBuffer?
+    private var wallBounceBuffer: AVAudioPCMBuffer?
     
     // Game state reference
     weak var gameState: GameState?
@@ -250,6 +251,8 @@ class PongScene: SKScene {
         if ball.position.y <= frame.minY + 10 || ball.position.y >= frame.maxY - 10 {
             ballVelocity.dy *= -1
             ball.position.y = max(frame.minY + 10, min(frame.maxY - 10, ball.position.y))
+            
+            playWallSound()
             
             // Bounce flash effect
             let flash = SKAction.sequence([
@@ -470,6 +473,7 @@ class PongScene: SKScene {
         
         playerBlipBuffer   = makeBlipBuffer(frequency: 480, sampleRate: sampleRate, format: format)
         computerBlipBuffer = makeBlipBuffer(frequency: 320, sampleRate: sampleRate, format: format)
+        wallBounceBuffer   = makeWallBounceBuffer(sampleRate: sampleRate, format: format)
         
         do {
             try engine.start()
@@ -505,6 +509,38 @@ class PongScene: SKScene {
     private func playBlipSound(frequency: Double = 480.0) {
         let buffer = frequency > 400 ? playerBlipBuffer : computerBlipBuffer
         guard let buffer else { return }
+        blipPlayerNode.scheduleBuffer(buffer, at: nil, completionHandler: nil)
+    }
+    
+    /// Shorter sine-wave "thock" — lower pitch and faster decay than the square-wave paddle blips.
+    private func makeWallBounceBuffer(sampleRate: Double, format: AVAudioFormat) -> AVAudioPCMBuffer? {
+        let duration: Double = 0.035
+        let frameCount = AVAudioFrameCount(duration * sampleRate)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return nil }
+        buffer.frameLength = frameCount
+        
+        let data = buffer.floatChannelData![0]
+        let attackLen = Int(0.001 * sampleRate)  // 1 ms attack (snappier than blip)
+        
+        for f in 0..<Int(frameCount) {
+            let t = Double(f) / sampleRate
+            // Sine wave at 200 Hz — smooth timbre, distinct from square-wave blips
+            let wave = Float(sin(2.0 * .pi * 200.0 * t)) * 0.30
+            // Exponential decay after attack
+            var env: Float = 1.0
+            if f < attackLen {
+                env = Float(f) / Float(attackLen)
+            } else {
+                let decayProgress = Double(f - attackLen) / Double(Int(frameCount) - attackLen)
+                env = Float(exp(-4.0 * decayProgress))
+            }
+            data[f] = wave * env
+        }
+        return buffer
+    }
+    
+    private func playWallSound() {
+        guard let buffer = wallBounceBuffer else { return }
         blipPlayerNode.scheduleBuffer(buffer, at: nil, completionHandler: nil)
     }
     

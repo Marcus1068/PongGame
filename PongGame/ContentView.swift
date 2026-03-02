@@ -104,6 +104,7 @@ struct ContentView: View {
                             Button {
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     showAbout = true
+                                    gameState.isPaused = true
                                 }
                             } label: {
                                 Label("About", systemImage: "info.circle")
@@ -137,6 +138,7 @@ struct ContentView: View {
                     AboutView {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             showAbout = false
+                            gameState.isPaused = false
                         }
                     }
                 }

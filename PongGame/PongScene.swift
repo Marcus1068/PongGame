@@ -352,7 +352,7 @@ class PongScene: SKScene {
                     print("DEBUG: Speed boost triggered! New multiplier: \(currentSpeedMultiplier)")
                     
                     // Visual feedback for speed increase
-                    let speedBoostLabel = SKLabelNode(text: "⚡ SPEED BOOST! ⚡")
+                    let speedBoostLabel = SKLabelNode(text: String(localized: "⚡ SPEED BOOST! ⚡"))
                     speedBoostLabel.fontName = "AvenirNext-Bold"
                     speedBoostLabel.fontSize = 48
                     speedBoostLabel.fontColor = .white

@@ -85,7 +85,7 @@ struct PongGameView: View {
                             
                             // Winner text
                             VStack(spacing: 10) {
-                                Text("\(winner) Wins!")
+                                Text(winner == "Player" ? "Player Wins!" : "Computer Wins!")
                                     .font(.system(size: 60, weight: .bold, design: .rounded))
                                     .foregroundStyle(
                                         LinearGradient(

@@ -1,0 +1,283 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%.1fx" : {
+
+    },
+    "%lld" : {
+
+    },
+    "© 2026 Marcus Deuß" : {
+
+    },
+    "⚡ SPEED BOOST! ⚡" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⚡ TEMPO-BOOST! ⚡"
+          }
+        }
+      }
+    },
+    "About" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Info"
+          }
+        }
+      }
+    },
+    "All Rights Reserved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle Rechte vorbehalten"
+          }
+        }
+      }
+    },
+    "Ball Speed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ballgeschwindigkeit"
+          }
+        }
+      }
+    },
+    "Black/White" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schwarz/Weiß"
+          }
+        }
+      }
+    },
+    "Built with SwiftUI · SpriteKit · AVFoundation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entwickelt mit SwiftUI · SpriteKit · AVFoundation"
+          }
+        }
+      }
+    },
+    "Classic Pong reimagined with a retro-neon look, synthesised arcade sounds, and a speed-boost rally system." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klassisches Pong mit Retro-Neon-Look, synthetisierten Arcade-Sounds und Rally-Geschwindigkeitssystem."
+          }
+        }
+      }
+    },
+    "Close" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schließen"
+          }
+        }
+      }
+    },
+    "Color" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Farbe"
+          }
+        }
+      }
+    },
+    "Computer" : {
+      "comment" : "Score label for the computer player",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Computer"
+          }
+        }
+      }
+    },
+    "Computer Wins!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Computer gewinnt!"
+          }
+        }
+      }
+    },
+    "Final Score: %lld - %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endergebnis: %lld - %lld"
+          }
+        }
+      }
+    },
+    "First player to reach 5 points wins. Every 3 alternating rally hits triggers a speed boost!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer zuerst 5 Punkte erreicht, gewinnt. Jede 3. abwechselnde Ballrückgabe aktiviert einen Geschwindigkeitsschub!"
+          }
+        }
+      }
+    },
+    "Game Paused" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel pausiert"
+          }
+        }
+      }
+    },
+    "Options" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "Pause" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause"
+          }
+        }
+      }
+    },
+    "PingPong Retro" : {
+
+    },
+    "Play Again" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nochmal spielen"
+          }
+        }
+      }
+    },
+    "Player" : {
+      "comment" : "Score label for the human player",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spieler"
+          }
+        }
+      }
+    },
+    "Player Wins!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spieler gewinnt!"
+          }
+        }
+      }
+    },
+    "Press Resume to continue" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Weiterspielen auf Fortsetzen tippen"
+          }
+        }
+      }
+    },
+    "Restart" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neustart"
+          }
+        }
+      }
+    },
+    "Resume" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fortsetzen"
+          }
+        }
+      }
+    },
+    "Start Game" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiel starten"
+          }
+        }
+      }
+    },
+    "Touch and drag to move" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen und Ziehen zum Bewegen"
+          }
+        }
+      }
+    },
+    "Use W / S or the Arrow Keys to move your paddle on macOS. Drag on screen to play on iOS." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W / S oder Pfeiltasten zum Bewegen auf macOS. Auf dem Bildschirm ziehen zum Spielen auf iOS."
+          }
+        }
+      }
+    },
+    "Use W/S or Arrow Keys to move" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W/S oder Pfeiltasten zum Bewegen"
+          }
+        }
+      }
+    },
+    "Version 1.0" : {
+
+    }
+  },
+  "version" : "1.0"
+}

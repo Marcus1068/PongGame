@@ -81,6 +81,7 @@ struct ContentView: View {
                                 gameState.reset()
                             } label: {
                                 Label("Restart", systemImage: "arrow.counterclockwise")
+                                    .foregroundStyle(.white.opacity(0.25))
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
                                     .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
@@ -93,6 +94,7 @@ struct ContentView: View {
                             } label: {
                                 Label(gameState.isPaused ? "Resume" : "Pause", 
                                       systemImage: gameState.isPaused ? "play.fill" : "pause.fill")
+                                    .foregroundStyle(.white.opacity(0.25))
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
                                     .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
@@ -107,6 +109,7 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Label("About", systemImage: "info.circle")
+                                    .foregroundStyle(.white.opacity(0.25))
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
                                     .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
@@ -121,6 +124,7 @@ struct ContentView: View {
                                 }
                             } label: {
                                 Label("Options", systemImage: "gearshape")
+                                    .foregroundStyle(.white.opacity(0.25))
                                     .padding(.horizontal, 16)
                                     .padding(.vertical, 8)
                                     .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))

@@ -269,7 +269,13 @@ class PongScene: SKScene {
     
     private func updateComputerAI() {
         // Simple AI: follow the ball with some delay for realism
-        let aiSpeed: CGFloat = 5.0
+        let aiSpeed: CGFloat
+        switch gameState?.difficulty {
+        case .easy:   aiSpeed = 3.0
+        case .medium: aiSpeed = 5.0
+        case .hard:   aiSpeed = 8.0
+        case nil:     aiSpeed = 5.0
+        }
         let targetY = ball.position.y
         
         if computerPaddle.position.y < targetY - 10 {

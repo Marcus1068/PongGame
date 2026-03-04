@@ -42,6 +42,21 @@ struct OptionsView: View {
                 }
                 .padding(.horizontal, 8)
                 
+                // MARK: Difficulty picker
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Difficulty")
+                        .font(.subheadline)
+                        .foregroundStyle(.white.opacity(0.7))
+
+                    Picker("Difficulty", selection: $gameState.difficulty) {
+                        ForEach(Difficulty.allCases, id: \.self) { level in
+                            Text(LocalizedStringKey(level.rawValue)).tag(level)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+                .padding(.horizontal, 8)
+
                 // MARK: Ball speed slider
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Ball Speed")

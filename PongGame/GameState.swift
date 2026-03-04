@@ -8,6 +8,12 @@
 import Foundation
 import Observation
 
+enum Difficulty: String, CaseIterable {
+    case easy   = "Easy"
+    case medium = "Medium"
+    case hard   = "Hard"
+}
+
 /// Shared observable game state passed between the SwiftUI layer and the SpriteKit scene.
 /// Marked `@MainActor` so all mutations happen on the main thread, keeping SwiftUI bindings safe.
 @MainActor
@@ -34,6 +40,8 @@ class GameState {
 
     /// Current ball-speed multiplier; increases as rallies build up (0.5 – 2.0).
     var ballSpeed: Double = 1.0
+
+    var difficulty: Difficulty = .medium
 
     /// Set to "Player" or "Computer" when someone reaches `maxScore`; nil during play.
     var winner: String? = nil

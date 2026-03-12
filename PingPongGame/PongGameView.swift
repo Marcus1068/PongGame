@@ -15,7 +15,7 @@ struct PongGameView: View {
     @State private var cheerEngine: AVAudioEngine?
     
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { _ in
             ZStack {
                 // SpriteKit Scene
                 if let scene {
@@ -33,7 +33,7 @@ struct PongGameView: View {
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.computerScore)")
-                                .font(.system(size: 48, weight: .bold, design: .rounded))
+                                .font(.system(size: UIDevice.current.userInterfaceIdiom == .pad ? 72 : 48, weight: .bold, design: .rounded))
                                 .foregroundStyle(gameState.isBlackAndWhite ? .white : .purple)
                         }
                         .frame(maxWidth: .infinity)
@@ -44,7 +44,7 @@ struct PongGameView: View {
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.playerScore)")
-                                .font(.system(size: 48, weight: .bold, design: .rounded))
+                                .font(.system(size: UIDevice.current.userInterfaceIdiom == .pad ? 72 : 48, weight: .bold, design: .rounded))
                                 .foregroundStyle(gameState.isBlackAndWhite ? .white : .cyan)
                         }
                         .frame(maxWidth: .infinity)
@@ -194,7 +194,9 @@ struct PongGameView: View {
                     .transition(.opacity)
                 }
             }
+            .ignoresSafeArea()
         }
+        .ignoresSafeArea()
         .onAppear {
             guard scene == nil else { return }
             let newScene = PongScene()

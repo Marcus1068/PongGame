@@ -18,94 +18,111 @@ struct OptionsView: View {
                 .ignoresSafeArea()
                 .onTapGesture { onDismiss() }
 
-            VStack(spacing: 28) {
+            ScrollView {
+                VStack(spacing: 20) {
 
-                // MARK: Title
-                Text("Options")
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
+                    // MARK: Title
+                    Text("Options")
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .foregroundStyle(.white)
 
-                Divider()
-                    .background(.white.opacity(0.2))
+                    Divider()
+                        .background(.white.opacity(0.2))
 
-                // MARK: Color scheme picker
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Color")
-                        .font(.subheadline)
-                        .foregroundStyle(.white.opacity(0.7))
+                    // MARK: Color scheme picker
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Color")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.7))
 
-                    Picker("Color", selection: $gameState.isBlackAndWhite) {
-                        Text("Color").tag(false)
-                        Text("Black/White").tag(true)
+                        Picker("Color", selection: $gameState.isBlackAndWhite) {
+                            Text("Color").tag(false)
+                            Text("Black/White").tag(true)
+                        }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
-                }
-                .padding(.horizontal, 8)
-                
-                // MARK: Difficulty picker
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Difficulty")
-                        .font(.subheadline)
-                        .foregroundStyle(.white.opacity(0.7))
+                    .padding(.horizontal, 8)
 
-                    Picker("Difficulty", selection: $gameState.difficulty) {
-                        ForEach(Difficulty.allCases, id: \.self) { level in
-                            Text(LocalizedStringKey(level.rawValue)).tag(level)
+                    // MARK: Difficulty picker
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Difficulty")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.7))
+
+                        Picker("Difficulty", selection: $gameState.difficulty) {
+                            ForEach(Difficulty.allCases, id: \.self) { level in
+                                Text(LocalizedStringKey(level.rawValue)).tag(level)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                    }
+                    .padding(.horizontal, 8)
+
+                    // MARK: End Score picker
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("End Score")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.7))
+
+                        Picker("End Score", selection: $gameState.maxScore) {
+                            ForEach([3, 5, 7, 10, 15, 21], id: \.self) { score in
+                                Text("\(score)").tag(score)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                    }
+                    .padding(.horizontal, 8)
+
+                    // MARK: Ball speed slider
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Ball Speed")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.7))
+
+                        HStack(spacing: 8) {
+                            Image(systemName: "tortoise.fill")
+                                .font(.caption2)
+                                .foregroundStyle(.white.opacity(0.5))
+
+                            Slider(value: $gameState.ballSpeed, in: 0.5...2.0, step: 0.1)
+                                .tint(.cyan)
+
+                            Image(systemName: "hare.fill")
+                                .font(.caption2)
+                                .foregroundStyle(.white.opacity(0.5))
+
+                            Text("\(gameState.ballSpeed, specifier: "%.1f")x")
+                                .font(.caption2.monospacedDigit())
+                                .foregroundStyle(.white.opacity(0.6))
+                                .frame(width: 35)
                         }
                     }
-                    .pickerStyle(.segmented)
-                }
-                .padding(.horizontal, 8)
+                    .padding(.horizontal, 8)
 
-                // MARK: Ball speed slider
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Ball Speed")
-                        .font(.subheadline)
-                        .foregroundStyle(.white.opacity(0.7))
+                    Divider()
+                        .background(.white.opacity(0.2))
 
-                    HStack(spacing: 8) {
-                        Image(systemName: "tortoise.fill")
-                            .font(.caption2)
-                            .foregroundStyle(.white.opacity(0.5))
-
-                        Slider(value: $gameState.ballSpeed, in: 0.5...2.0, step: 0.1)
-                            .tint(.cyan)
-
-                        Image(systemName: "hare.fill")
-                            .font(.caption2)
-                            .foregroundStyle(.white.opacity(0.5))
-
-                        Text("\(gameState.ballSpeed, specifier: "%.1f")x")
-                            .font(.caption2.monospacedDigit())
-                            .foregroundStyle(.white.opacity(0.6))
-                            .frame(width: 35)
+                    // MARK: Dismiss button
+                    Button(action: onDismiss) {
+                        Text("Close")
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 14)
+                            .background(
+                                LinearGradient(
+                                    colors: [.cyan, .purple],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                ),
+                                in: Capsule()
+                            )
+                            .shadow(color: .cyan.opacity(0.5), radius: 8)
                     }
+                    .buttonStyle(.plain)
                 }
-                .padding(.horizontal, 8)
-
-                Divider()
-                    .background(.white.opacity(0.2))
-
-                // MARK: Dismiss button
-                Button(action: onDismiss) {
-                    Text("Close")
-                        .font(.headline)
-                        .foregroundStyle(.black)
-                        .padding(.horizontal, 40)
-                        .padding(.vertical, 14)
-                        .background(
-                            LinearGradient(
-                                colors: [.cyan, .purple],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            ),
-                            in: Capsule()
-                        )
-                        .shadow(color: .cyan.opacity(0.5), radius: 8)
-                }
-                .buttonStyle(.plain)
+                .padding(24)
             }
-            .padding(32)
             .background(
                 RoundedRectangle(cornerRadius: 24)
                     .fill(.ultraThinMaterial)
@@ -115,7 +132,7 @@ struct OptionsView: View {
                     )
             )
             .colorScheme(.dark)
-            .padding(40)
+            .padding(20)
         }
         .transition(.opacity.combined(with: .scale(scale: 0.95)))
     }

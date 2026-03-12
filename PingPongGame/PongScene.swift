@@ -29,13 +29,14 @@ class PongScene: SKScene {
     private var consecutiveHits: Int = 0
     private var lastHitByPlayer: Bool? = nil
     
-    // Paddle dimensions — 30 % thicker on iPhone to clear the Dynamic Island
+    // Paddle dimensions — 30 % thicker on iPhone (Dynamic Island); 30 % taller on iPad
     #if os(iOS)
-    private let paddleWidth: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 26 : 20
+    private let paddleWidth: CGFloat  = UIDevice.current.userInterfaceIdiom == .phone ? 26 : 20
+    private let paddleHeight: CGFloat = UIDevice.current.userInterfaceIdiom == .pad  ? 130 : 100
     #else
-    private let paddleWidth: CGFloat = 20
-    #endif
+    private let paddleWidth: CGFloat  = 20
     private let paddleHeight: CGFloat = 100
+    #endif
     
     // Audio
     private var blipEngine: AVAudioEngine?
@@ -150,6 +151,39 @@ class PongScene: SKScene {
         addChild(computerPaddle)
     }
     
+    // MARK: - Orientation / Resize
+
+    override func didChangeSize(_ oldSize: CGSize) {
+        guard sceneBg != nil else { return }   // not yet set up
+
+        // Background
+        sceneBg.path = CGPath(
+            rect: CGRect(x: -frame.width / 2, y: -frame.height / 2,
+                         width: frame.width, height: frame.height),
+            transform: nil
+        )
+        sceneBg.position = CGPoint(x: frame.midX, y: frame.midY)
+
+        // Physics boundary
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+
+        // Center-line dashes — remove old, draw new
+        enumerateChildNodes(withName: "centerLineDash") { node, _ in node.removeFromParent() }
+        setupCenterLine()
+
+        // Paddles — keep Y but clamp to new bounds, update X edges
+        playerPaddle.position.x  = frame.maxX - 40
+        computerPaddle.position.x = frame.minX + 40
+        playerPaddle.position.y  = max(frame.minY + paddleHeight / 2,
+                                       min(frame.maxY - paddleHeight / 2, playerPaddle.position.y))
+        computerPaddle.position.y = max(frame.minY + paddleHeight / 2,
+                                        min(frame.maxY - paddleHeight / 2, computerPaddle.position.y))
+
+        // Ball — clamp into new bounds
+        ball.position.x = max(frame.minX + 10, min(frame.maxX - 10, ball.position.x))
+        ball.position.y = max(frame.minY + 10, min(frame.maxY - 10, ball.position.y))
+    }
+
     // MARK: - Color Scheme
     
     private func applyColorScheme(isBlackAndWhite: Bool) {

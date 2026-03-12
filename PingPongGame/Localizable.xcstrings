@@ -98,6 +98,7 @@
       }
     },
     "About" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -436,6 +437,34 @@
         }
       }
     },
+    "End Score" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endpunktzahl"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puntuación final"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score final"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punteggio finale"
+          }
+        }
+      }
+    },
     "Final Score: %lld - %lld" : {
       "localizations" : {
         "de" : {
@@ -464,30 +493,30 @@
         }
       }
     },
-    "First player to reach 5 points wins. Every 3 alternating rally hits triggers a speed boost!" : {
+    "First player to reach %lld points wins. Every 3 alternating rally hits triggers a speed boost!" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wer zuerst 5 Punkte erreicht, gewinnt. Jede 3. abwechselnde Ballrückgabe aktiviert einen Geschwindigkeitsschub!"
+            "value" : "Wer zuerst %lld Punkte erreicht, gewinnt. Jede 3. abwechselnde Ballrückgabe aktiviert einen Geschwindigkeitsschub!"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El primero en llegar a 5 puntos gana. ¡Cada 3 golpes alternos de rally activan un turbo de velocidad!"
+            "value" : "El primero en llegar a %lld puntos gana. ¡Cada 3 golpes alternos de rally activan un turbo de velocidad!"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le premier à atteindre 5 points gagne. Chaque série de 3 échanges consécutifs déclenche un turbo de vitesse !"
+            "value" : "Le premier à atteindre %lld points gagne. Chaque série de 3 échanges consécutifs déclenche un turbo de vitesse !"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il primo a raggiungere 5 punti vince. Ogni 3 scambi alternati attiva un turbo di velocità!"
+            "value" : "Il primo a raggiungere %lld punti vince. Ogni 3 scambi alternati attiva un turbo di velocità!"
           }
         }
       }
@@ -661,6 +690,7 @@
       }
     },
     "Pause" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -947,6 +977,7 @@
       }
     },
     "Restart" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

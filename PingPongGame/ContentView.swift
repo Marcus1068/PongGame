@@ -84,77 +84,54 @@ struct ContentView: View {
                     .transition(.opacity)
                 }
                 
-                // Restart and Pause button overlay
+                // Icon-only HUD — top centre, works on all screen sizes
                 VStack {
-                    HStack {
-                        Spacer()
-                        VStack(spacing: 12) {
-                            // Restart button
-                            Button {
-                                gameState.reset()
-                            } label: {
-                                Label("Restart", systemImage: "arrow.counterclockwise")
-                                    .foregroundStyle(.white.opacity(0.25))
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
-                            }
-                            .buttonStyle(.plain)
-                            
-                            // Pause button
-                            Button {
-                                gameState.togglePause()
-                            } label: {
-                                Label(gameState.isPaused ? "Resume" : "Pause", 
-                                      systemImage: gameState.isPaused ? "play.fill" : "pause.fill")
-                                    .foregroundStyle(.white.opacity(0.25))
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
-                            }
-                            .buttonStyle(.plain)
-                            
-                            // About button
-                            Button {
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    showAbout = true
-                                    gameState.isPaused = true
-                                }
-                            } label: {
-                                Label("About", systemImage: "info.circle")
-                                    .foregroundStyle(.white.opacity(0.25))
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
-                            }
-                            .buttonStyle(.plain)
-                            
-                            // Options button
-                            Button {
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    showOptions = true
-                                    gameState.isPaused = true
-                                }
-                            } label: {
-                                Label("Options", systemImage: "gearshape")
-                                    .foregroundStyle(.white.opacity(0.25))
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(.ultraThinMaterial.opacity(0.4), in: RoundedRectangle(cornerRadius: 10))
-                            }
-                            .buttonStyle(.plain)
+                    HStack(spacing: 0) {
+                        Button { gameState.reset() } label: {
+                            Image(systemName: "arrow.counterclockwise")
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
                         }
-                        .padding()
+                        Button { gameState.togglePause() } label: {
+                            Image(systemName: gameState.isPaused ? "play.fill" : "pause.fill")
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
+                        }
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                showAbout = true
+                                gameState.isPaused = true
+                            }
+                        } label: {
+                            Image(systemName: "info.circle")
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
+                        }
+                        Button {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                showOptions = true
+                                gameState.isPaused = true
+                            }
+                        } label: {
+                            Image(systemName: "gearshape")
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
+                        }
                     }
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.3))
+                    .padding(.horizontal, 8)
+                    .background(.ultraThinMaterial.opacity(0.35), in: Capsule())
+                    .padding(.top, 8)
+                    .buttonStyle(.plain)
                     Spacer()
                 }
                 
                 // About overlay
                 if showAbout {
-                    AboutView {
+                    AboutView(maxScore: gameState.maxScore) {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             showAbout = false
-                            gameState.isPaused = false
                         }
                     }
                 }
@@ -169,6 +146,7 @@ struct ContentView: View {
                 }
             }
         }
+        .ignoresSafeArea()
 #if os(macOS)
         .frame(minWidth: 800, minHeight: 600)
 #endif

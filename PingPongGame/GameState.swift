@@ -52,8 +52,10 @@ class GameState {
     /// Set to "Player" or "Computer" when someone reaches `maxScore`; nil during play.
     var winner: String? = nil
 
-    /// First player to reach this score wins the match.
-    let maxScore = 5
+    /// First player to reach this score wins the match. Persisted across launches.
+    var maxScore: Int = UserDefaults.standard.object(forKey: "endScore") as? Int ?? 5 {
+        didSet { UserDefaults.standard.set(maxScore, forKey: "endScore") }
+    }
 
     // MARK: - Actions
 

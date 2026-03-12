@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		2CF727802F4F0C5400CE0E0C /* PongGameRetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongGameRetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CF727802F4F0C5400CE0E0C /* PingPongRetro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PingPongRetro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		2CF727812F4F0C5400CE0E0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2CF727802F4F0C5400CE0E0C /* PongGameRetro.app */,
+				2CF727802F4F0C5400CE0E0C /* PingPongRetro.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2CF7277F2F4F0C5400CE0E0C /* PongGameRetro */ = {
+		2CF7277F2F4F0C5400CE0E0C /* PingPongRetro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2CF7278D2F4F0C5500CE0E0C /* Build configuration list for PBXNativeTarget "PongGameRetro" */;
+			buildConfigurationList = 2CF7278D2F4F0C5500CE0E0C /* Build configuration list for PBXNativeTarget "PingPongRetro" */;
 			buildPhases = (
 				2CF7277C2F4F0C5400CE0E0C /* Sources */,
 				2CF7277D2F4F0C5400CE0E0C /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				2CF727822F4F0C5400CE0E0C /* PingPongGame */,
 			);
-			name = PongGameRetro;
+			name = PingPongRetro;
 			packageProductDependencies = (
 			);
 			productName = PongGame;
-			productReference = 2CF727802F4F0C5400CE0E0C /* PongGameRetro.app */;
+			productReference = 2CF727802F4F0C5400CE0E0C /* PingPongRetro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2CF7277B2F4F0C5400CE0E0C /* Build configuration list for PBXProject "PongGameRetro" */;
+			buildConfigurationList = 2CF7277B2F4F0C5400CE0E0C /* Build configuration list for PBXProject "PingPongRetro" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -103,7 +103,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2CF7277F2F4F0C5400CE0E0C /* PongGameRetro */,
+				2CF7277F2F4F0C5400CE0E0C /* PingPongRetro */,
 			);
 		};
 /* End PBXProject section */
@@ -265,7 +265,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PingPongRetro;
+				INFOPLIST_KEY_CFBundleDisplayName = "PingPong Retro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -282,7 +282,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.marcus-deuss.PongGameRetro";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.marcus-deuss.PingPongRetro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -313,7 +313,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = PingPongRetro;
+				INFOPLIST_KEY_CFBundleDisplayName = "PingPong Retro";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -330,7 +330,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.marcus-deuss.PongGameRetro";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.marcus-deuss.PingPongRetro";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -350,7 +350,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2CF7277B2F4F0C5400CE0E0C /* Build configuration list for PBXProject "PongGameRetro" */ = {
+		2CF7277B2F4F0C5400CE0E0C /* Build configuration list for PBXProject "PingPongRetro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CF7278B2F4F0C5500CE0E0C /* Debug */,
@@ -359,7 +359,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2CF7278D2F4F0C5500CE0E0C /* Build configuration list for PBXNativeTarget "PongGameRetro" */ = {
+		2CF7278D2F4F0C5500CE0E0C /* Build configuration list for PBXNativeTarget "PingPongRetro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2CF7278E2F4F0C5500CE0E0C /* Debug */,

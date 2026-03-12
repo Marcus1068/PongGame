@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2CF7277F2F4F0C5400CE0E0C"
-               BuildableName = "PongGameRetro.app"
-               BlueprintName = "PongGameRetro"
-               ReferencedContainer = "container:PongGameRetro.xcodeproj">
+               BuildableName = "PingPongRetro.app"
+               BlueprintName = "PingPongRetro"
+               ReferencedContainer = "container:PingPongRetro.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2CF7277F2F4F0C5400CE0E0C"
-            BuildableName = "PongGameRetro.app"
-            BlueprintName = "PongGameRetro"
-            ReferencedContainer = "container:PongGameRetro.xcodeproj">
+            BuildableName = "PingPongRetro.app"
+            BlueprintName = "PingPongRetro"
+            ReferencedContainer = "container:PingPongRetro.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2CF7277F2F4F0C5400CE0E0C"
-            BuildableName = "PongGameRetro.app"
-            BlueprintName = "PongGameRetro"
-            ReferencedContainer = "container:PongGameRetro.xcodeproj">
+            BuildableName = "PingPongRetro.app"
+            BlueprintName = "PingPongRetro"
+            ReferencedContainer = "container:PingPongRetro.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

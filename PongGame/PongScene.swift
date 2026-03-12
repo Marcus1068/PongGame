@@ -48,8 +48,11 @@ class PongScene: SKScene {
     weak var gameState: GameState?
     
     // Input tracking
-    private var touchY: CGFloat?
     private var keysPressed = Set<String>()
+#if os(iOS)
+    private var playerTouch: UITouch?   // right paddle
+    private var player2Touch: UITouch?  // left paddle (two-player mode)
+#endif
     
     override func didMove(to view: SKView) {
         setupScene()
@@ -229,18 +232,23 @@ class PongScene: SKScene {
         }
         
         updateBallPosition()
-        updateComputerAI()
+
+        if gameState.gameMode == .twoPlayers {
+#if os(macOS)
+            updatePlayer2PaddleForKeyboard()
+#endif
+            // iOS player 2 is handled directly in touch callbacks
+        } else {
+            updateComputerAI()
+        }
+
         checkCollisions()
         checkScore()
-        
+
 #if os(macOS)
-        // Continuously update paddle position for smooth keyboard movement
         if !keysPressed.isEmpty {
             updatePlayerPaddleForKeyboard()
         }
-#else
-        // Update touch position for iOS
-        updatePlayerPaddlePosition()
 #endif
     }
     
@@ -573,24 +581,50 @@ class PongScene: SKScene {
     
 #if os(iOS)
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        touchY = touch.location(in: self).y
+        for touch in touches {
+            let loc = touch.location(in: self)
+            if gameState?.gameMode == .twoPlayers {
+                if loc.x >= frame.midX && playerTouch == nil {
+                    playerTouch = touch
+                    movePaddle(&playerPaddle.position.y, to: loc.y)
+                } else if loc.x < frame.midX && player2Touch == nil {
+                    player2Touch = touch
+                    movePaddle(&computerPaddle.position.y, to: loc.y)
+                }
+            } else {
+                if playerTouch == nil {
+                    playerTouch = touch
+                    movePaddle(&playerPaddle.position.y, to: loc.y)
+                }
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        touchY = touch.location(in: self).y
-        updatePlayerPaddlePosition()
+        for touch in touches {
+            let y = touch.location(in: self).y
+            if touch === playerTouch {
+                movePaddle(&playerPaddle.position.y, to: y)
+            } else if touch === player2Touch {
+                movePaddle(&computerPaddle.position.y, to: y)
+            }
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touchY = nil
+        for touch in touches {
+            if touch === playerTouch  { playerTouch = nil }
+            if touch === player2Touch { player2Touch = nil }
+        }
     }
     
-    private func updatePlayerPaddlePosition() {
-        guard let y = touchY else { return }
-        playerPaddle.position.y = max(frame.minY + paddleHeight / 2,
-                                     min(frame.maxY - paddleHeight / 2, y))
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesEnded(touches, with: event)
+    }
+    
+    private func movePaddle(_ y: inout CGFloat, to targetY: CGFloat) {
+        y = max(frame.minY + paddleHeight / 2,
+                min(frame.maxY - paddleHeight / 2, targetY))
     }
 #endif
     
@@ -631,6 +665,21 @@ class PongScene: SKScene {
         
         playerPaddle.position.y = max(frame.minY + paddleHeight / 2,
                                      min(frame.maxY - paddleHeight / 2, playerPaddle.position.y))
+    }
+    
+    private func updatePlayer2PaddleForKeyboard() {
+        let speed: CGFloat = 10
+        
+        // Player 2 uses I/K keys
+        if keysPressed.contains("i") || keysPressed.contains("I") {
+            computerPaddle.position.y += speed
+        }
+        if keysPressed.contains("k") || keysPressed.contains("K") {
+            computerPaddle.position.y -= speed
+        }
+        
+        computerPaddle.position.y = max(frame.minY + paddleHeight / 2,
+                                       min(frame.maxY - paddleHeight / 2, computerPaddle.position.y))
     }
 #endif
 }

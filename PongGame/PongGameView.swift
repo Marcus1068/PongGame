@@ -27,9 +27,9 @@ struct PongGameView: View {
                 // Scoreboard overlay
                 VStack {
                     HStack {
-                        // Computer score (left)
+                        // Left paddle score
                         VStack {
-                            Text("Computer")
+                            Text(gameState.gameMode == .twoPlayers ? "Player 2" : "Computer")
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.computerScore)")
@@ -38,9 +38,9 @@ struct PongGameView: View {
                         }
                         .frame(maxWidth: .infinity)
                         
-                        // Player score (right)
+                        // Right paddle score
                         VStack {
-                            Text("Player")
+                            Text(gameState.gameMode == .twoPlayers ? "Player 1" : "Player")
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.playerScore)")
@@ -56,13 +56,25 @@ struct PongGameView: View {
                     // Controls hint
                     VStack(spacing: 8) {
 #if os(macOS)
-                        Text("Use W/S or Arrow Keys to move")
-                            .font(.caption)
-                            .foregroundStyle(.white.opacity(0.5))
+                        if gameState.gameMode == .twoPlayers {
+                            Text("Player 1: W/S or ↑↓  •  Player 2: I/K")
+                                .font(.caption)
+                                .foregroundStyle(.white.opacity(0.5))
+                        } else {
+                            Text("Use W/S or Arrow Keys to move")
+                                .font(.caption)
+                                .foregroundStyle(.white.opacity(0.5))
+                        }
 #else
-                        Text("Touch and drag to move")
-                            .font(.caption)
-                            .foregroundStyle(.white.opacity(0.5))
+                        if gameState.gameMode == .twoPlayers {
+                            Text("Left side: Player 2  •  Right side: Player 1")
+                                .font(.caption)
+                                .foregroundStyle(.white.opacity(0.5))
+                        } else {
+                            Text("Touch and drag to move")
+                                .font(.caption)
+                                .foregroundStyle(.white.opacity(0.5))
+                        }
 #endif
                     }
                     .padding(.bottom)
@@ -88,7 +100,9 @@ struct PongGameView: View {
                             
                             // Winner text
                             VStack(spacing: 10) {
-                                Text(winner == "Player" ? "Player Wins!" : "Computer Wins!")
+                                Text(winner == "Player"
+                                     ? (gameState.gameMode == .twoPlayers ? "Player 1 Wins!" : "Player Wins!")
+                                     : (gameState.gameMode == .twoPlayers ? "Player 2 Wins!" : "Computer Wins!"))
                                     .font(.system(size: 60, weight: .bold, design: .rounded))
                                     .foregroundStyle(
                                         LinearGradient(
@@ -135,11 +149,16 @@ struct PongGameView: View {
                 // Pause overlay
                 if gameState.isPaused && gameState.winner == nil {
                     ZStack {
-                        // Semi-transparent background
+                        // Tappable backdrop — tap anywhere to resume
                         Color.black.opacity(0.6)
                             .ignoresSafeArea()
+                            .onTapGesture {
+                                withAnimation(.easeIn(duration: 0.15)) {
+                                    gameState.isPaused = false
+                                }
+                            }
                         
-                        VStack(spacing: 20) {
+                        VStack(spacing: 28) {
                             Image(systemName: "pause.circle.fill")
                                 .font(.system(size: 100))
                                 .foregroundStyle(.white.opacity(0.9))
@@ -149,9 +168,27 @@ struct PongGameView: View {
                                 .font(.system(size: 40, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                             
-                            Text("Press Resume to continue")
-                                .font(.title3)
-                                .foregroundStyle(.white.opacity(0.7))
+                            Button {
+                                withAnimation(.easeIn(duration: 0.15)) {
+                                    gameState.isPaused = false
+                                }
+                            } label: {
+                                Text("Resume")
+                                    .font(.title2.bold())
+                                    .foregroundStyle(.black)
+                                    .padding(.horizontal, 48)
+                                    .padding(.vertical, 16)
+                                    .background(
+                                        LinearGradient(
+                                            colors: [.cyan, .purple],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        ),
+                                        in: Capsule()
+                                    )
+                                    .shadow(color: .cyan.opacity(0.5), radius: 10)
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
                     .transition(.opacity)

@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2CF7277F2F4F0C5400CE0E0C"
-               BuildableName = "PongGame.app"
-               BlueprintName = "PongGame"
-               ReferencedContainer = "container:PongGame.xcodeproj">
+               BuildableName = "PongGameRetro.app"
+               BlueprintName = "PongGameRetro"
+               ReferencedContainer = "container:PongGameRetro.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,7 +34,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "en"
+      language = "de"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2CF7277F2F4F0C5400CE0E0C"
-            BuildableName = "PongGame.app"
-            BlueprintName = "PongGame"
-            ReferencedContainer = "container:PongGame.xcodeproj">
+            BuildableName = "PongGameRetro.app"
+            BlueprintName = "PongGameRetro"
+            ReferencedContainer = "container:PongGameRetro.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2CF7277F2F4F0C5400CE0E0C"
-            BuildableName = "PongGame.app"
-            BlueprintName = "PongGame"
-            ReferencedContainer = "container:PongGame.xcodeproj">
+            BuildableName = "PongGameRetro.app"
+            BlueprintName = "PongGameRetro"
+            ReferencedContainer = "container:PongGameRetro.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

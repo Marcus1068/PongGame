@@ -14,9 +14,11 @@ struct AboutView: View {
     var body: some View {
         ZStack {
             // Dimmed backdrop
-            Color.black.opacity(0.75)
-                .ignoresSafeArea()
-                .onTapGesture { onDismiss() }
+            Button(action: onDismiss) {
+                Color.black.opacity(0.75)
+                    .ignoresSafeArea()
+            }
+            .buttonStyle(.plain)
 
             ScrollView {
                 VStack(spacing: 20) {
@@ -84,7 +86,7 @@ struct AboutView: View {
                             .foregroundStyle(.white.opacity(0.45))
 
                         Text("Built with SwiftUI · SpriteKit · AVFoundation")
-                            .font(.caption2)
+                            .font(.caption)
                             .foregroundStyle(.white.opacity(0.3))
                             .padding(.top, 2)
                     }

@@ -14,9 +14,11 @@ struct OptionsView: View {
     var body: some View {
         ZStack {
             // Dimmed backdrop
-            Color.black.opacity(0.75)
-                .ignoresSafeArea()
-                .onTapGesture { onDismiss() }
+            Button(action: onDismiss) {
+                Color.black.opacity(0.75)
+                    .ignoresSafeArea()
+            }
+            .buttonStyle(.plain)
 
             ScrollView {
                 VStack(spacing: 20) {
@@ -81,18 +83,18 @@ struct OptionsView: View {
 
                         HStack(spacing: 8) {
                             Image(systemName: "tortoise.fill")
-                                .font(.caption2)
+                                .font(.caption)
                                 .foregroundStyle(.white.opacity(0.5))
 
                             Slider(value: $gameState.ballSpeed, in: 0.5...2.0, step: 0.1)
                                 .tint(.cyan)
 
                             Image(systemName: "hare.fill")
-                                .font(.caption2)
+                                .font(.caption)
                                 .foregroundStyle(.white.opacity(0.5))
 
-                            Text("\(gameState.ballSpeed, specifier: "%.1f")x")
-                                .font(.caption2.monospacedDigit())
+                            Text("\(gameState.ballSpeed, format: .number.precision(.fractionLength(1)))x")
+                                .font(.caption.monospacedDigit())
                                 .foregroundStyle(.white.opacity(0.6))
                                 .frame(width: 35)
                         }

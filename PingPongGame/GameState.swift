@@ -8,17 +8,6 @@
 import Foundation
 import Observation
 
-enum Difficulty: String, CaseIterable {
-    case easy   = "Easy"
-    case medium = "Medium"
-    case hard   = "Hard"
-}
-
-enum GameMode {
-    case onePlayer
-    case twoPlayers
-}
-
 /// Shared observable game state passed between the SwiftUI layer and the SpriteKit scene.
 /// Marked `@MainActor` so all mutations happen on the main thread, keeping SwiftUI bindings safe.
 @MainActor

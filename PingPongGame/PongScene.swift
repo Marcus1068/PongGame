@@ -398,13 +398,10 @@ class PongScene: SKScene {
             if lastPlayer != byPlayer {
                 consecutiveHits += 1
                 
-                print("DEBUG: Rally count: \(consecutiveHits)")
                 
                 // Every 3 successful alternating hits, increase speed by 20%
                 if consecutiveHits >= 3 && consecutiveHits % 3 == 0 {
                     currentSpeedMultiplier *= 1.2
-                    
-                    print("DEBUG: Speed boost triggered! New multiplier: \(currentSpeedMultiplier)")
                     
                     // Visual feedback for speed increase
                     let bwMode = gameState?.isBlackAndWhite ?? false
@@ -480,7 +477,6 @@ class PongScene: SKScene {
         } else {
             // First hit of the rally
             consecutiveHits = 0
-            print("DEBUG: Starting new rally")
         }
         
         lastHitByPlayer = byPlayer

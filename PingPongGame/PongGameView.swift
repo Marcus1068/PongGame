@@ -91,6 +91,7 @@ struct PongGameView: View {
                             // Trophy icon
                             Image(systemName: "trophy.fill")
                                 .font(.system(size: 80))
+                                .accessibilityHidden(true)
                                 .foregroundStyle(
                                     winner == "Player" ? 
                                         LinearGradient(colors: [.cyan, .blue], startPoint: .top, endPoint: .bottom) :
@@ -150,19 +151,22 @@ struct PongGameView: View {
                 if gameState.isPaused && gameState.winner == nil {
                     ZStack {
                         // Tappable backdrop — tap anywhere to resume
-                        Color.black.opacity(0.6)
-                            .ignoresSafeArea()
-                            .onTapGesture {
-                                withAnimation(.easeIn(duration: 0.15)) {
-                                    gameState.isPaused = false
-                                }
+                        Button {
+                            withAnimation(.easeIn(duration: 0.15)) {
+                                gameState.isPaused = false
                             }
+                        } label: {
+                            Color.black.opacity(0.6)
+                                .ignoresSafeArea()
+                        }
+                        .buttonStyle(.plain)
                         
                         VStack(spacing: 28) {
                             Image(systemName: "pause.circle.fill")
                                 .font(.system(size: 100))
                                 .foregroundStyle(.white.opacity(0.9))
                                 .shadow(color: .white.opacity(0.3), radius: 20)
+                                .accessibilityHidden(true)
                             
                             Text("Game Paused")
                                 .font(.system(size: 40, weight: .bold, design: .rounded))

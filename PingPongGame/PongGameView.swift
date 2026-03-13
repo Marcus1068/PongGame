@@ -26,6 +26,14 @@ struct PongGameView: View {
     var gameState: GameState
     @State private var scene: PongScene?
 
+    private var scoreFont: Font {
+#if os(iOS)
+        .system(size: UIDevice.current.userInterfaceIdiom == .pad ? 72 : 48, weight: .bold, design: .rounded)
+#else
+        .system(size: 48, weight: .bold, design: .rounded)
+#endif
+    }
+
     var body: some View {
         GeometryReader { _ in
             ZStack {
@@ -44,7 +52,7 @@ struct PongGameView: View {
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.computerScore)")
-                                .font(.system(size: UIDevice.current.userInterfaceIdiom == .pad ? 72 : 48, weight: .bold, design: .rounded))
+                                .font(scoreFont)
                                 .foregroundStyle(gameState.isBlackAndWhite ? .white : .purple)
                         }
                         .frame(maxWidth: .infinity)
@@ -55,7 +63,7 @@ struct PongGameView: View {
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.7))
                             Text("\(gameState.playerScore)")
-                                .font(.system(size: UIDevice.current.userInterfaceIdiom == .pad ? 72 : 48, weight: .bold, design: .rounded))
+                                .font(scoreFont)
                                 .foregroundStyle(gameState.isBlackAndWhite ? .white : .cyan)
                         }
                         .frame(maxWidth: .infinity)

@@ -76,6 +76,10 @@ class PongScene: SKScene {
         setupPaddles()
         resetBall()
         setupAudio()
+#if os(macOS)
+        // SKView must be first responder to receive keyDown/keyUp events on macOS
+        view.window?.makeFirstResponder(view)
+#endif
     }
     
     private func setupScene() {

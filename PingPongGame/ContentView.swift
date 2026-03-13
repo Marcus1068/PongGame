@@ -36,6 +36,7 @@ struct ContentView: View {
                 .transition(.opacity)
             } else {
                 PongGameView(gameState: gameState)
+                    .ignoresSafeArea()
                     .transition(.opacity)
 
                 if !gameState.hasStarted {
@@ -75,7 +76,6 @@ struct ContentView: View {
                 }
             }
         }
-        .ignoresSafeArea()
 #if os(macOS)
         .frame(minWidth: 800, minHeight: 600)
 #endif

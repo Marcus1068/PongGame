@@ -50,6 +50,7 @@ struct AboutView: View {
                             )
                             .frame(width: 56, height: 56)
                             .shadow(color: .cyan.opacity(0.6), radius: 20)
+                            .accessibilityHidden(true)
 
                         Text("PingPong Retro")
                             .font(.system(size: 28, weight: .bold, design: .rounded))

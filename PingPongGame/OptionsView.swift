@@ -99,13 +99,16 @@ struct OptionsView: View {
                             Image(systemName: "tortoise.fill")
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.5))
+                                .accessibilityHidden(true)
 
                             Slider(value: $gameState.ballSpeed, in: 0.5...2.0, step: 0.1)
                                 .tint(.cyan)
+                                .accessibilityLabel("Ball Speed")
 
                             Image(systemName: "hare.fill")
                                 .font(.caption)
                                 .foregroundStyle(.white.opacity(0.5))
+                                .accessibilityHidden(true)
 
                             Text("\(gameState.ballSpeed, format: .number.precision(.fractionLength(1)))x")
                                 .font(.caption.monospacedDigit())

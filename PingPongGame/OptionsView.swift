@@ -39,7 +39,7 @@ struct OptionsView: View {
 
                     // MARK: Title
                     Text("Options")
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .font(.system(.title, design: .rounded, weight: .bold))
                         .foregroundStyle(.white)
 
                     Divider()
@@ -145,10 +145,10 @@ struct OptionsView: View {
             .background(
                 RoundedRectangle(cornerRadius: 24)
                     .fill(.ultraThinMaterial)
-                    .overlay(
+                    .overlay {
                         RoundedRectangle(cornerRadius: 24)
                             .strokeBorder(.white.opacity(0.12), lineWidth: 1)
-                    )
+                    }
             )
             .colorScheme(.dark)
             .padding(20)

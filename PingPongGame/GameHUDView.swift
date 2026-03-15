@@ -56,7 +56,7 @@ struct GameHUDView: View {
                     .frame(width: 44, height: 44)
                     .contentShape(Rectangle())
             }
-            .font(.system(size: 20, weight: .medium))
+            .font(.body)
             .foregroundStyle(.white.opacity(0.3))
             .padding(.horizontal, 8)
             .background(.ultraThinMaterial.opacity(0.35), in: Capsule())

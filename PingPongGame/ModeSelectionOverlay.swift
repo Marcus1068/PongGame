@@ -33,7 +33,7 @@ struct ModeSelectionOverlay: View {
                 // Title
                 VStack(spacing: 6) {
                     Text("PingPong Retro")
-                        .font(.system(size: 44, weight: .bold, design: .rounded))
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [.cyan, .purple],

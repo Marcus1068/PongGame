@@ -555,7 +555,7 @@ class PongScene: SKScene {
         guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return nil }
         buffer.frameLength = frameCount
         
-        let data = buffer.floatChannelData![0]
+        guard let data = buffer.floatChannelData?[0] else { return nil }
         let attackLen = Int(0.003 * sampleRate)
         let releaseStart = Int(Double(frameCount) * 0.6)
         
@@ -586,7 +586,7 @@ class PongScene: SKScene {
         guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return nil }
         buffer.frameLength = frameCount
         
-        let data = buffer.floatChannelData![0]
+        guard let data = buffer.floatChannelData?[0] else { return nil }
         let attackLen = Int(0.001 * sampleRate)  // 1 ms attack (snappier than blip)
         
         for f in 0..<Int(frameCount) {

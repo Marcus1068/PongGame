@@ -26,6 +26,8 @@ struct WinnerOverlay: View {
     let winner: String
     var gameState: GameState
     @State private var cheerEngine: AVAudioEngine?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @ScaledMetric private var winnerFontSize: CGFloat = 60
 
     var body: some View {
         ZStack {
@@ -47,7 +49,7 @@ struct WinnerOverlay: View {
                     Text(winner == "Player"
                          ? (gameState.gameMode == .twoPlayers ? "Player 1 Wins!" : "Player Wins!")
                          : (gameState.gameMode == .twoPlayers ? "Player 2 Wins!" : "Computer Wins!"))
-                        .font(.system(size: 60, weight: .bold, design: .rounded))
+                        .font(.system(size: winnerFontSize, weight: .bold, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: winner == "Player" ? [.cyan, .blue] : [.purple, .pink],
@@ -85,7 +87,7 @@ struct WinnerOverlay: View {
             }
             .padding()
         }
-        .transition(.opacity.combined(with: .scale))
+        .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale))
         .onAppear { playCrowdCheer() }
     }
 
@@ -102,7 +104,7 @@ struct WinnerOverlay: View {
               let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return }
         buffer.frameLength = frameCount
 
-        let data = buffer.floatChannelData![0]
+        guard let data = buffer.floatChannelData?[0] else { return }
 
         // Pink-noise state (Paul Kellett algorithm)
         var b0: Float = 0, b1: Float = 0, b2: Float = 0

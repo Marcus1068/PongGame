@@ -24,6 +24,7 @@ import SwiftUI
 struct AboutView: View {
     let maxScore: Int
     let onDismiss: () -> Void
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ZStack {
@@ -53,7 +54,7 @@ struct AboutView: View {
                             .accessibilityHidden(true)
 
                         Text("PingPong Retro")
-                            .font(.system(size: 28, weight: .bold, design: .rounded))
+                            .font(.system(.title, design: .rounded, weight: .bold))
                             .foregroundStyle(
                                 LinearGradient(
                                     colors: [.cyan, .purple],
@@ -130,14 +131,14 @@ struct AboutView: View {
             .background(
                 RoundedRectangle(cornerRadius: 24)
                     .fill(.ultraThinMaterial)
-                    .overlay(
+                    .overlay {
                         RoundedRectangle(cornerRadius: 24)
                             .strokeBorder(.white.opacity(0.12), lineWidth: 1)
-                    )
+                    }
             )
             .padding(20)
         }
-        .transition(.opacity.combined(with: .scale(scale: 0.95)))
+        .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.95)))
     }
 }
 

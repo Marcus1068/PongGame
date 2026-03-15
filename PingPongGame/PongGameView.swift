@@ -26,17 +26,19 @@ struct PongGameView: View {
     var gameState: GameState
     @State private var scene: PongScene?
 
+    @ScaledMetric private var scoreFontSize: CGFloat = 48
+    @Environment(\.horizontalSizeClass) private var sizeClass
+
     private var scoreFont: Font {
 #if os(iOS)
-        .system(size: UIDevice.current.userInterfaceIdiom == .pad ? 72 : 48, weight: .bold, design: .rounded)
+        .system(size: sizeClass == .regular ? scoreFontSize * 1.5 : scoreFontSize, weight: .bold, design: .rounded)
 #else
-        .system(size: 48, weight: .bold, design: .rounded)
+        .system(size: scoreFontSize, weight: .bold, design: .rounded)
 #endif
     }
 
     var body: some View {
-        GeometryReader { _ in
-            ZStack {
+        ZStack {
                 // SpriteKit Scene
                 if let scene {
                     SpriteView(scene: scene)
@@ -108,17 +110,17 @@ struct PongGameView: View {
                 if gameState.isPaused && gameState.winner == nil {
                     PauseOverlay(gameState: gameState)
                 }
-            }
-            .ignoresSafeArea()
         }
         .ignoresSafeArea()
-        .onAppear {
-            guard scene == nil else { return }
-            let newScene = PongScene()
-            newScene.scaleMode = .resizeFill
-            newScene.gameState = gameState
-            scene = newScene
-        }
+        .onAppear(perform: setupScene)
+    }
+
+    private func setupScene() {
+        guard scene == nil else { return }
+        let newScene = PongScene()
+        newScene.scaleMode = .resizeFill
+        newScene.gameState = gameState
+        scene = newScene
     }
 }
 

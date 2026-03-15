@@ -28,11 +28,13 @@ struct GameModeCard: View {
     let accentColors: [Color]
     let action: () -> Void
 
+    @ScaledMetric private var iconSize: CGFloat = 48
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: 16) {
                 Image(systemName: icon)
-                    .font(.system(size: 48, weight: .semibold))
+                    .font(.system(size: iconSize, weight: .semibold))
                     .foregroundStyle(
                         LinearGradient(colors: accentColors,
                                        startPoint: .top, endPoint: .bottom)
@@ -56,14 +58,14 @@ struct GameModeCard: View {
             .background(
                 RoundedRectangle(cornerRadius: 20)
                     .fill(.ultraThinMaterial)
-                    .overlay(
+                    .overlay {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(
                                 LinearGradient(colors: accentColors.map { $0.opacity(0.6) },
                                                startPoint: .topLeading, endPoint: .bottomTrailing),
                                 lineWidth: 1.5
                             )
-                    )
+                    }
             )
         }
         .buttonStyle(PressScaleButtonStyle())

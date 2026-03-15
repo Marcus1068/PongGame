@@ -27,6 +27,7 @@ struct LoadingScreenView: View {
     @State private var ballOffset: CGFloat = 0
     @State private var showContent = false
     @State private var audioEngine: AVAudioEngine?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     
     let onComplete: () -> Void
     
@@ -58,11 +59,11 @@ struct LoadingScreenView: View {
                         .frame(width: 60, height: 60)
                         .shadow(color: .cyan.opacity(0.6), radius: 20)
                         .offset(x: ballOffset)
-                        .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: ballOffset)
+                        .animation(reduceMotion ? nil : .easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: ballOffset)
                     
                     // App name
                     Text("PingPong Retro")
-                        .font(.system(size: 48, weight: .bold, design: .rounded))
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [.cyan, .purple],
@@ -80,7 +81,7 @@ struct LoadingScreenView: View {
                                 .frame(width: 10, height: 10)
                                 .scaleEffect(showContent ? 1 : 0.5)
                                 .animation(
-                                    .easeInOut(duration: 0.6)
+                                    reduceMotion ? nil : .easeInOut(duration: 0.6)
                                         .repeatForever(autoreverses: true)
                                         .delay(Double(index) * 0.2),
                                     value: showContent
@@ -108,26 +109,19 @@ struct LoadingScreenView: View {
             .opacity(showContent ? 1 : 0)
         }
         .onAppear {
-            // Start animations
             withAnimation(.easeIn(duration: 0.5)) {
                 showContent = true
             }
-            
-            // Start ball animation
-            Task {
-                try? await Task.sleep(for: .seconds(0.3))
-                ballOffset = 50
-            }
-            
-            // Play retro arcade startup sound
             playRetroArcadeSound()
-            
-            // Dismiss loading screen after delay
-            Task {
-                try? await Task.sleep(for: .seconds(3.0))
-                withAnimation(.easeOut(duration: 0.5)) {
-                    onComplete()
-                }
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(0.3))
+            ballOffset = 50
+        }
+        .task {
+            try? await Task.sleep(for: .seconds(3.0))
+            withAnimation(.easeOut(duration: 0.5)) {
+                onComplete()
             }
         }
     }
@@ -159,7 +153,7 @@ struct LoadingScreenView: View {
         guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: totalFrames) else { return }
         buffer.frameLength = totalFrames
         
-        let data = buffer.floatChannelData![0]
+        guard let data = buffer.floatChannelData?[0] else { return }
         var frameOffset = 0
         
         for note in notes {

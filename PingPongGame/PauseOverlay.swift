@@ -45,7 +45,7 @@ struct PauseOverlay: View {
                     .accessibilityHidden(true)
 
                 Text("Game Paused")
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
                     .foregroundStyle(.white)
 
                 Button {

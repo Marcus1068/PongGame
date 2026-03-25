@@ -79,7 +79,7 @@ extension PongScene {
         if pendingCurveOwner == side {
             verticalComponent += (side == .playerOne ? -1 : 1) * baseMagnitude * GameConfig.curveShotStrength
             pendingCurveOwner = nil
-            gameState?.latestHighlightText = "Curve shot released"
+            gameState?.latestHighlightText = String(localized: "Curve shot released")
         }
 
         ballVelocity.dx = abs(baseMagnitude) * horizontalDirection
@@ -95,7 +95,7 @@ extension PongScene {
            rallyHitCount % GameConfig.speedBoostEveryHits == 0 {
             currentSpeedMultiplier = min(GameConfig.maxRallySpeedMultiplier, currentSpeedMultiplier * GameConfig.speedBoostStep)
             gameState?.registerSpeedBoost()
-            gameState?.latestHighlightText = String(format: "Speed boost x%.1f", currentSpeedMultiplier)
+            gameState?.latestHighlightText = String(localized: "Speed boost x\(currentSpeedMultiplier, format: .number.precision(.fractionLength(1)))")
             showSpeedBoostEffect()
         }
 

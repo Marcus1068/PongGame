@@ -26,7 +26,7 @@ struct PauseOverlay: View {
                     .foregroundStyle(.white)
 
                 if let timer = gameState.formattedTimer {
-                    Text("Clock: \(timer)")
+                    Text(String(localized: "Clock: \(timer)"))
                         .font(.headline.monospacedDigit())
                         .foregroundStyle(.white.opacity(0.75))
                 }

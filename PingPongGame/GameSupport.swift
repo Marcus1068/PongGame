@@ -1,5 +1,6 @@
 import Foundation
 import CoreGraphics
+import SwiftUI
 
 enum GameMode: String, CaseIterable, Codable, Identifiable {
     case onePlayer
@@ -9,24 +10,24 @@ enum GameMode: String, CaseIterable, Codable, Identifiable {
 
     var title: String {
         switch self {
-        case .onePlayer: "1 Player"
-        case .twoPlayers: "2 Players"
+        case .onePlayer: String(localized: "1 Player")
+        case .twoPlayers: String(localized: "2 Players")
         }
     }
 
     var subtitle: String {
         switch self {
-        case .onePlayer: "vs Computer"
-        case .twoPlayers: "Local Multiplayer"
+        case .onePlayer: String(localized: "vs Computer")
+        case .twoPlayers: String(localized: "Local Multiplayer")
         }
     }
 
     func displayName(for side: WinnerSide) -> String {
         switch (self, side) {
-        case (.onePlayer, .playerOne): "Player"
-        case (.onePlayer, .playerTwo): "Computer"
-        case (.twoPlayers, .playerOne): "Player 1"
-        case (.twoPlayers, .playerTwo): "Player 2"
+        case (.onePlayer, .playerOne): String(localized: "Player")
+        case (.onePlayer, .playerTwo): String(localized: "Computer")
+        case (.twoPlayers, .playerOne): String(localized: "Player 1")
+        case (.twoPlayers, .playerTwo): String(localized: "Player 2")
         }
     }
 }
@@ -37,6 +38,18 @@ enum Difficulty: String, CaseIterable, Codable, Identifiable {
     case hard = "Hard"
 
     var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .easy: String(localized: "Easy")
+        case .medium: String(localized: "Medium")
+        case .hard: String(localized: "Hard")
+        }
+    }
+
+    var localizedTitle: LocalizedStringKey {
+        LocalizedStringKey(rawValue)
+    }
 
     var trackingSpeed: CGFloat {
         switch self {
@@ -64,7 +77,12 @@ enum AIStyle: String, CaseIterable, Codable, Identifiable {
     var id: String { rawValue }
 
     var title: String {
-        rawValue.capitalized
+        switch self {
+        case .balanced: String(localized: "Balanced")
+        case .defensive: String(localized: "Defensive")
+        case .aggressive: String(localized: "Aggressive")
+        case .mirror: String(localized: "Mirror")
+        }
     }
 }
 
@@ -78,10 +96,10 @@ enum MatchDuration: String, CaseIterable, Codable, Identifiable {
 
     var title: String {
         switch self {
-        case .scoreOnly: "Score Only"
-        case .oneMinute: "1 Minute"
-        case .threeMinutes: "3 Minutes"
-        case .fiveMinutes: "5 Minutes"
+        case .scoreOnly: String(localized: "Score Only")
+        case .oneMinute: String(localized: "1 Minute")
+        case .threeMinutes: String(localized: "3 Minutes")
+        case .fiveMinutes: String(localized: "5 Minutes")
         }
     }
 
@@ -120,9 +138,9 @@ enum PowerUpType: String, CaseIterable, Codable, Identifiable {
 
     var title: String {
         switch self {
-        case .paddleExpand: "Paddle Boost"
-        case .slowMotion: "Slow Ball"
-        case .curveShot: "Curve Shot"
+        case .paddleExpand: String(localized: "Paddle Boost")
+        case .slowMotion: String(localized: "Slow Ball")
+        case .curveShot: String(localized: "Curve Shot")
         }
     }
 
@@ -136,9 +154,9 @@ enum PowerUpType: String, CaseIterable, Codable, Identifiable {
 
     var detail: String {
         switch self {
-        case .paddleExpand: "Temporarily increases the collector's paddle height."
-        case .slowMotion: "Temporarily slows the ball so rallies reset their pace."
-        case .curveShot: "Adds extra spin to the next paddle deflection."
+        case .paddleExpand: String(localized: "Temporarily increases the collector's paddle height.")
+        case .slowMotion: String(localized: "Temporarily slows the ball so rallies reset their pace.")
+        case .curveShot: String(localized: "Adds extra spin to the next paddle deflection.")
         }
     }
 }
@@ -155,23 +173,23 @@ enum AchievementID: String, CaseIterable, Codable, Identifiable {
 
     var title: String {
         switch self {
-        case .firstVictory: "First Victory"
-        case .rallyMaster: "Rally Master"
-        case .speedJunkie: "Speed Junkie"
-        case .tactician: "Tactician"
-        case .marathon: "Marathon Match"
-        case .collector: "Collector"
+        case .firstVictory: String(localized: "First Victory")
+        case .rallyMaster: String(localized: "Rally Master")
+        case .speedJunkie: String(localized: "Speed Junkie")
+        case .tactician: String(localized: "Tactician")
+        case .marathon: String(localized: "Marathon Match")
+        case .collector: String(localized: "Collector")
         }
     }
 
     var detail: String {
         switch self {
-        case .firstVictory: "Win your first match."
-        case .rallyMaster: "Reach a 12-hit rally."
-        case .speedJunkie: "Trigger three speed boosts in one match."
-        case .tactician: "Win with power-ups disabled."
-        case .marathon: "Finish a timed match that reaches overtime."
-        case .collector: "Collect all power-up types."
+        case .firstVictory: String(localized: "Win your first match.")
+        case .rallyMaster: String(localized: "Reach a 12-hit rally.")
+        case .speedJunkie: String(localized: "Trigger three speed boosts in one match.")
+        case .tactician: String(localized: "Win with power-ups disabled.")
+        case .marathon: String(localized: "Finish a timed match that reaches overtime.")
+        case .collector: String(localized: "Collect all power-up types.")
         }
     }
 }
@@ -243,7 +261,7 @@ enum GameConfig {
     static let defaultBallRadius: CGFloat = 10
     static let baseBallSpeed: CGFloat = 420
     static let maxRallySpeedMultiplier: CGFloat = 2.35
-    static let speedBoostStep: CGFloat = 1.18
+    static let speedBoostStep: CGFloat = 1.10
     static let speedBoostEveryHits = 3
     static let replayFrameLimit = 480
     static let replayPlaybackFramesPerSecond: Double = 60
@@ -254,4 +272,7 @@ enum GameConfig {
     static let slowMotionMultiplier: CGFloat = 0.82
     static let curveShotStrength: CGFloat = 0.22
     static let leaderboardLimit = 10
+    static let defaultPaddleEdgeInset: CGFloat = 40
+    static let compactPhonePaddleEdgeInset: CGFloat = 56
+    static let phoneSafeAreaPaddlePadding: CGFloat = 16
 }

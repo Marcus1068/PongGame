@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ModeSelectionOverlay: View {
     var gameState: GameState
+    let onShowOptions: () -> Void
 
     var body: some View {
         ZStack {
@@ -15,16 +16,29 @@ struct ModeSelectionOverlay: View {
                         .foregroundStyle(
                             LinearGradient(colors: [.cyan, .purple], startPoint: .leading, endPoint: .trailing)
                         )
-                    Text("Pick a mode and jump in")
-                        .font(.title3)
-                        .foregroundStyle(.white.opacity(0.72))
+
+                    HStack(spacing: 12) {
+                        Text("Pick a mode and jump in")
+                            .font(.title3)
+                            .foregroundStyle(.white.opacity(0.72))
+
+                        Button(action: onShowOptions) {
+                            Label("Settings", systemImage: "gearshape.fill")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 8)
+                                .background(.ultraThinMaterial, in: Capsule())
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
 
                 VStack(spacing: 10) {
-                    Label("First to \(gameState.maxScore)", systemImage: "target")
+                    Label(String(localized: "First to \(gameState.maxScore)"), systemImage: "target")
                     Label(gameState.matchDuration.title, systemImage: "timer")
-                    Label("AI: \(gameState.aiStyle.title)", systemImage: "brain")
-                    Label(gameState.isSpeedBoostEnabled ? "Speed boosts enabled" : "Speed boosts disabled", systemImage: "bolt")
+                    Label(String(localized: "AI: \(gameState.aiStyle.title)"), systemImage: "brain")
+                    Label(gameState.isSpeedBoostEnabled ? String(localized: "Speed boosts enabled") : String(localized: "Speed boosts disabled"), systemImage: "bolt")
                 }
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.75))
@@ -57,4 +71,8 @@ struct ModeSelectionOverlay: View {
         }
         .transition(.opacity)
     }
+}
+
+#Preview {
+    ModeSelectionOverlay(gameState: GameState(), onShowOptions: { })
 }

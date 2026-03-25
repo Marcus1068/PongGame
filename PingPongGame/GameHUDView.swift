@@ -11,32 +11,41 @@ struct GameHUDView: View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    hudButton(title: "New Match", systemImage: "arrow.counterclockwise") {
+                    hudButton(title: String(localized: "New Match"), systemImage: "arrow.counterclockwise") {
                         gameState.resetToMenu()
                     }
 
-                    hudButton(title: gameState.isPaused ? "Resume" : "Pause", systemImage: gameState.isPaused ? "play.fill" : "pause.fill") {
+                    hudButton(title: gameState.isPaused ? String(localized: "Resume") : String(localized: "Pause"), systemImage: gameState.isPaused ? "play.fill" : "pause.fill") {
                         gameState.togglePause()
                     }
                     .disabled(!(gameState.gamePhase == .playing || gameState.gamePhase == .paused))
 
-                    hudButton(title: "Replay", systemImage: "gobackward") {
+                    hudButton(title: String(localized: "Replay"), systemImage: "gobackward") {
                         onReplay()
                     }
                     .disabled(!gameState.canReplayLastPoint)
 
-                    hudButton(title: "Stats", systemImage: "chart.bar.fill", action: onShowStats)
-                    hudButton(title: "About", systemImage: "info.circle", action: onShowAbout)
-                    hudButton(title: "Settings", systemImage: "gearshape", action: onShowOptions)
+                    hudButton(title: String(localized: "Stats"), systemImage: "chart.bar.fill", action: onShowStats)
+                    hudButton(title: String(localized: "About"), systemImage: "info.circle", action: onShowAbout)
+                    hudButton(title: String(localized: "Settings"), systemImage: "gearshape", action: onShowOptions)
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
             }
             .background(.ultraThinMaterial.opacity(0.45), in: Capsule())
-            .padding(.top, 8)
+            .padding(.top, topPadding)
 
             Spacer()
         }
+        .padding(.horizontal, 16)
+    }
+
+    private var topPadding: CGFloat {
+        #if os(macOS)
+        30
+        #else
+        8
+        #endif
     }
 
     private func hudButton(title: String, systemImage: String, action: @escaping () -> Void) -> some View {

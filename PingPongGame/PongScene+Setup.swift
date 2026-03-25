@@ -65,12 +65,14 @@ extension PongScene {
     }
 
     func setupPaddles() {
+        let paddleInset = paddleEdgeInset
+
         playerPaddle = makePaddle(color: .cyan, height: playerPaddleHeight)
-        playerPaddle.position = CGPoint(x: frame.maxX - 40, y: frame.midY)
+        playerPaddle.position = CGPoint(x: frame.maxX - paddleInset, y: frame.midY)
         addChild(playerPaddle)
 
         opponentPaddle = makePaddle(color: .magenta, height: opponentPaddleHeight)
-        opponentPaddle.position = CGPoint(x: frame.minX + 40, y: frame.midY)
+        opponentPaddle.position = CGPoint(x: frame.minX + paddleInset, y: frame.midY)
         addChild(opponentPaddle)
     }
 
@@ -185,6 +187,24 @@ extension PongScene {
             let volume = gameState.isSoundEnabled ? Float(gameState.soundVolume) : 0
             blipPlayerNode.volume = volume
         }
+    }
+
+    var paddleEdgeInset: CGFloat {
+        #if os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let horizontalSafeAreaInset = max(view?.safeAreaInsets.left ?? 0, view?.safeAreaInsets.right ?? 0)
+
+            if frame.width > frame.height {
+                let safeAreaDrivenInset = horizontalSafeAreaInset + basePaddleWidth / 2 + GameConfig.phoneSafeAreaPaddlePadding
+                return max(GameConfig.compactPhonePaddleEdgeInset, safeAreaDrivenInset)
+            }
+
+            if frame.width <= 430 {
+                return GameConfig.compactPhonePaddleEdgeInset
+            }
+        }
+        #endif
+        return GameConfig.defaultPaddleEdgeInset
     }
 
     func layoutPowerUpIfNeeded() {

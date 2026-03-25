@@ -113,8 +113,8 @@ final class PongScene: SKScene {
         centerLineContainer.removeAllChildren()
         setupCenterLine()
 
-        playerPaddle.position.x = frame.maxX - 40
-        opponentPaddle.position.x = frame.minX + 40
+        playerPaddle.position.x = frame.maxX - paddleEdgeInset
+        opponentPaddle.position.x = frame.minX + paddleEdgeInset
         clampPaddlesToBounds()
         clampBallToBounds()
         layoutPowerUpIfNeeded()
@@ -183,7 +183,7 @@ final class PongScene: SKScene {
         isReplayingLastPoint = true
         replayIndex = 0
         gameState.beginReplay()
-        gameState.latestHighlightText = "Replaying last point"
+        gameState.latestHighlightText = String(localized: "Replaying last point")
         ballTrail.isPaused = true
     }
 }

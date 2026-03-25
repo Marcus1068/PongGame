@@ -33,7 +33,7 @@ struct ContentView: View {
                 .transition(.opacity)
 
                 if gameState.gamePhase == .modeSelection {
-                    ModeSelectionOverlay(gameState: gameState)
+                    ModeSelectionOverlay(gameState: gameState, onShowOptions: { present(sheet: .options) })
                 }
             }
         }

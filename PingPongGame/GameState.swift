@@ -243,7 +243,7 @@ final class GameState {
         currentMatchStats.powerUpsCollected += 1
         currentMatchStats.lastPowerUpsCollected.insert(powerUp)
         lifetimeStats.totalPowerUpsCollected += 1
-        latestHighlightText = "Collected \(powerUp.title)"
+        latestHighlightText = String(localized: "Collected \(powerUp.title)")
         if currentMatchStats.lastPowerUpsCollected.count == PowerUpType.allCases.count {
             unlock(.collector)
         }
@@ -265,7 +265,7 @@ final class GameState {
 
         if playerScore == opponentScore {
             currentMatchStats.reachedOvertime = true
-            latestHighlightText = "Overtime: next point wins"
+            latestHighlightText = String(localized: "Overtime: next point wins")
         } else if playerScore > opponentScore {
             completeMatch(winner: .playerOne)
         } else {
@@ -285,7 +285,7 @@ final class GameState {
     private func completeMatch(winner: WinnerSide) {
         winningSide = winner
         gamePhase = .winner(winner)
-        latestHighlightText = "\(gameMode.displayName(for: winner)) wins"
+        latestHighlightText = String(localized: "\(gameMode.displayName(for: winner)) Wins!")
         finalizeProgress(winner: winner)
     }
 

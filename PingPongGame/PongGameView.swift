@@ -76,9 +76,9 @@ struct PongGameView: View {
             Spacer()
             scoreCard(title: gameState.playerDisplayName, score: gameState.playerScore, color: gameState.isBlackAndWhite ? .white : .cyan)
         }
-        .padding(.top, 56)
+        .padding(.top, headerTopPadding)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Score \(gameState.opponentDisplayName) \(gameState.opponentScore), \(gameState.playerDisplayName) \(gameState.playerScore)")
+        .accessibilityLabel(String(localized: "Score \(gameState.opponentDisplayName) \(gameState.opponentScore), \(gameState.playerDisplayName) \(gameState.playerScore)"))
     }
 
     private var footerOverlay: some View {
@@ -93,15 +93,23 @@ struct PongGameView: View {
             }
 
             #if os(macOS)
-            Text(gameState.gameMode == .twoPlayers ? "Player 1: W/S or ↑↓   •   Player 2: I/K   •   Space pauses" : "Use W/S or Arrow Keys to move   •   Space pauses")
+            Text(gameState.gameMode == .twoPlayers ? String(localized: "Player 1: W/S or ↑↓   •   Player 2: I/K   •   Space pauses") : String(localized: "Use W/S or Arrow Keys to move   •   Space pauses"))
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.5))
             #else
-            Text(gameState.gameMode == .twoPlayers ? "Left side controls Player 2   •   Right side controls Player 1" : "Touch and drag to move")
+            Text(gameState.gameMode == .twoPlayers ? String(localized: "Left side controls Player 2   •   Right side controls Player 1") : String(localized: "Touch and drag to move"))
                 .font(.caption)
                 .foregroundStyle(.white.opacity(0.5))
             #endif
         }
+    }
+
+    private var headerTopPadding: CGFloat {
+        #if os(macOS)
+        92
+        #else
+        56
+        #endif
     }
 
     private func scoreCard(title: String, score: Int, color: Color) -> some View {

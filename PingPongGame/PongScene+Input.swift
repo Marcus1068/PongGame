@@ -54,7 +54,7 @@ extension PongScene {
 
     #if os(macOS)
     override func keyDown(with event: NSEvent) {
-        if event.keyCode == 49 {
+        if event.keyCode == 49 || event.keyCode == 53 {
             gameState?.togglePause()
             return
         }

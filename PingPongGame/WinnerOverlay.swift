@@ -23,16 +23,16 @@ struct WinnerOverlay: View {
                     .foregroundStyle(LinearGradient(colors: winner == .playerOne ? [.cyan, .blue] : [.purple, .pink], startPoint: .top, endPoint: .bottom))
                     .accessibilityHidden(true)
 
-                Text("\(gameState.gameMode.displayName(for: winner)) Wins!")
+                Text(String(localized: "\(gameState.gameMode.displayName(for: winner)) Wins!"))
                     .font(.system(size: winnerFontSize, weight: .bold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundStyle(LinearGradient(colors: winner == .playerOne ? [.cyan, .blue] : [.purple, .pink], startPoint: .leading, endPoint: .trailing))
 
                 VStack(spacing: 8) {
-                    Text("Final Score: \(gameState.playerScore) - \(gameState.opponentScore)")
+                    Text(String(localized: "Final Score: \(gameState.playerScore) - \(gameState.opponentScore)"))
                         .font(.title2)
                         .foregroundStyle(.white.opacity(0.95))
-                    Text("Longest Rally: \(gameState.currentMatchStats.longestRally)   •   Boosts: \(gameState.currentMatchStats.speedBoostsTriggered)")
+                    Text(String(localized: "Longest Rally: \(gameState.currentMatchStats.longestRally)   •   Boosts: \(gameState.currentMatchStats.speedBoostsTriggered)"))
                         .font(.headline)
                         .foregroundStyle(.white.opacity(0.72))
                 }

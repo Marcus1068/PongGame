@@ -1,24 +1,3 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  PauseOverlay.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
 
 struct PauseOverlay: View {
@@ -26,10 +5,9 @@ struct PauseOverlay: View {
 
     var body: some View {
         ZStack {
-            // Tappable backdrop — tap anywhere to resume
             Button {
                 withAnimation(.easeIn(duration: 0.15)) {
-                    gameState.isPaused = false
+                    gameState.resumeGame()
                 }
             } label: {
                 Color.black.opacity(0.6)
@@ -37,36 +15,33 @@ struct PauseOverlay: View {
             }
             .buttonStyle(.plain)
 
-            VStack(spacing: 28) {
+            VStack(spacing: 24) {
                 Image(systemName: "pause.circle.fill")
-                    .font(.system(size: 100))
+                    .font(.system(size: 96))
                     .foregroundStyle(.white.opacity(0.9))
-                    .shadow(color: .white.opacity(0.3), radius: 20)
                     .accessibilityHidden(true)
 
                 Text("Game Paused")
                     .font(.system(.largeTitle, design: .rounded, weight: .bold))
                     .foregroundStyle(.white)
 
+                if let timer = gameState.formattedTimer {
+                    Text("Clock: \(timer)")
+                        .font(.headline.monospacedDigit())
+                        .foregroundStyle(.white.opacity(0.75))
+                }
+
                 Button {
                     withAnimation(.easeIn(duration: 0.15)) {
-                        gameState.isPaused = false
+                        gameState.resumeGame()
                     }
                 } label: {
                     Text("Resume")
-                        .font(.title2.bold())
+                        .font(.title3.bold())
                         .foregroundStyle(.black)
-                        .padding(.horizontal, 48)
-                        .padding(.vertical, 16)
-                        .background(
-                            LinearGradient(
-                                colors: [.cyan, .purple],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            ),
-                            in: Capsule()
-                        )
-                        .shadow(color: .cyan.opacity(0.5), radius: 10)
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 14)
+                        .background(LinearGradient(colors: [.cyan, .purple], startPoint: .leading, endPoint: .trailing), in: Capsule())
                 }
                 .buttonStyle(.plain)
             }

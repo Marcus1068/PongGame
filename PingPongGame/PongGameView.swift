@@ -1,129 +1,134 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  PongGameView.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
 import SpriteKit
 
 struct PongGameView: View {
     var gameState: GameState
-    @State private var scene: PongScene?
+    let onShowAbout: () -> Void
+    let onShowOptions: () -> Void
+    let onShowStats: () -> Void
 
+    @State private var scene: PongScene?
     @ScaledMetric private var scoreFontSize: CGFloat = 48
     @Environment(\.horizontalSizeClass) private var sizeClass
 
     private var scoreFont: Font {
-#if os(iOS)
-        .system(size: sizeClass == .regular ? scoreFontSize * 1.5 : scoreFontSize, weight: .bold, design: .rounded)
-#else
+        #if os(iOS)
+        .system(size: sizeClass == .regular ? scoreFontSize * 1.4 : scoreFontSize, weight: .bold, design: .rounded)
+        #else
         .system(size: scoreFontSize, weight: .bold, design: .rounded)
-#endif
+        #endif
     }
 
     var body: some View {
         ZStack {
-                // SpriteKit Scene
-                if let scene {
-                    SpriteView(scene: scene)
-                        .ignoresSafeArea()
-                }
+            if let scene {
+                SpriteView(scene: scene)
+                    .ignoresSafeArea()
+            }
 
-                // Scoreboard overlay
-                VStack {
-                    HStack {
-                        // Left paddle score
-                        VStack {
-                            Text(gameState.gameMode == .twoPlayers ? "Player 2" : "Computer")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.7))
-                            Text("\(gameState.computerScore)")
-                                .font(scoreFont)
-                                .foregroundStyle(gameState.isBlackAndWhite ? .white : .purple)
-                        }
-                        .frame(maxWidth: .infinity)
+            VStack(spacing: 12) {
+                headerOverlay
+                Spacer()
+                footerOverlay
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
 
-                        // Right paddle score
-                        VStack {
-                            Text(gameState.gameMode == .twoPlayers ? "Player 1" : "Player")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.7))
-                            Text("\(gameState.playerScore)")
-                                .font(scoreFont)
-                                .foregroundStyle(gameState.isBlackAndWhite ? .white : .cyan)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                    .padding()
+            GameHUDView(
+                gameState: gameState,
+                onReplay: replayLastPoint,
+                onShowStats: onShowStats,
+                onShowAbout: onShowAbout,
+                onShowOptions: onShowOptions
+            )
 
-                    Spacer()
+            if case let .winner(winner) = gameState.gamePhase {
+                WinnerOverlay(winner: winner, gameState: gameState, onReplay: replayLastPoint, onShowStats: onShowStats)
+            }
 
-                    // Controls hint
-                    VStack(spacing: 8) {
-#if os(macOS)
-                        if gameState.gameMode == .twoPlayers {
-                            Text("Player 1: W/S or ↑↓  •  Player 2: I/K")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.5))
-                        } else {
-                            Text("Use W/S or Arrow Keys to move")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.5))
-                        }
-#else
-                        if gameState.gameMode == .twoPlayers {
-                            Text("Left side: Player 2  •  Right side: Player 1")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.5))
-                        } else {
-                            Text("Touch and drag to move")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.5))
-                        }
-#endif
-                    }
-                    .padding(.bottom)
-                }
-
-                // Winner overlay
-                if let winner = gameState.winner {
-                    WinnerOverlay(winner: winner, gameState: gameState)
-                }
-
-                // Pause overlay
-                if gameState.isPaused && gameState.winner == nil {
-                    PauseOverlay(gameState: gameState)
-                }
+            if gameState.gamePhase == .paused {
+                PauseOverlay(gameState: gameState)
+            }
         }
         .ignoresSafeArea()
         .onAppear(perform: setupScene)
     }
 
+    private var headerOverlay: some View {
+        HStack {
+            scoreCard(title: gameState.opponentDisplayName, score: gameState.opponentScore, color: gameState.isBlackAndWhite ? .white : .purple)
+            Spacer()
+            VStack(spacing: 6) {
+                if let timer = gameState.formattedTimer {
+                    Label(timer, systemImage: "timer")
+                        .font(.headline.monospacedDigit())
+                        .foregroundStyle(.white.opacity(0.9))
+                }
+                if let activePowerUp = gameState.activePowerUp {
+                    Label(activePowerUp.title, systemImage: activePowerUp.symbolName)
+                        .font(.caption.weight(.semibold))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(.ultraThinMaterial, in: Capsule())
+                        .foregroundStyle(.white)
+                }
+            }
+            Spacer()
+            scoreCard(title: gameState.playerDisplayName, score: gameState.playerScore, color: gameState.isBlackAndWhite ? .white : .cyan)
+        }
+        .padding(.top, 56)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Score \(gameState.opponentDisplayName) \(gameState.opponentScore), \(gameState.playerDisplayName) \(gameState.playerScore)")
+    }
+
+    private var footerOverlay: some View {
+        VStack(spacing: 10) {
+            if let highlight = gameState.latestHighlightText {
+                Text(highlight)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.85))
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .background(.ultraThinMaterial.opacity(0.75), in: Capsule())
+            }
+
+            #if os(macOS)
+            Text(gameState.gameMode == .twoPlayers ? "Player 1: W/S or ↑↓   •   Player 2: I/K   •   Space pauses" : "Use W/S or Arrow Keys to move   •   Space pauses")
+                .font(.caption)
+                .foregroundStyle(.white.opacity(0.5))
+            #else
+            Text(gameState.gameMode == .twoPlayers ? "Left side controls Player 2   •   Right side controls Player 1" : "Touch and drag to move")
+                .font(.caption)
+                .foregroundStyle(.white.opacity(0.5))
+            #endif
+        }
+    }
+
+    private func scoreCard(title: String, score: Int, color: Color) -> some View {
+        VStack(spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.white.opacity(0.72))
+            Text("\(score)")
+                .font(scoreFont)
+                .foregroundStyle(color)
+                .monospacedDigit()
+        }
+        .frame(maxWidth: .infinity)
+    }
+
     private func setupScene() {
         guard scene == nil else { return }
-        let newScene = PongScene()
+        let newScene = PongScene(gameState: gameState)
         newScene.scaleMode = .resizeFill
-        newScene.gameState = gameState
         scene = newScene
+    }
+
+    private func replayLastPoint() {
+        scene?.startLastPointReplay()
     }
 }
 
 #Preview {
-    PongGameView(gameState: GameState())
+    PongGameView(gameState: GameState(), onShowAbout: { }, onShowOptions: { }, onShowStats: { })
 }

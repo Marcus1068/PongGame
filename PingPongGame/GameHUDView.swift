@@ -1,69 +1,53 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  GameHUDView.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
 
 struct GameHUDView: View {
     var gameState: GameState
+    let onReplay: () -> Void
+    let onShowStats: () -> Void
     let onShowAbout: () -> Void
     let onShowOptions: () -> Void
 
     var body: some View {
         VStack {
-            HStack(spacing: 0) {
-                Button("New Game", systemImage: "arrow.counterclockwise") {
-                    gameState.reset()
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    hudButton(title: "New Match", systemImage: "arrow.counterclockwise") {
+                        gameState.resetToMenu()
+                    }
+
+                    hudButton(title: gameState.isPaused ? "Resume" : "Pause", systemImage: gameState.isPaused ? "play.fill" : "pause.fill") {
+                        gameState.togglePause()
+                    }
+                    .disabled(!(gameState.gamePhase == .playing || gameState.gamePhase == .paused))
+
+                    hudButton(title: "Replay", systemImage: "gobackward") {
+                        onReplay()
+                    }
+                    .disabled(!gameState.canReplayLastPoint)
+
+                    hudButton(title: "Stats", systemImage: "chart.bar.fill", action: onShowStats)
+                    hudButton(title: "About", systemImage: "info.circle", action: onShowAbout)
+                    hudButton(title: "Settings", systemImage: "gearshape", action: onShowOptions)
                 }
-                .labelStyle(.iconOnly)
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
-
-                Button(
-                    gameState.isPaused ? "Resume" : "Pause",
-                    systemImage: gameState.isPaused ? "play.fill" : "pause.fill"
-                ) {
-                    gameState.togglePause()
-                }
-                .labelStyle(.iconOnly)
-                .frame(width: 44, height: 44)
-                .contentShape(Rectangle())
-
-                Button("About", systemImage: "info.circle", action: onShowAbout)
-                    .labelStyle(.iconOnly)
-                    .frame(width: 44, height: 44)
-                    .contentShape(Rectangle())
-
-                Button("Settings", systemImage: "gearshape", action: onShowOptions)
-                    .labelStyle(.iconOnly)
-                    .frame(width: 44, height: 44)
-                    .contentShape(Rectangle())
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
             }
-            .font(.body)
-            .foregroundStyle(.white.opacity(0.3))
-            .padding(.horizontal, 8)
-            .background(.ultraThinMaterial.opacity(0.35), in: Capsule())
+            .background(.ultraThinMaterial.opacity(0.45), in: Capsule())
             .padding(.top, 8)
-            .buttonStyle(.plain)
 
             Spacer()
         }
+    }
+
+    private func hudButton(title: String, systemImage: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Label(title, systemImage: systemImage)
+                .labelStyle(.iconOnly)
+                .frame(width: 44, height: 44)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(.white.opacity(0.75))
+        .accessibilityLabel(title)
     }
 }

@@ -1,84 +1,71 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  ContentView.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
+
+private enum ActiveSheet: String, Identifiable {
+    case about
+    case options
+    case stats
+
+    var id: String { rawValue }
+}
 
 struct ContentView: View {
     @State private var gameState = GameState()
-    @State private var showLoadingScreen = true
-    @State private var showAbout = false
-    @State private var showOptions = false
+    @State private var activeSheet: ActiveSheet?
+    @State private var resumeAfterSheet = false
 
     var body: some View {
         ZStack {
-            if showLoadingScreen {
-                LoadingScreenView {
-                    showLoadingScreen = false
+            if gameState.gamePhase == .loading {
+                LoadingScreenView(soundEnabled: gameState.isSoundEnabled, soundVolume: gameState.soundVolume) {
+                    withAnimation(.easeInOut(duration: 0.4)) {
+                        gameState.completeLoading()
+                    }
                 }
                 .transition(.opacity)
             } else {
-                PongGameView(gameState: gameState)
-                    .ignoresSafeArea()
-                    .transition(.opacity)
-
-                if !gameState.hasStarted {
-                    ModeSelectionOverlay(gameState: gameState)
-                }
-
-                GameHUDView(
+                PongGameView(
                     gameState: gameState,
-                    onShowAbout: {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showAbout = true
-                            gameState.isPaused = true
-                        }
-                    },
-                    onShowOptions: {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showOptions = true
-                            gameState.isPaused = true
-                        }
-                    }
+                    onShowAbout: { present(sheet: .about) },
+                    onShowOptions: { present(sheet: .options) },
+                    onShowStats: { present(sheet: .stats) }
                 )
+                .ignoresSafeArea()
+                .transition(.opacity)
 
-                if showAbout {
-                    AboutView(maxScore: gameState.maxScore) {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showAbout = false
-                        }
-                    }
-                }
-
-                if showOptions {
-                    OptionsView(gameState: gameState) {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showOptions = false
-                        }
-                    }
+                if gameState.gamePhase == .modeSelection {
+                    ModeSelectionOverlay(gameState: gameState)
                 }
             }
         }
-#if os(macOS)
-        .frame(minWidth: 800, minHeight: 600)
-#endif
+        .sheet(item: $activeSheet, onDismiss: dismissSheet) { sheet in
+            switch sheet {
+            case .about:
+                AboutView(onDismiss: dismissSheet)
+            case .options:
+                OptionsView(gameState: gameState, onDismiss: dismissSheet)
+            case .stats:
+                StatsView(gameState: gameState, onDismiss: dismissSheet)
+            }
+        }
+        #if os(macOS)
+        .frame(minWidth: 900, minHeight: 640)
+        #endif
+    }
+
+    private func present(sheet: ActiveSheet) {
+        resumeAfterSheet = gameState.gamePhase == .playing
+        if resumeAfterSheet {
+            gameState.pauseGame()
+        }
+        activeSheet = sheet
+    }
+
+    private func dismissSheet() {
+        activeSheet = nil
+        if resumeAfterSheet {
+            resumeAfterSheet = false
+            gameState.resumeGame()
+        }
     }
 }
 

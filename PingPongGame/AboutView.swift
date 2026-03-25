@@ -1,148 +1,69 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  AboutView.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
 
 struct AboutView: View {
-    let maxScore: Int
     let onDismiss: () -> Void
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        ZStack {
-            // Dimmed backdrop
-            Button(action: onDismiss) {
-                Color.black.opacity(0.75)
-                    .ignoresSafeArea()
-            }
-            .buttonStyle(.plain)
-
-            ScrollView {
-                VStack(spacing: 20) {
-
-                    // MARK: Icon / title
-                    VStack(spacing: 10) {
+        NavigationStack {
+            List {
+                Section {
+                    VStack(spacing: 12) {
                         Circle()
-                            .fill(
-                                RadialGradient(
-                                    colors: [.white, .cyan.opacity(0.8)],
-                                    center: .topLeading,
-                                    startRadius: 5,
-                                    endRadius: 40
-                                )
-                            )
-                            .frame(width: 56, height: 56)
-                            .shadow(color: .cyan.opacity(0.6), radius: 20)
+                            .fill(RadialGradient(colors: [.white, .cyan.opacity(0.8)], center: .topLeading, startRadius: 5, endRadius: 40))
+                            .frame(width: 68, height: 68)
+                            .shadow(color: .cyan.opacity(0.5), radius: 14)
                             .accessibilityHidden(true)
 
                         Text("PingPong Retro")
                             .font(.system(.title, design: .rounded, weight: .bold))
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.cyan, .purple],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .shadow(color: .cyan.opacity(0.4), radius: 8)
+                            .foregroundStyle(LinearGradient(colors: [.cyan, .purple], startPoint: .leading, endPoint: .trailing))
 
-                        Text("Version 1.0")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.5))
+                        Text("Retro arcade Pong rebuilt with SwiftUI, SpriteKit, local progression, power-ups, replay support, and configurable match rules.")
+                            .font(.body)
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.secondary)
                     }
-
-                    Divider()
-                        .background(.white.opacity(0.2))
-
-                    // MARK: About text
-                    VStack(alignment: .leading, spacing: 12) {
-                        Label("Classic Pong reimagined with a retro-neon look, synthesised arcade sounds, and a speed-boost rally system.", systemImage: "gamecontroller.fill")
-                            .font(.callout)
-                            .foregroundStyle(.white.opacity(0.85))
-
-                        Label("Use W / S or the Arrow Keys to move your paddle on macOS. Drag on screen to play on iOS.", systemImage: "keyboard.fill")
-                            .font(.callout)
-                            .foregroundStyle(.white.opacity(0.85))
-
-                        Label("First player to reach \(maxScore) points wins. Every 3 alternating rally hits triggers a speed boost!", systemImage: "bolt.fill")
-                            .font(.callout)
-                            .foregroundStyle(.cyan.opacity(0.9))
-                    }
-                    .padding(.horizontal, 8)
-
-                    Divider()
-                        .background(.white.opacity(0.2))
-
-                    // MARK: Credits
-                    VStack(spacing: 6) {
-                        Text("© 2026 Marcus Deuß")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.7))
-
-                        Text("All Rights Reserved")
-                            .font(.caption)
-                            .foregroundStyle(.white.opacity(0.45))
-
-                        Text("Built with SwiftUI · SpriteKit · AVFoundation")
-                            .font(.caption)
-                            .foregroundStyle(.white.opacity(0.3))
-                            .padding(.top, 2)
-                    }
-
-                    // MARK: Dismiss button
-                    Button(action: onDismiss) {
-                        Text("Close")
-                            .font(.headline)
-                            .foregroundStyle(.black)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 14)
-                            .background(
-                                LinearGradient(
-                                    colors: [.cyan, .purple],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                ),
-                                in: Capsule()
-                            )
-                            .shadow(color: .cyan.opacity(0.5), radius: 8)
-                    }
-                    .buttonStyle(.plain)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
                 }
-                .padding(24)
+
+                Section("Highlights") {
+                    Label("One-player and local two-player matches", systemImage: "person.2.fill")
+                    Label("AI difficulty and behavior styles", systemImage: "brain")
+                    Label("Timed matches, score targets, and optional rally speed boosts", systemImage: "timer")
+                    Label("Power-ups for paddle boosts, slow motion, and curve shots", systemImage: "sparkles")
+                    Label("Replay the last point and track long-term stats", systemImage: "gobackward")
+                    Label("Local achievements and leaderboard history", systemImage: "list.number")
+                }
+
+                Section("Controls") {
+                    #if os(macOS)
+                    Text("Player 1 uses W/S or the arrow keys. In two-player mode, Player 2 uses I/K. Press Space to pause.")
+                    #else
+                    Text("Drag on the right side of the screen for Player 1. In two-player mode, the left side controls Player 2.")
+                    #endif
+                }
+
+                Section("Technology") {
+                    Text("Built with SwiftUI, SpriteKit, Observation, and AVFoundation.")
+                    Text("Progress is stored locally and mirrored through Apple’s ubiquitous key-value store when available.")
+                }
+
+                Section("Credits") {
+                    Text("© 2026 Marcus Deuß")
+                    Text("All Rights Reserved")
+                }
             }
-            .background(
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.ultraThinMaterial)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 24)
-                            .strokeBorder(.white.opacity(0.12), lineWidth: 1)
-                    }
-            )
-            .padding(20)
+            .navigationTitle("About")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done", action: onDismiss)
+                }
+            }
         }
-        .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale(scale: 0.95)))
     }
 }
 
 #Preview {
-    AboutView(maxScore: 5) { }
-        .preferredColorScheme(.dark)
+    AboutView { }
 }

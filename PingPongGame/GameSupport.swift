@@ -1,0 +1,257 @@
+import Foundation
+import CoreGraphics
+
+enum GameMode: String, CaseIterable, Codable, Identifiable {
+    case onePlayer
+    case twoPlayers
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .onePlayer: "1 Player"
+        case .twoPlayers: "2 Players"
+        }
+    }
+
+    var subtitle: String {
+        switch self {
+        case .onePlayer: "vs Computer"
+        case .twoPlayers: "Local Multiplayer"
+        }
+    }
+
+    func displayName(for side: WinnerSide) -> String {
+        switch (self, side) {
+        case (.onePlayer, .playerOne): "Player"
+        case (.onePlayer, .playerTwo): "Computer"
+        case (.twoPlayers, .playerOne): "Player 1"
+        case (.twoPlayers, .playerTwo): "Player 2"
+        }
+    }
+}
+
+enum Difficulty: String, CaseIterable, Codable, Identifiable {
+    case easy = "Easy"
+    case medium = "Medium"
+    case hard = "Hard"
+
+    var id: String { rawValue }
+
+    var trackingSpeed: CGFloat {
+        switch self {
+        case .easy: 220
+        case .medium: 310
+        case .hard: 430
+        }
+    }
+
+    var reactionBias: CGFloat {
+        switch self {
+        case .easy: 0.78
+        case .medium: 0.9
+        case .hard: 1.02
+        }
+    }
+}
+
+enum AIStyle: String, CaseIterable, Codable, Identifiable {
+    case balanced
+    case defensive
+    case aggressive
+    case mirror
+
+    var id: String { rawValue }
+
+    var title: String {
+        rawValue.capitalized
+    }
+}
+
+enum MatchDuration: String, CaseIterable, Codable, Identifiable {
+    case scoreOnly
+    case oneMinute
+    case threeMinutes
+    case fiveMinutes
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .scoreOnly: "Score Only"
+        case .oneMinute: "1 Minute"
+        case .threeMinutes: "3 Minutes"
+        case .fiveMinutes: "5 Minutes"
+        }
+    }
+
+    var seconds: TimeInterval? {
+        switch self {
+        case .scoreOnly: nil
+        case .oneMinute: 60
+        case .threeMinutes: 180
+        case .fiveMinutes: 300
+        }
+    }
+}
+
+enum WinnerSide: String, Codable, Identifiable {
+    case playerOne
+    case playerTwo
+
+    var id: String { rawValue }
+}
+
+enum GamePhase: Equatable {
+    case loading
+    case modeSelection
+    case playing
+    case paused
+    case replaying
+    case winner(WinnerSide)
+}
+
+enum PowerUpType: String, CaseIterable, Codable, Identifiable {
+    case paddleExpand
+    case slowMotion
+    case curveShot
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .paddleExpand: "Paddle Boost"
+        case .slowMotion: "Slow Ball"
+        case .curveShot: "Curve Shot"
+        }
+    }
+
+    var symbolName: String {
+        switch self {
+        case .paddleExpand: "rectangle.expand.vertical"
+        case .slowMotion: "tortoise.fill"
+        case .curveShot: "arrow.trianglehead.2.clockwise.rotate.90"
+        }
+    }
+
+    var detail: String {
+        switch self {
+        case .paddleExpand: "Temporarily increases the collector's paddle height."
+        case .slowMotion: "Temporarily slows the ball so rallies reset their pace."
+        case .curveShot: "Adds extra spin to the next paddle deflection."
+        }
+    }
+}
+
+enum AchievementID: String, CaseIterable, Codable, Identifiable {
+    case firstVictory
+    case rallyMaster
+    case speedJunkie
+    case tactician
+    case marathon
+    case collector
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .firstVictory: "First Victory"
+        case .rallyMaster: "Rally Master"
+        case .speedJunkie: "Speed Junkie"
+        case .tactician: "Tactician"
+        case .marathon: "Marathon Match"
+        case .collector: "Collector"
+        }
+    }
+
+    var detail: String {
+        switch self {
+        case .firstVictory: "Win your first match."
+        case .rallyMaster: "Reach a 12-hit rally."
+        case .speedJunkie: "Trigger three speed boosts in one match."
+        case .tactician: "Win with power-ups disabled."
+        case .marathon: "Finish a timed match that reaches overtime."
+        case .collector: "Collect all power-up types."
+        }
+    }
+}
+
+struct LeaderboardEntry: Codable, Identifiable, Hashable {
+    let id: UUID
+    let date: Date
+    let mode: GameMode
+    let winner: WinnerSide
+    let scoreLine: String
+    let longestRally: Int
+    let speedBoosts: Int
+
+    init(id: UUID = UUID(), date: Date = .now, mode: GameMode, winner: WinnerSide, scoreLine: String, longestRally: Int, speedBoosts: Int) {
+        self.id = id
+        self.date = date
+        self.mode = mode
+        self.winner = winner
+        self.scoreLine = scoreLine
+        self.longestRally = longestRally
+        self.speedBoosts = speedBoosts
+    }
+}
+
+struct MatchStatistics: Codable, Hashable {
+    var longestRally: Int = 0
+    var totalHits: Int = 0
+    var speedBoostsTriggered: Int = 0
+    var powerUpsCollected: Int = 0
+    var lastPowerUpsCollected: Set<PowerUpType> = []
+    var replayCount: Int = 0
+    var matchStartDate: Date = .now
+    var matchDurationPlayed: TimeInterval = 0
+    var reachedOvertime: Bool = false
+}
+
+struct LifetimeStatistics: Codable, Hashable {
+    var gamesPlayed: Int = 0
+    var wins: Int = 0
+    var losses: Int = 0
+    var longestRally: Int = 0
+    var totalHits: Int = 0
+    var totalPowerUpsCollected: Int = 0
+    var totalReplaysViewed: Int = 0
+    var favoriteMode: GameMode = .onePlayer
+}
+
+struct GamePreferences: Codable, Hashable {
+    var isBlackAndWhite: Bool = false
+    var baseBallSpeed: Double = 1.0
+    var difficulty: Difficulty = .medium
+    var aiStyle: AIStyle = .balanced
+    var maxScore: Int = 5
+    var matchDuration: MatchDuration = .scoreOnly
+    var speedBoostEnabled: Bool = true
+    var soundEnabled: Bool = true
+    var soundVolume: Double = 0.8
+    var hapticsEnabled: Bool = true
+    var enabledPowerUps: Set<PowerUpType> = Set(PowerUpType.allCases)
+}
+
+struct PlayerProgress: Codable, Hashable {
+    var lifetimeStats: LifetimeStatistics = LifetimeStatistics()
+    var leaderboard: [LeaderboardEntry] = []
+    var achievements: Set<AchievementID> = []
+}
+
+enum GameConfig {
+    static let defaultBallRadius: CGFloat = 10
+    static let baseBallSpeed: CGFloat = 420
+    static let maxRallySpeedMultiplier: CGFloat = 2.35
+    static let speedBoostStep: CGFloat = 1.18
+    static let speedBoostEveryHits = 3
+    static let replayFrameLimit = 480
+    static let replayPlaybackFramesPerSecond: Double = 60
+    static let paddleCollisionCooldown: TimeInterval = 0.08
+    static let powerUpSpawnEveryHits = 6
+    static let powerUpDuration: TimeInterval = 6
+    static let expandedPaddleMultiplier: CGFloat = 1.35
+    static let slowMotionMultiplier: CGFloat = 0.82
+    static let curveShotStrength: CGFloat = 0.22
+    static let leaderboardLimit = 10
+}

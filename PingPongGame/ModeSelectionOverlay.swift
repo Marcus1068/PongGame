@@ -1,24 +1,3 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  ModeSelectionOverlay.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
 
 struct ModeSelectionOverlay: View {
@@ -29,26 +8,27 @@ struct ModeSelectionOverlay: View {
             Color.black.opacity(0.82)
                 .ignoresSafeArea()
 
-            VStack(spacing: 44) {
-                // Title
-                VStack(spacing: 6) {
+            VStack(spacing: 28) {
+                VStack(spacing: 8) {
                     Text("PingPong Retro")
                         .font(.system(.largeTitle, design: .rounded, weight: .bold))
                         .foregroundStyle(
-                            LinearGradient(
-                                colors: [.cyan, .purple],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
+                            LinearGradient(colors: [.cyan, .purple], startPoint: .leading, endPoint: .trailing)
                         )
-                        .shadow(color: .cyan.opacity(0.5), radius: 10)
-
-                    Text("Select Game Mode")
+                    Text("Pick a mode and jump in")
                         .font(.title3)
-                        .foregroundStyle(.white.opacity(0.65))
+                        .foregroundStyle(.white.opacity(0.72))
                 }
 
-                // Mode buttons
+                VStack(spacing: 10) {
+                    Label("First to \(gameState.maxScore)", systemImage: "target")
+                    Label(gameState.matchDuration.title, systemImage: "timer")
+                    Label("AI: \(gameState.aiStyle.title)", systemImage: "brain")
+                    Label(gameState.isSpeedBoostEnabled ? "Speed boosts enabled" : "Speed boosts disabled", systemImage: "bolt")
+                }
+                .font(.subheadline)
+                .foregroundStyle(.white.opacity(0.75))
+
                 HStack(spacing: 20) {
                     GameModeCard(
                         icon: "person.fill",
@@ -57,8 +37,7 @@ struct ModeSelectionOverlay: View {
                         accentColors: [.cyan, .blue]
                     ) {
                         withAnimation(.easeIn(duration: 0.25)) {
-                            gameState.gameMode = .onePlayer
-                            gameState.hasStarted = true
+                            gameState.startMatch(mode: .onePlayer)
                         }
                     }
 
@@ -69,8 +48,7 @@ struct ModeSelectionOverlay: View {
                         accentColors: [.purple, .pink]
                     ) {
                         withAnimation(.easeIn(duration: 0.25)) {
-                            gameState.gameMode = .twoPlayers
-                            gameState.hasStarted = true
+                            gameState.startMatch(mode: .twoPlayers)
                         }
                     }
                 }

@@ -1,104 +1,377 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  GameState.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import Foundation
 import Observation
 
-/// Shared observable game state passed between the SwiftUI layer and the SpriteKit scene.
-/// Marked `@MainActor` so all mutations happen on the main thread, keeping SwiftUI bindings safe.
 @MainActor
 @Observable
-class GameState {
-    // MARK: - Scores
-
+final class GameState {
     var playerScore: Int = 0
-    var computerScore: Int = 0
-
-    // MARK: - Match Status
-
-    /// Whether the match is currently in progress (false once a winner is set).
-    var isGameActive: Bool = true
-
-    /// Pauses/resumes the SpriteKit scene update loop without ending the match.
-    var isPaused: Bool = false
-
-    /// False until the player presses Start; keeps the ball frozen on the title screen.
-    var hasStarted: Bool = false
-
-    /// When true the scene renders in retro black-and-white style.
-    var isBlackAndWhite: Bool = false
-
-    /// Current ball-speed multiplier; increases as rallies build up (0.5 – 2.0).
-    var ballSpeed: Double = 1.0
-
-    var difficulty: Difficulty = .medium
+    var opponentScore: Int = 0
     var gameMode: GameMode = .onePlayer
+    var gamePhase: GamePhase = .loading
+    var winningSide: WinnerSide?
 
-    /// Set to "Player" or "Computer" when someone reaches `maxScore`; nil during play.
-    var winner: String? = nil
-
-    /// First player to reach this score wins the match. Persisted across launches.
-    var maxScore: Int = UserDefaults.standard.object(forKey: "endScore") as? Int ?? 5 {
-        didSet { UserDefaults.standard.set(maxScore, forKey: "endScore") }
+    var isBlackAndWhite: Bool {
+        didSet { persistPreferences() }
     }
 
-    // MARK: - Actions
-
-    /// Resets all state back to the start of a new match.
-    func reset() {
-        playerScore = 0
-        computerScore = 0
-        isGameActive = true
-        isPaused = false
-        hasStarted = false
-        winner = nil
+    var ballSpeed: Double {
+        didSet { persistPreferences() }
     }
 
-    /// Toggles between paused and running.
-    func togglePause() {
-        isPaused.toggle()
+    var difficulty: Difficulty {
+        didSet { persistPreferences() }
     }
 
-    /// Call when the human player's ball passes the computer's edge.
-    func playerScored() {
-        playerScore += 1
-        checkForWinner()
+    var aiStyle: AIStyle {
+        didSet { persistPreferences() }
     }
 
-    /// Call when the computer's ball passes the player's edge.
-    func computerScored() {
-        computerScore += 1
-        checkForWinner()
+    var maxScore: Int {
+        didSet { persistPreferences() }
     }
 
-    // MARK: - Private Helpers
-
-    /// Ends the game if either side has reached `maxScore`.
-    private func checkForWinner() {
-        if playerScore >= maxScore {
-            winner = "Player"
-            isGameActive = false
-        } else if computerScore >= maxScore {
-            winner = "Computer"
-            isGameActive = false
+    var matchDuration: MatchDuration {
+        didSet {
+            persistPreferences()
+            if !hasStarted {
+                remainingMatchTime = matchDuration.seconds
+            }
         }
+    }
+
+    var isSpeedBoostEnabled: Bool {
+        didSet { persistPreferences() }
+    }
+
+    var isSoundEnabled: Bool {
+        didSet { persistPreferences() }
+    }
+
+    var soundVolume: Double {
+        didSet { persistPreferences() }
+    }
+
+    var isHapticsEnabled: Bool {
+        didSet { persistPreferences() }
+    }
+
+    var enabledPowerUps: Set<PowerUpType> {
+        didSet { persistPreferences() }
+    }
+
+    var currentMatchStats = MatchStatistics()
+    var lifetimeStats: LifetimeStatistics
+    var leaderboard: [LeaderboardEntry]
+    var achievements: Set<AchievementID>
+    var remainingMatchTime: TimeInterval?
+    var canReplayLastPoint = false
+    var activePowerUp: PowerUpType?
+    var powerUpStatusText: String?
+    var latestHighlightText: String?
+
+    @ObservationIgnored private let preferencesKey = "PingPongRetro.preferences"
+    @ObservationIgnored private let progressKey = "PingPongRetro.progress"
+    @ObservationIgnored private let defaults = UserDefaults.standard
+    @ObservationIgnored private let cloudStore = NSUbiquitousKeyValueStore.default
+
+    init() {
+        let preferences = Self.load(GamePreferences.self, key: "PingPongRetro.preferences") ?? GamePreferences(
+            maxScore: UserDefaults.standard.object(forKey: "endScore") as? Int ?? 5
+        )
+        let progress = Self.load(PlayerProgress.self, key: "PingPongRetro.progress") ?? PlayerProgress()
+
+        isBlackAndWhite = preferences.isBlackAndWhite
+        ballSpeed = preferences.baseBallSpeed
+        difficulty = preferences.difficulty
+        aiStyle = preferences.aiStyle
+        maxScore = preferences.maxScore
+        matchDuration = preferences.matchDuration
+        isSpeedBoostEnabled = preferences.speedBoostEnabled
+        isSoundEnabled = preferences.soundEnabled
+        soundVolume = preferences.soundVolume
+        isHapticsEnabled = preferences.hapticsEnabled
+        enabledPowerUps = preferences.enabledPowerUps
+        lifetimeStats = progress.lifetimeStats
+        leaderboard = progress.leaderboard
+        achievements = progress.achievements
+        remainingMatchTime = preferences.matchDuration.seconds
+    }
+
+    var isPaused: Bool {
+        gamePhase == .paused
+    }
+
+    var hasStarted: Bool {
+        switch gamePhase {
+        case .loading, .modeSelection:
+            false
+        default:
+            true
+        }
+    }
+
+    var isGameActive: Bool {
+        switch gamePhase {
+        case .playing, .paused, .replaying:
+            true
+        case .loading, .modeSelection, .winner:
+            false
+        }
+    }
+
+    var opponentDisplayName: String {
+        gameMode.displayName(for: .playerTwo)
+    }
+
+    var playerDisplayName: String {
+        gameMode.displayName(for: .playerOne)
+    }
+
+    var winnerText: String? {
+        guard let winningSide else { return nil }
+        return gameMode.displayName(for: winningSide)
+    }
+
+    var formattedTimer: String? {
+        guard let remainingMatchTime else { return nil }
+        if remainingMatchTime <= 0, currentMatchStats.reachedOvertime {
+            return "OT"
+        }
+
+        let totalSeconds = max(Int(remainingMatchTime.rounded(.down)), 0)
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
+
+    func completeLoading() {
+        gamePhase = .modeSelection
+    }
+
+    func startMatch(mode: GameMode) {
+        gameMode = mode
+        playerScore = 0
+        opponentScore = 0
+        winningSide = nil
+        activePowerUp = nil
+        powerUpStatusText = nil
+        latestHighlightText = nil
+        canReplayLastPoint = false
+        currentMatchStats = MatchStatistics(matchStartDate: .now)
+        remainingMatchTime = matchDuration.seconds
+        gamePhase = .playing
+    }
+
+    func resetToMenu() {
+        playerScore = 0
+        opponentScore = 0
+        winningSide = nil
+        activePowerUp = nil
+        powerUpStatusText = nil
+        latestHighlightText = nil
+        canReplayLastPoint = false
+        remainingMatchTime = matchDuration.seconds
+        gamePhase = .modeSelection
+    }
+
+    func pauseGame() {
+        guard case .playing = gamePhase else { return }
+        gamePhase = .paused
+    }
+
+    func resumeGame() {
+        guard case .paused = gamePhase else { return }
+        gamePhase = .playing
+    }
+
+    func togglePause() {
+        switch gamePhase {
+        case .playing:
+            gamePhase = .paused
+        case .paused:
+            gamePhase = .playing
+        default:
+            break
+        }
+    }
+
+    func beginReplay() {
+        guard canReplayLastPoint else { return }
+        gamePhase = .replaying
+        currentMatchStats.replayCount += 1
+        lifetimeStats.totalReplaysViewed += 1
+        persistProgress()
+    }
+
+    func endReplay(returningToPaused paused: Bool) {
+        gamePhase = paused ? .paused : .playing
+    }
+
+    func registerPoint(for side: WinnerSide) {
+        switch side {
+        case .playerOne:
+            playerScore += 1
+        case .playerTwo:
+            opponentScore += 1
+        }
+
+        if currentMatchStats.reachedOvertime {
+            completeMatch(winner: side)
+            return
+        }
+
+        if playerScore >= maxScore {
+            completeMatch(winner: .playerOne)
+        } else if opponentScore >= maxScore {
+            completeMatch(winner: .playerTwo)
+        }
+    }
+
+    func registerHit() {
+        currentMatchStats.totalHits += 1
+    }
+
+    func registerRallyLength(_ rally: Int) {
+        currentMatchStats.longestRally = max(currentMatchStats.longestRally, rally)
+    }
+
+    func registerSpeedBoost() {
+        currentMatchStats.speedBoostsTriggered += 1
+    }
+
+    func registerPowerUpCollected(_ powerUp: PowerUpType) {
+        currentMatchStats.powerUpsCollected += 1
+        currentMatchStats.lastPowerUpsCollected.insert(powerUp)
+        lifetimeStats.totalPowerUpsCollected += 1
+        latestHighlightText = "Collected \(powerUp.title)"
+        if currentMatchStats.lastPowerUpsCollected.count == PowerUpType.allCases.count {
+            unlock(.collector)
+        }
+        persistProgress()
+    }
+
+    func storeReplayAvailability(_ available: Bool) {
+        canReplayLastPoint = available
+    }
+
+    func updateRemainingMatchTime(elapsed deltaTime: TimeInterval) {
+        guard let remainingMatchTime, case .playing = gamePhase else { return }
+        if currentMatchStats.reachedOvertime { return }
+
+        let updated = max(remainingMatchTime - deltaTime, 0)
+        self.remainingMatchTime = updated
+
+        guard updated == 0 else { return }
+
+        if playerScore == opponentScore {
+            currentMatchStats.reachedOvertime = true
+            latestHighlightText = "Overtime: next point wins"
+        } else if playerScore > opponentScore {
+            completeMatch(winner: .playerOne)
+        } else {
+            completeMatch(winner: .playerTwo)
+        }
+    }
+
+    func setActivePowerUp(_ powerUp: PowerUpType?) {
+        activePowerUp = powerUp
+        powerUpStatusText = powerUp?.title
+    }
+
+    func clearTransientStatus() {
+        latestHighlightText = nil
+    }
+
+    private func completeMatch(winner: WinnerSide) {
+        winningSide = winner
+        gamePhase = .winner(winner)
+        latestHighlightText = "\(gameMode.displayName(for: winner)) wins"
+        finalizeProgress(winner: winner)
+    }
+
+    private func finalizeProgress(winner: WinnerSide) {
+        currentMatchStats.matchDurationPlayed = Date().timeIntervalSince(currentMatchStats.matchStartDate)
+        lifetimeStats.gamesPlayed += 1
+        lifetimeStats.totalHits += currentMatchStats.totalHits
+        lifetimeStats.longestRally = max(lifetimeStats.longestRally, currentMatchStats.longestRally)
+        lifetimeStats.favoriteMode = gameMode
+
+        if winner == .playerOne {
+            lifetimeStats.wins += 1
+            unlock(.firstVictory)
+        } else {
+            lifetimeStats.losses += 1
+        }
+
+        if currentMatchStats.longestRally >= 12 {
+            unlock(.rallyMaster)
+        }
+        if currentMatchStats.speedBoostsTriggered >= 3 {
+            unlock(.speedJunkie)
+        }
+        if !isSpeedBoostEnabled && enabledPowerUps.isEmpty {
+            unlock(.tactician)
+        }
+        if currentMatchStats.reachedOvertime {
+            unlock(.marathon)
+        }
+
+        let entry = LeaderboardEntry(
+            mode: gameMode,
+            winner: winner,
+            scoreLine: "\(playerScore)-\(opponentScore)",
+            longestRally: currentMatchStats.longestRally,
+            speedBoosts: currentMatchStats.speedBoostsTriggered
+        )
+        leaderboard.insert(entry, at: 0)
+        leaderboard = Array(leaderboard.prefix(GameConfig.leaderboardLimit))
+        persistProgress()
+    }
+
+    private func unlock(_ achievement: AchievementID) {
+        achievements.insert(achievement)
+    }
+
+    private func persistPreferences() {
+        let preferences = GamePreferences(
+            isBlackAndWhite: isBlackAndWhite,
+            baseBallSpeed: ballSpeed,
+            difficulty: difficulty,
+            aiStyle: aiStyle,
+            maxScore: maxScore,
+            matchDuration: matchDuration,
+            speedBoostEnabled: isSpeedBoostEnabled,
+            soundEnabled: isSoundEnabled,
+            soundVolume: soundVolume,
+            hapticsEnabled: isHapticsEnabled,
+            enabledPowerUps: enabledPowerUps
+        )
+        Self.save(preferences, key: preferencesKey)
+        defaults.set(maxScore, forKey: "endScore")
+    }
+
+    private func persistProgress() {
+        let progress = PlayerProgress(
+            lifetimeStats: lifetimeStats,
+            leaderboard: leaderboard,
+            achievements: achievements
+        )
+        Self.save(progress, key: progressKey)
+    }
+
+    private static func load<T: Decodable>(_ type: T.Type, key: String) -> T? {
+        let defaults = UserDefaults.standard
+        let cloudStore = NSUbiquitousKeyValueStore.default
+        let data = cloudStore.data(forKey: key) ?? defaults.data(forKey: key)
+        guard let data else { return nil }
+        return try? JSONDecoder().decode(type, from: data)
+    }
+
+    private static func save<T: Encodable>(_ value: T, key: String) {
+        guard let data = try? JSONEncoder().encode(value) else { return }
+        UserDefaults.standard.set(data, forKey: key)
+        let cloudStore = NSUbiquitousKeyValueStore.default
+        cloudStore.set(data, forKey: key)
+        cloudStore.synchronize()
     }
 }

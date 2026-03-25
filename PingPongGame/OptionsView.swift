@@ -1,24 +1,3 @@
-// Copyright 2026 Marcus Deuß
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-//
-//  OptionsView.swift
-//  PongGame
-//
-//  Created by Marcus Deuß on 25.02.26.
-//
-
 import SwiftUI
 
 struct OptionsView: View {
@@ -26,138 +5,107 @@ struct OptionsView: View {
     let onDismiss: () -> Void
 
     var body: some View {
-        ZStack {
-            // Dimmed backdrop
-            Button(action: onDismiss) {
-                Color.black.opacity(0.75)
-                    .ignoresSafeArea()
-            }
-            .buttonStyle(.plain)
-
-            ScrollView {
-                VStack(spacing: 20) {
-
-                    // MARK: Title
-                    Text("Options")
-                        .font(.system(.title, design: .rounded, weight: .bold))
-                        .foregroundStyle(.white)
-
-                    Divider()
-                        .background(.white.opacity(0.2))
-
-                    // MARK: Color scheme picker
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Color")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.7))
-
-                        Picker("Color", selection: $gameState.isBlackAndWhite) {
-                            Text("Color").tag(false)
-                            Text("Black/White").tag(true)
-                        }
-                        .pickerStyle(.segmented)
-                    }
-                    .padding(.horizontal, 8)
-
-                    // MARK: Difficulty picker
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Difficulty")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.7))
-
-                        Picker("Difficulty", selection: $gameState.difficulty) {
-                            ForEach(Difficulty.allCases, id: \.self) { level in
-                                Text(LocalizedStringKey(level.rawValue)).tag(level)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                    }
-                    .padding(.horizontal, 8)
-
-                    // MARK: End Score picker
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("End Score")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.7))
-
-                        Picker("End Score", selection: $gameState.maxScore) {
-                            ForEach([3, 5, 7, 10, 15, 21], id: \.self) { score in
-                                Text("\(score)").tag(score)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                    }
-                    .padding(.horizontal, 8)
-
-                    // MARK: Ball speed slider
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Ball Speed")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.7))
-
-                        HStack(spacing: 8) {
-                            Image(systemName: "tortoise.fill")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.5))
-                                .accessibilityHidden(true)
-
-                            Slider(value: $gameState.ballSpeed, in: 0.5...2.0, step: 0.1)
-                                .tint(.cyan)
-                                .accessibilityLabel("Ball Speed")
-
-                            Image(systemName: "hare.fill")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.5))
-                                .accessibilityHidden(true)
-
-                            Text("\(gameState.ballSpeed, format: .number.precision(.fractionLength(1)))x")
-                                .font(.caption.monospacedDigit())
-                                .foregroundStyle(.white.opacity(0.6))
-                                .frame(width: 35)
-                        }
-                    }
-                    .padding(.horizontal, 8)
-
-                    Divider()
-                        .background(.white.opacity(0.2))
-
-                    // MARK: Dismiss button
-                    Button(action: onDismiss) {
-                        Text("Close")
-                            .font(.headline)
-                            .foregroundStyle(.black)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 14)
-                            .background(
-                                LinearGradient(
-                                    colors: [.cyan, .purple],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                ),
-                                in: Capsule()
-                            )
-                            .shadow(color: .cyan.opacity(0.5), radius: 8)
-                    }
-                    .buttonStyle(.plain)
+        NavigationStack {
+            Form {
+                Section("Visuals") {
+                    Toggle("Black & White Mode", isOn: $gameState.isBlackAndWhite)
+                    Toggle("Enable Haptics", isOn: $gameState.isHapticsEnabled)
                 }
-                .padding(24)
-            }
-            .background(
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(.ultraThinMaterial)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 24)
-                            .strokeBorder(.white.opacity(0.12), lineWidth: 1)
+
+                Section("Match Rules") {
+                    Picker("End Score", selection: $gameState.maxScore) {
+                        ForEach([3, 5, 7, 10, 15, 21], id: \.self) { score in
+                            Text("\(score)").tag(score)
+                        }
                     }
-            )
-            .colorScheme(.dark)
-            .padding(20)
+
+                    Picker("Match Duration", selection: $gameState.matchDuration) {
+                        ForEach(MatchDuration.allCases) { duration in
+                            Text(duration.title).tag(duration)
+                        }
+                    }
+
+                    Toggle("Rally Speed Boosts", isOn: $gameState.isSpeedBoostEnabled)
+                }
+
+                Section("Gameplay") {
+                    Picker("Difficulty", selection: $gameState.difficulty) {
+                        ForEach(Difficulty.allCases) { level in
+                            Text(level.rawValue).tag(level)
+                        }
+                    }
+
+                    Picker("AI Style", selection: $gameState.aiStyle) {
+                        ForEach(AIStyle.allCases) { style in
+                            Text(style.title).tag(style)
+                        }
+                    }
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Base Ball Speed")
+                        HStack(spacing: 10) {
+                            Image(systemName: "tortoise.fill")
+                                .foregroundStyle(.secondary)
+                            Slider(value: $gameState.ballSpeed, in: 0.5 ... 2.0, step: 0.1)
+                                .accessibilityLabel("Base Ball Speed")
+                            Image(systemName: "hare.fill")
+                                .foregroundStyle(.secondary)
+                            Text("\(gameState.ballSpeed, format: .number.precision(.fractionLength(1)))x")
+                                .font(.body.monospacedDigit())
+                                .foregroundStyle(.secondary)
+                                .frame(width: 44)
+                        }
+                    }
+                }
+
+                Section("Power-Ups") {
+                    ForEach(PowerUpType.allCases) { powerUp in
+                        Toggle(isOn: binding(for: powerUp)) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Label(powerUp.title, systemImage: powerUp.symbolName)
+                                Text(powerUp.detail)
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+
+                Section("Audio") {
+                    Toggle("Sound Effects", isOn: $gameState.isSoundEnabled)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Volume")
+                        Slider(value: $gameState.soundVolume, in: 0 ... 1)
+                            .disabled(!gameState.isSoundEnabled)
+                        Text(gameState.isSoundEnabled ? "\(Int((gameState.soundVolume * 100).rounded()))%" : "Muted")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .navigationTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done", action: onDismiss)
+                }
+            }
         }
-        .transition(.opacity.combined(with: .scale(scale: 0.95)))
+    }
+
+    private func binding(for powerUp: PowerUpType) -> Binding<Bool> {
+        Binding(
+            get: { gameState.enabledPowerUps.contains(powerUp) },
+            set: { isEnabled in
+                if isEnabled {
+                    gameState.enabledPowerUps.insert(powerUp)
+                } else {
+                    gameState.enabledPowerUps.remove(powerUp)
+                }
+            }
+        )
     }
 }
 
 #Preview {
     OptionsView(gameState: GameState()) { }
-        .preferredColorScheme(.dark)
 }

@@ -10,7 +10,7 @@ final class GameState {
     var gamePhase: GamePhase = .loading
     var winningSide: WinnerSide?
 
-    var isBlackAndWhite: Bool {
+    var visualTheme: VisualTheme {
         didSet { persistPreferences() }
     }
 
@@ -80,7 +80,7 @@ final class GameState {
         )
         let progress = Self.load(PlayerProgress.self, key: "PingPongRetro.progress") ?? PlayerProgress()
 
-        isBlackAndWhite = preferences.isBlackAndWhite
+        visualTheme = preferences.visualTheme
         ballSpeed = preferences.baseBallSpeed
         difficulty = preferences.difficulty
         aiStyle = preferences.aiStyle
@@ -99,6 +99,10 @@ final class GameState {
 
     var isPaused: Bool {
         gamePhase == .paused
+    }
+
+    var isBlackAndWhite: Bool {
+        visualTheme == .minimalMono
     }
 
     var hasStarted: Bool {
@@ -334,7 +338,7 @@ final class GameState {
 
     private func persistPreferences() {
         let preferences = GamePreferences(
-            isBlackAndWhite: isBlackAndWhite,
+            visualTheme: visualTheme,
             baseBallSpeed: ballSpeed,
             difficulty: difficulty,
             aiStyle: aiStyle,

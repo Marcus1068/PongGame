@@ -11,7 +11,7 @@ A retro-styled Pong game built with SwiftUI, SpriteKit, and AVFoundation for **m
 - **Replay support** - replay the last point from an in-memory highlight buffer
 - **Progression systems** - track lifetime stats, achievements, and a local leaderboard
 - **Audio and haptics controls** - toggle sound effects, adjust volume, and enable haptics
-- **Retro presentation** - neon visuals, particle effects, synthesized arcade sounds, and animated loading and winner screens
+- **Retro presentation** - choose between `Synthwave`, `Retro Green CRT`, `Amber Monitor`, and `Minimal Mono` themes with matching gameplay colors, particle effects, and arcade presentation
 
 ## Controls
 

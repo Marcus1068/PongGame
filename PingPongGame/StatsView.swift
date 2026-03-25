@@ -173,6 +173,7 @@ struct StatsView: View {
     private var currentSetupCard: some View {
         infoSection(title: "Current Setup") {
             VStack(alignment: .leading, spacing: 12) {
+                statRow(title: "Theme", value: gameState.visualTheme.title)
                 statRow(title: "Target Score", value: "\(gameState.maxScore)")
                 statRow(title: "Match Duration", value: gameState.matchDuration.title)
                 statRow(title: "Difficulty", value: gameState.difficulty.title)

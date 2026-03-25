@@ -4,7 +4,7 @@ import AVFoundation
 extension PongScene {
     func setupScene() {
         sceneBackground = SKShapeNode()
-        sceneBackground.fillColor = SKColor(red: 0.05, green: 0.05, blue: 0.15, alpha: 1)
+        sceneBackground.fillColor = currentVisualTheme.sceneBackgroundColor
         sceneBackground.strokeColor = .clear
         sceneBackground.zPosition = -2
         addChild(sceneBackground)
@@ -28,7 +28,7 @@ extension PongScene {
         var yPosition = frame.minY
         while yPosition < frame.maxY {
             let dash = SKShapeNode(rectOf: CGSize(width: 3, height: dashLength), cornerRadius: 1.5)
-            dash.fillColor = SKColor.white.withAlphaComponent(0.3)
+            dash.fillColor = currentVisualTheme.sceneCenterLineColor.withAlphaComponent(currentVisualTheme.centerLineOpacity)
             dash.strokeColor = .clear
             dash.position = CGPoint(x: frame.midX, y: yPosition + dashLength / 2)
             centerLineContainer.addChild(dash)
@@ -39,20 +39,20 @@ extension PongScene {
     func setupBall() {
         ball = SKShapeNode(circleOfRadius: ballRadius)
         ball.fillColor = .white
-        ball.strokeColor = .cyan
+        ball.strokeColor = currentVisualTheme.sceneBallStrokeColor
         ball.lineWidth = 2
-        ball.glowWidth = 3
+        ball.glowWidth = currentVisualTheme.showsGlow ? 3 : 0
         ball.position = CGPoint(x: frame.midX, y: frame.midY)
 
         ballTrail = SKEmitterNode()
-        ballTrail.particleBirthRate = 50
+        ballTrail.particleBirthRate = currentVisualTheme.showsBallTrail ? 50 : 0
         ballTrail.particleLifetime = 0.3
         ballTrail.particleSize = CGSize(width: 4, height: 4)
         ballTrail.particleScale = 1
         ballTrail.particleScaleSpeed = -0.5
         ballTrail.particleAlpha = 0.8
         ballTrail.particleAlphaSpeed = -2
-        ballTrail.particleColor = .cyan
+        ballTrail.particleColor = currentVisualTheme.sceneBallTrailColor
         ballTrail.particleColorBlendFactor = 1
         ballTrail.emissionAngleRange = .pi * 2
         ballTrail.particleSpeed = 10
@@ -67,11 +67,11 @@ extension PongScene {
     func setupPaddles() {
         let paddleInset = paddleEdgeInset
 
-        playerPaddle = makePaddle(color: .cyan, height: playerPaddleHeight)
+        playerPaddle = makePaddle(color: currentVisualTheme.scenePlayerColor, height: playerPaddleHeight)
         playerPaddle.position = CGPoint(x: frame.maxX - paddleInset, y: frame.midY)
         addChild(playerPaddle)
 
-        opponentPaddle = makePaddle(color: .magenta, height: opponentPaddleHeight)
+        opponentPaddle = makePaddle(color: currentVisualTheme.sceneOpponentColor, height: opponentPaddleHeight)
         opponentPaddle.position = CGPoint(x: frame.minX + paddleInset, y: frame.midY)
         addChild(opponentPaddle)
     }
@@ -90,7 +90,7 @@ extension PongScene {
         paddle.path = CGPath(roundedRect: rect, cornerWidth: 10, cornerHeight: 10, transform: nil)
         paddle.fillColor = color
         paddle.strokeColor = color.withAlphaComponent(0.8)
-        paddle.glowWidth = gameState?.isBlackAndWhite == true ? 0 : 5
+        paddle.glowWidth = currentVisualTheme.showsGlow ? 5 : 0
     }
 
     func resetBall() {
@@ -115,33 +115,27 @@ extension PongScene {
         ball.run(pulse)
     }
 
-    func applyColorSchemeIfNeeded() {
-        let current = gameState?.isBlackAndWhite ?? false
-        guard lastIsBlackAndWhite != current else { return }
-        lastIsBlackAndWhite = current
-        applyColorScheme(isBlackAndWhite: current)
+    var currentVisualTheme: VisualTheme {
+        gameState?.visualTheme ?? .synthwave
     }
 
-    func applyColorScheme(isBlackAndWhite: Bool) {
-        if isBlackAndWhite {
-            sceneBackground.fillColor = .black
-            ball.strokeColor = .white
-            ball.glowWidth = 0
-            ballTrail.particleBirthRate = 0
-            updatePaddle(playerPaddle, height: playerPaddleHeight, color: .white)
-            updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: .white)
-        } else {
-            sceneBackground.fillColor = SKColor(red: 0.05, green: 0.05, blue: 0.15, alpha: 1)
-            ball.strokeColor = .cyan
-            ball.glowWidth = 3
-            ballTrail.particleBirthRate = 50
-            ballTrail.particleColor = .cyan
-            updatePaddle(playerPaddle, height: playerPaddleHeight, color: .cyan)
-            updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: .magenta)
-        }
+    func applyVisualThemeIfNeeded() {
+        let current = currentVisualTheme
+        guard lastVisualTheme != current else { return }
+        lastVisualTheme = current
+        applyVisualTheme(theme: current)
+    }
 
+    func applyVisualTheme(theme: VisualTheme) {
+        sceneBackground.fillColor = theme.sceneBackgroundColor
+        ball.strokeColor = theme.sceneBallStrokeColor
+        ball.glowWidth = theme.showsGlow ? 3 : 0
+        ballTrail.particleBirthRate = theme.showsBallTrail ? 50 : 0
+        ballTrail.particleColor = theme.sceneBallTrailColor
+        updatePaddle(playerPaddle, height: playerPaddleHeight, color: theme.scenePlayerColor)
+        updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: theme.sceneOpponentColor)
         centerLineContainer.children.compactMap { $0 as? SKShapeNode }.forEach {
-            $0.fillColor = SKColor.white.withAlphaComponent(isBlackAndWhite ? 0.5 : 0.3)
+            $0.fillColor = theme.sceneCenterLineColor.withAlphaComponent(theme.centerLineOpacity)
         }
     }
 

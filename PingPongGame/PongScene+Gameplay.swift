@@ -50,14 +50,14 @@ extension PongScene {
         if ballVelocity.dx > 0,
            currentTime - lastCollisionTime > GameConfig.paddleCollisionCooldown,
            intersects(ball: ball, paddle: playerPaddle, paddleHalfHeight: playerPaddleHeight / 2, paddleHalfWidth: paddleHalfWidth) {
-            handlePaddleCollision(with: .playerOne, paddle: playerPaddle, paddleHeight: playerPaddleHeight, paddleColor: gameState?.isBlackAndWhite == true ? .white : .cyan)
+            handlePaddleCollision(with: .playerOne, paddle: playerPaddle, paddleHeight: playerPaddleHeight, paddleColor: currentVisualTheme.scenePlayerColor)
             lastCollisionTime = currentTime
         }
 
         if ballVelocity.dx < 0,
            currentTime - lastCollisionTime > GameConfig.paddleCollisionCooldown,
            intersects(ball: ball, paddle: opponentPaddle, paddleHalfHeight: opponentPaddleHeight / 2, paddleHalfWidth: paddleHalfWidth) {
-            handlePaddleCollision(with: .playerTwo, paddle: opponentPaddle, paddleHeight: opponentPaddleHeight, paddleColor: gameState?.isBlackAndWhite == true ? .white : .magenta)
+            handlePaddleCollision(with: .playerTwo, paddle: opponentPaddle, paddleHeight: opponentPaddleHeight, paddleColor: currentVisualTheme.sceneOpponentColor)
             lastCollisionTime = currentTime
         }
     }
@@ -112,15 +112,15 @@ extension PongScene {
     }
 
     func showSpeedBoostEffect() {
-        let label = SKLabelNode(text: "SPEED BOOST")
+        let label = SKLabelNode(text: String(localized: "SPEED BOOST"))
         label.fontName = "AvenirNext-Bold"
         label.fontSize = 30
-        label.fontColor = gameState?.isBlackAndWhite == true ? .black : .white
+        label.fontColor = currentVisualTheme.speedBoostTextColor
         label.position = CGPoint(x: frame.midX, y: frame.midY + 120)
         label.zPosition = 999
 
         let background = SKShapeNode(rectOf: CGSize(width: 250, height: 52), cornerRadius: 18)
-        background.fillColor = gameState?.isBlackAndWhite == true ? .white : .yellow
+        background.fillColor = currentVisualTheme.speedBoostBackgroundColor
         background.strokeColor = .clear
         background.alpha = 0
         background.position = label.position

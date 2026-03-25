@@ -56,7 +56,7 @@ struct PongGameView: View {
 
     private var headerOverlay: some View {
         HStack {
-            scoreCard(title: gameState.opponentDisplayName, score: gameState.opponentScore, color: gameState.isBlackAndWhite ? .white : .purple)
+            scoreCard(title: gameState.opponentDisplayName, score: gameState.opponentScore, color: gameState.visualTheme.opponentColor)
             Spacer()
             VStack(spacing: 6) {
                 if let timer = gameState.formattedTimer {
@@ -74,7 +74,7 @@ struct PongGameView: View {
                 }
             }
             Spacer()
-            scoreCard(title: gameState.playerDisplayName, score: gameState.playerScore, color: gameState.isBlackAndWhite ? .white : .cyan)
+            scoreCard(title: gameState.playerDisplayName, score: gameState.playerScore, color: gameState.visualTheme.playerColor)
         }
         .padding(.top, headerTopPadding)
         .accessibilityElement(children: .combine)

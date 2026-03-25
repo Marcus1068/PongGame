@@ -30,7 +30,7 @@ final class PongScene: SKScene {
     var lastHitter: WinnerSide?
     var lastCollisionTime: TimeInterval = 0
     var lastUpdateTime: TimeInterval?
-    var lastIsBlackAndWhite: Bool?
+    var lastVisualTheme: VisualTheme?
     var lastSoundEnabled: Bool?
     var lastSoundVolume: Double?
     var lastObservedGamePhase: GamePhase?
@@ -97,7 +97,7 @@ final class PongScene: SKScene {
         setupPaddles()
         setupAudio()
         resetBall()
-        applyColorScheme(isBlackAndWhite: gameState?.isBlackAndWhite ?? false)
+        applyVisualTheme(theme: gameState?.visualTheme ?? .synthwave)
         lastBallSpeedSetting = gameState?.ballSpeed ?? 1.0
 
         #if os(macOS)
@@ -134,7 +134,7 @@ final class PongScene: SKScene {
         lastUpdateTime = currentTime
 
         applyLiveSettingsIfNeeded()
-        applyColorSchemeIfNeeded()
+        applyVisualThemeIfNeeded()
         handlePhaseTransitionIfNeeded()
 
         if isReplayingLastPoint {

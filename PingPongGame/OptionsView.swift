@@ -52,19 +52,30 @@ struct OptionsView: View {
                 .foregroundStyle(.white.opacity(0.78))
 
             HStack(spacing: 10) {
-                tag(text: gameState.isBlackAndWhite ? String(localized: "B/W Mode") : String(localized: "Color Mode"), symbol: "circle.lefthalf.filled")
+                tag(text: gameState.visualTheme.title, symbol: "paintpalette.fill")
                 tag(text: gameState.isSpeedBoostEnabled ? String(localized: "Boosts On") : String(localized: "Boosts Off"), symbol: "bolt")
                 tag(text: gameState.isSoundEnabled ? String(localized: "Sound On") : String(localized: "Muted"), symbol: "speaker.wave.2.fill")
             }
         }
         .padding(20)
-        .background(cardBackground(colors: [.cyan.opacity(0.35), .purple.opacity(0.3)]))
+        .background(cardBackground(colors: gameState.visualTheme.previewGradientColors))
     }
 
     private var visualsCard: some View {
         infoSection(title: "Visuals") {
             VStack(alignment: .leading, spacing: 14) {
-                settingsToggle(title: "Black & White Mode", subtitle: "Swap the neon palette for a monochrome arcade look.", isOn: $gameState.isBlackAndWhite)
+                pickerRow(title: "Theme") {
+                    Picker("Theme", selection: $gameState.visualTheme) {
+                        ForEach(VisualTheme.allCases) { theme in
+                            Text(theme.title).tag(theme)
+                        }
+                    }
+                    .pickerStyle(.menu)
+
+                    Text(gameState.visualTheme.detail)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
                 settingsToggle(title: "Enable Haptics", subtitle: "Use tactile feedback on supported devices.", isOn: $gameState.isHapticsEnabled)
             }
         }

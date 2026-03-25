@@ -1,6 +1,7 @@
 import Foundation
 import CoreGraphics
 import SwiftUI
+import SpriteKit
 
 enum GameMode: String, CaseIterable, Codable, Identifiable {
     case onePlayer
@@ -110,6 +111,171 @@ enum MatchDuration: String, CaseIterable, Codable, Identifiable {
         case .threeMinutes: 180
         case .fiveMinutes: 300
         }
+    }
+}
+
+enum VisualTheme: String, CaseIterable, Codable, Identifiable {
+    case synthwave
+    case retroGreenCRT
+    case amberMonitor
+    case minimalMono
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .synthwave: String(localized: "Synthwave")
+        case .retroGreenCRT: String(localized: "Retro Green CRT")
+        case .amberMonitor: String(localized: "Amber Monitor")
+        case .minimalMono: String(localized: "Minimal Mono")
+        }
+    }
+
+    var detail: String {
+        switch self {
+        case .synthwave: String(localized: "Classic neon blues and magentas with bright arcade highlights.")
+        case .retroGreenCRT: String(localized: "Phosphor greens, strong contrast, and a terminal-style glow.")
+        case .amberMonitor: String(localized: "Warm amber tones inspired by vintage monochrome monitors.")
+        case .minimalMono: String(localized: "Clean black-and-white visuals with glow and trails stripped back.")
+        }
+    }
+
+    var previewGradientColors: [Color] {
+        switch self {
+        case .synthwave:
+            [.cyan.opacity(0.35), .purple.opacity(0.3)]
+        case .retroGreenCRT:
+            [Color(red: 0.08, green: 0.35, blue: 0.18), Color(red: 0.32, green: 0.86, blue: 0.45).opacity(0.28)]
+        case .amberMonitor:
+            [Color(red: 0.44, green: 0.24, blue: 0.08), Color(red: 0.95, green: 0.68, blue: 0.28).opacity(0.28)]
+        case .minimalMono:
+            [.white.opacity(0.18), .black.opacity(0.22)]
+        }
+    }
+
+    var playerColor: Color {
+        switch self {
+        case .synthwave: .cyan
+        case .retroGreenCRT: Color(red: 0.45, green: 1.0, blue: 0.58)
+        case .amberMonitor: Color(red: 1.0, green: 0.72, blue: 0.28)
+        case .minimalMono: .white
+        }
+    }
+
+    var opponentColor: Color {
+        switch self {
+        case .synthwave: .purple
+        case .retroGreenCRT: Color(red: 0.78, green: 1.0, blue: 0.48)
+        case .amberMonitor: Color(red: 1.0, green: 0.84, blue: 0.52)
+        case .minimalMono: .white
+        }
+    }
+
+    var sceneBackgroundColor: SKColor {
+        switch self {
+        case .synthwave:
+            SKColor(red: 0.05, green: 0.05, blue: 0.15, alpha: 1)
+        case .retroGreenCRT:
+            SKColor(red: 0.03, green: 0.09, blue: 0.05, alpha: 1)
+        case .amberMonitor:
+            SKColor(red: 0.11, green: 0.07, blue: 0.02, alpha: 1)
+        case .minimalMono:
+            .black
+        }
+    }
+
+    var scenePlayerColor: SKColor {
+        switch self {
+        case .synthwave: .cyan
+        case .retroGreenCRT: SKColor(red: 0.45, green: 1.0, blue: 0.58, alpha: 1)
+        case .amberMonitor: SKColor(red: 1.0, green: 0.72, blue: 0.28, alpha: 1)
+        case .minimalMono: .white
+        }
+    }
+
+    var sceneOpponentColor: SKColor {
+        switch self {
+        case .synthwave: .magenta
+        case .retroGreenCRT: SKColor(red: 0.78, green: 1.0, blue: 0.48, alpha: 1)
+        case .amberMonitor: SKColor(red: 1.0, green: 0.84, blue: 0.52, alpha: 1)
+        case .minimalMono: .white
+        }
+    }
+
+    var sceneBallStrokeColor: SKColor {
+        switch self {
+        case .synthwave: .cyan
+        case .retroGreenCRT: SKColor(red: 0.74, green: 1.0, blue: 0.82, alpha: 1)
+        case .amberMonitor: SKColor(red: 1.0, green: 0.86, blue: 0.58, alpha: 1)
+        case .minimalMono: .white
+        }
+    }
+
+    var sceneBallTrailColor: SKColor {
+        switch self {
+        case .synthwave: .cyan
+        case .retroGreenCRT: SKColor(red: 0.45, green: 1.0, blue: 0.58, alpha: 1)
+        case .amberMonitor: SKColor(red: 1.0, green: 0.74, blue: 0.32, alpha: 1)
+        case .minimalMono: .white
+        }
+    }
+
+    var sceneCenterLineColor: SKColor {
+        switch self {
+        case .synthwave, .minimalMono:
+            .white
+        case .retroGreenCRT:
+            SKColor(red: 0.76, green: 1.0, blue: 0.76, alpha: 1)
+        case .amberMonitor:
+            SKColor(red: 1.0, green: 0.88, blue: 0.62, alpha: 1)
+        }
+    }
+
+    var centerLineOpacity: CGFloat {
+        switch self {
+        case .minimalMono: 0.5
+        case .retroGreenCRT, .amberMonitor: 0.38
+        case .synthwave: 0.3
+        }
+    }
+
+    var scenePowerUpColor: SKColor {
+        switch self {
+        case .synthwave: .orange
+        case .retroGreenCRT: SKColor(red: 0.8, green: 1.0, blue: 0.52, alpha: 1)
+        case .amberMonitor: SKColor(red: 1.0, green: 0.78, blue: 0.34, alpha: 1)
+        case .minimalMono: .white
+        }
+    }
+
+    var speedBoostTextColor: SKColor {
+        switch self {
+        case .minimalMono, .retroGreenCRT, .amberMonitor:
+            .black
+        case .synthwave:
+            .white
+        }
+    }
+
+    var speedBoostBackgroundColor: SKColor {
+        switch self {
+        case .synthwave:
+            .yellow
+        case .retroGreenCRT:
+            SKColor(red: 0.76, green: 1.0, blue: 0.56, alpha: 1)
+        case .amberMonitor:
+            SKColor(red: 1.0, green: 0.8, blue: 0.4, alpha: 1)
+        case .minimalMono:
+            .white
+        }
+    }
+
+    var showsGlow: Bool {
+        self != .minimalMono
+    }
+
+    var showsBallTrail: Bool {
+        self != .minimalMono
     }
 }
 
@@ -238,7 +404,7 @@ struct LifetimeStatistics: Codable, Hashable {
 }
 
 struct GamePreferences: Codable, Hashable {
-    var isBlackAndWhite: Bool = false
+    var visualTheme: VisualTheme = .synthwave
     var baseBallSpeed: Double = 1.0
     var difficulty: Difficulty = .medium
     var aiStyle: AIStyle = .balanced
@@ -249,6 +415,79 @@ struct GamePreferences: Codable, Hashable {
     var soundVolume: Double = 0.8
     var hapticsEnabled: Bool = true
     var enabledPowerUps: Set<PowerUpType> = Set(PowerUpType.allCases)
+
+    init(
+        visualTheme: VisualTheme = .synthwave,
+        baseBallSpeed: Double = 1.0,
+        difficulty: Difficulty = .medium,
+        aiStyle: AIStyle = .balanced,
+        maxScore: Int = 5,
+        matchDuration: MatchDuration = .scoreOnly,
+        speedBoostEnabled: Bool = true,
+        soundEnabled: Bool = true,
+        soundVolume: Double = 0.8,
+        hapticsEnabled: Bool = true,
+        enabledPowerUps: Set<PowerUpType> = Set(PowerUpType.allCases)
+    ) {
+        self.visualTheme = visualTheme
+        self.baseBallSpeed = baseBallSpeed
+        self.difficulty = difficulty
+        self.aiStyle = aiStyle
+        self.maxScore = maxScore
+        self.matchDuration = matchDuration
+        self.speedBoostEnabled = speedBoostEnabled
+        self.soundEnabled = soundEnabled
+        self.soundVolume = soundVolume
+        self.hapticsEnabled = hapticsEnabled
+        self.enabledPowerUps = enabledPowerUps
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case visualTheme
+        case isBlackAndWhite
+        case baseBallSpeed
+        case difficulty
+        case aiStyle
+        case maxScore
+        case matchDuration
+        case speedBoostEnabled
+        case soundEnabled
+        case soundVolume
+        case hapticsEnabled
+        case enabledPowerUps
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let legacyMonoMode = try container.decodeIfPresent(Bool.self, forKey: .isBlackAndWhite) ?? false
+
+        visualTheme = try container.decodeIfPresent(VisualTheme.self, forKey: .visualTheme) ?? (legacyMonoMode ? .minimalMono : .synthwave)
+        baseBallSpeed = try container.decodeIfPresent(Double.self, forKey: .baseBallSpeed) ?? 1.0
+        difficulty = try container.decodeIfPresent(Difficulty.self, forKey: .difficulty) ?? .medium
+        aiStyle = try container.decodeIfPresent(AIStyle.self, forKey: .aiStyle) ?? .balanced
+        maxScore = try container.decodeIfPresent(Int.self, forKey: .maxScore) ?? 5
+        matchDuration = try container.decodeIfPresent(MatchDuration.self, forKey: .matchDuration) ?? .scoreOnly
+        speedBoostEnabled = try container.decodeIfPresent(Bool.self, forKey: .speedBoostEnabled) ?? true
+        soundEnabled = try container.decodeIfPresent(Bool.self, forKey: .soundEnabled) ?? true
+        soundVolume = try container.decodeIfPresent(Double.self, forKey: .soundVolume) ?? 0.8
+        hapticsEnabled = try container.decodeIfPresent(Bool.self, forKey: .hapticsEnabled) ?? true
+        enabledPowerUps = try container.decodeIfPresent(Set<PowerUpType>.self, forKey: .enabledPowerUps) ?? Set(PowerUpType.allCases)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(visualTheme, forKey: .visualTheme)
+        try container.encode(baseBallSpeed, forKey: .baseBallSpeed)
+        try container.encode(difficulty, forKey: .difficulty)
+        try container.encode(aiStyle, forKey: .aiStyle)
+        try container.encode(maxScore, forKey: .maxScore)
+        try container.encode(matchDuration, forKey: .matchDuration)
+        try container.encode(speedBoostEnabled, forKey: .speedBoostEnabled)
+        try container.encode(soundEnabled, forKey: .soundEnabled)
+        try container.encode(soundVolume, forKey: .soundVolume)
+        try container.encode(hapticsEnabled, forKey: .hapticsEnabled)
+        try container.encode(enabledPowerUps, forKey: .enabledPowerUps)
+    }
 }
 
 struct PlayerProgress: Codable, Hashable {

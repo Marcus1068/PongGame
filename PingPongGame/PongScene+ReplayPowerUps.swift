@@ -33,10 +33,10 @@ extension PongScene {
         spawnedPowerUp = type
 
         let node = SKShapeNode(circleOfRadius: 20)
-        node.fillColor = gameState.isBlackAndWhite ? .white : .orange
-        node.strokeColor = .white
+        node.fillColor = currentVisualTheme.scenePowerUpColor
+        node.strokeColor = currentVisualTheme.sceneBallStrokeColor
         node.lineWidth = 2
-        node.glowWidth = gameState.isBlackAndWhite ? 0 : 6
+        node.glowWidth = currentVisualTheme.showsGlow ? 6 : 0
         node.position = CGPoint(x: frame.midX, y: CGFloat.random(in: frame.minY + 80 ... frame.maxY - 80))
         node.zPosition = 3
         addChild(node)
@@ -72,10 +72,10 @@ extension PongScene {
         case .paddleExpand:
             if owner == .playerOne {
                 playerPaddleHeight = basePaddleHeight * GameConfig.expandedPaddleMultiplier
-                updatePaddle(playerPaddle, height: playerPaddleHeight, color: gameState?.isBlackAndWhite == true ? .white : .cyan)
+                updatePaddle(playerPaddle, height: playerPaddleHeight, color: currentVisualTheme.scenePlayerColor)
             } else {
                 opponentPaddleHeight = basePaddleHeight * GameConfig.expandedPaddleMultiplier
-                updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: gameState?.isBlackAndWhite == true ? .white : .magenta)
+                updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: currentVisualTheme.sceneOpponentColor)
             }
             clampPaddlesToBounds()
         case .slowMotion:
@@ -93,8 +93,8 @@ extension PongScene {
     func clearActivePowerUpVisuals() {
         playerPaddleHeight = basePaddleHeight
         opponentPaddleHeight = basePaddleHeight
-        updatePaddle(playerPaddle, height: playerPaddleHeight, color: gameState?.isBlackAndWhite == true ? .white : .cyan)
-        updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: gameState?.isBlackAndWhite == true ? .white : .magenta)
+        updatePaddle(playerPaddle, height: playerPaddleHeight, color: currentVisualTheme.scenePlayerColor)
+        updatePaddle(opponentPaddle, height: opponentPaddleHeight, color: currentVisualTheme.sceneOpponentColor)
         activePowerUpOwner = nil
         activePowerUpUntil = nil
         pendingCurveOwner = nil

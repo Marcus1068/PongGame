@@ -108,7 +108,7 @@ struct PongGameView: View {
         #if os(macOS)
         92
         #else
-        56
+        76
         #endif
     }
 

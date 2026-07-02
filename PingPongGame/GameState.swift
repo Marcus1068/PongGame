@@ -72,7 +72,7 @@ final class GameState {
     @ObservationIgnored private let preferencesKey = "PingPongRetro.preferences"
     @ObservationIgnored private let progressKey = "PingPongRetro.progress"
     @ObservationIgnored private let defaults = UserDefaults.standard
-    @ObservationIgnored private let cloudStore = NSUbiquitousKeyValueStore.default
+    @ObservationIgnored private var preferencesSaveTask: Task<Void, Never>?
 
     init() {
         let preferences = Self.load(GamePreferences.self, key: "PingPongRetro.preferences") ?? GamePreferences(
@@ -337,6 +337,9 @@ final class GameState {
     }
 
     private func persistPreferences() {
+        // Slider-backed properties (ballSpeed, soundVolume) can fire this on every
+        // drag tick. Debounce so we only hit disk/iCloud once the value settles,
+        // instead of encoding + writing on every intermediate frame.
         let preferences = GamePreferences(
             visualTheme: visualTheme,
             baseBallSpeed: ballSpeed,
@@ -350,8 +353,15 @@ final class GameState {
             hapticsEnabled: isHapticsEnabled,
             enabledPowerUps: enabledPowerUps
         )
-        Self.save(preferences, key: preferencesKey)
-        defaults.set(maxScore, forKey: "endScore")
+        let scoreToPersist = maxScore
+
+        preferencesSaveTask?.cancel()
+        preferencesSaveTask = Task { [preferencesKey, defaults] in
+            try? await Task.sleep(for: .milliseconds(300))
+            guard !Task.isCancelled else { return }
+            Self.save(preferences, key: preferencesKey)
+            defaults.set(scoreToPersist, forKey: "endScore")
+        }
     }
 
     private func persistProgress() {
@@ -374,8 +384,9 @@ final class GameState {
     private static func save<T: Encodable>(_ value: T, key: String) {
         guard let data = try? JSONEncoder().encode(value) else { return }
         UserDefaults.standard.set(data, forKey: key)
-        let cloudStore = NSUbiquitousKeyValueStore.default
-        cloudStore.set(data, forKey: key)
-        cloudStore.synchronize()
+        // NSUbiquitousKeyValueStore syncs to iCloud on its own schedule. Calling
+        // `synchronize()` here is redundant (Apple's docs call it unnecessary) and
+        // forces an expensive synchronous flush on the calling thread/actor.
+        NSUbiquitousKeyValueStore.default.set(data, forKey: key)
     }
 }

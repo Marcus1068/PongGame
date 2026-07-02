@@ -1,6 +1,13 @@
+// PongGameView.swift
+//
+// This view is the main gameplay screen for PingPong Retro. It owns the
+// SpriteKit bridge that displays the live `PongScene`, then layers SwiftUI HUD
+// elements and phase-specific overlays on top of it. `GameState` drives the
+// visible scores, hints, and modal states shown here.
 import SwiftUI
 import SpriteKit
 
+/// Hosts the active `PongScene` and all SwiftUI overlays that surround live play.
 struct PongGameView: View {
     var gameState: GameState
     let onShowAbout: () -> Void
@@ -11,6 +18,8 @@ struct PongGameView: View {
     @ScaledMetric private var scoreFontSize: CGFloat = 48
     @Environment(\.horizontalSizeClass) private var sizeClass
 
+    /// Scales the large score digits so they stay prominent on iPad while
+    /// still fitting comfortably on smaller layouts.
     private var scoreFont: Font {
         #if os(iOS)
         .system(size: sizeClass == .regular ? scoreFontSize * 1.4 : scoreFontSize, weight: .bold, design: .rounded)
@@ -54,6 +63,8 @@ struct PongGameView: View {
         .onAppear(perform: setupScene)
     }
 
+    /// Displays the live score, timer, and any currently active power-up above
+    /// the SpriteKit scene.
     private var headerOverlay: some View {
         HStack {
             scoreCard(title: gameState.opponentDisplayName, score: gameState.opponentScore, color: gameState.visualTheme.opponentColor)
@@ -81,6 +92,8 @@ struct PongGameView: View {
         .accessibilityLabel(String(localized: "Score \(gameState.opponentDisplayName) \(gameState.opponentScore), \(gameState.playerDisplayName) \(gameState.playerScore)"))
     }
 
+    /// Shows contextual status text near the bottom, including rally
+    /// highlights and platform-specific control hints.
     private var footerOverlay: some View {
         VStack(spacing: 10) {
             if let highlight = gameState.latestHighlightText {
@@ -104,6 +117,8 @@ struct PongGameView: View {
         }
     }
 
+    /// Offsets the score header far enough from the top edge to clear the HUD
+    /// buttons and system safe areas on each platform.
     private var headerTopPadding: CGFloat {
         #if os(macOS)
         92
@@ -112,6 +127,8 @@ struct PongGameView: View {
         #endif
     }
 
+    /// Builds one side of the score header so both players use the same
+    /// typography and alignment.
     private func scoreCard(title: String, score: Int, color: Color) -> some View {
         VStack(spacing: 4) {
             Text(title)
@@ -125,13 +142,18 @@ struct PongGameView: View {
         .frame(maxWidth: .infinity)
     }
 
+    /// Lazily creates the SpriteKit scene once so game simulation and replay
+    /// state survive ordinary SwiftUI view refreshes.
     private func setupScene() {
+        // Reusing the same scene avoids resetting the match whenever SwiftUI
+        // recomputes this view hierarchy.
         guard scene == nil else { return }
         let newScene = PongScene(gameState: gameState)
         newScene.scaleMode = .resizeFill
         scene = newScene
     }
 
+    /// Asks the existing SpriteKit scene to replay the saved last point.
     private func replayLastPoint() {
         scene?.startLastPointReplay()
     }

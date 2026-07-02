@@ -17,10 +17,14 @@
 //  PongGame
 //
 //  Created by Marcus Deuß on 25.02.26.
+//  App entry point for PingPong Retro.
+//  This file only creates the main app scene and hands off all UI and state
+//  coordination to `ContentView`.
 //
 
 import SwiftUI
 
+/// The `@main` app type that installs `ContentView` as the root window content.
 @main
 struct PongGameApp: App {
     var body: some Scene {

@@ -1,5 +1,13 @@
+// OptionsView.swift
+//
+// Settings sheet for PingPong Retro. This view exposes the persisted match,
+// visual, gameplay, power-up, and audio preferences stored in `GameState`
+// through controls bound directly to the shared observable state.
+
 import SwiftUI
 
+/// Settings sheet that lets players tune the current game configuration without
+/// leaving the retro dashboard flow.
 struct OptionsView: View {
     @Bindable var gameState: GameState
     let onDismiss: () -> Void
@@ -189,6 +197,8 @@ struct OptionsView: View {
         }
     }
 
+    /// Reusable builder helpers below keep the sheet's dashboard cards, rows,
+    /// and tags visually consistent while each section focuses on its content.
     private func summaryCard(title: LocalizedStringKey, value: String, symbol: String) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Label(title, systemImage: symbol)
@@ -265,7 +275,11 @@ struct OptionsView: View {
             )
     }
 
+    /// Creates a Boolean binding for one power-up inside the enabled-power-up
+    /// set so each toggle can edit a single option independently.
     private func binding(for powerUp: PowerUpType) -> Binding<Bool> {
+        // `GameState` stores enabled power-ups as a set, so each toggle needs a
+        // tiny adapter that translates between Set membership and on/off UI.
         Binding(
             get: { gameState.enabledPowerUps.contains(powerUp) },
             set: { isEnabled in

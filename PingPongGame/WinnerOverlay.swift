@@ -1,6 +1,13 @@
+// WinnerOverlay.swift
+//
+// This overlay appears after a match ends to celebrate the winner, summarize
+// the final result, and offer post-match actions such as replaying or viewing
+// stats. It also synthesizes a short celebratory audio clip on the fly instead
+// of depending on a bundled sound asset.
 import SwiftUI
 import AVFoundation
 
+/// End-of-match presentation that announces the winner and offers next-step actions.
 struct WinnerOverlay: View {
     let winner: WinnerSide
     var gameState: GameState
@@ -61,6 +68,8 @@ struct WinnerOverlay: View {
         .onDisappear(perform: stopCrowdCheer)
     }
 
+    /// Builds and plays a brief one-shot celebration made from synthesized
+    /// crowd noise plus a simple fanfare melody.
     private func playCrowdCheer() {
         guard gameState.isSoundEnabled else { return }
 
@@ -81,6 +90,8 @@ struct WinnerOverlay: View {
         var b5: Float = 0
         var b6: Float = 0
 
+        // These notes form a short ascending sting layered on top of the
+        // crowd noise so the win screen feels more triumphant than static.
         let fanfare: [(freq: Double, start: Double, dur: Double)] = [
             (523.25, 0.05, 0.08),
             (659.25, 0.15, 0.08),
@@ -92,6 +103,8 @@ struct WinnerOverlay: View {
         for frame in 0 ..< Int(frameCount) {
             let time = Double(frame) / sampleRate
             let white = Float.random(in: -1 ... 1)
+            // This Paul Kellet-style filter turns white noise into a warmer
+            // pink-noise crowd bed without needing any prerecorded samples.
             b0 = 0.99886 * b0 + white * 0.0555179
             b1 = 0.99332 * b1 + white * 0.0750759
             b2 = 0.96900 * b2 + white * 0.1538520
@@ -101,6 +114,8 @@ struct WinnerOverlay: View {
             b6 = white * 0.115926
             let pink = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11
 
+            // Fade the crowd in and back out so the cheer starts softly and
+            // does not click or end abruptly.
             let attack = Float(min(1, time / 0.3))
             let release = time > 1.7 ? Float(max(0, 1 - (time - 1.7) / 0.6)) : 1
             let crowd = pink * attack * release * 0.48
@@ -108,6 +123,8 @@ struct WinnerOverlay: View {
             var melody: Float = 0
             for note in fanfare where time >= note.start && time < note.start + note.dur {
                 let localTime = time - note.start
+                // A square-wave fanfare cuts through the noise bed clearly,
+                // while the tiny envelope keeps each note from clicking.
                 let wave: Float = sin(2 * .pi * note.freq * time) >= 0 ? 0.16 : -0.16
                 let attackTime = 0.005
                 let releaseStart = note.dur * 0.65
@@ -137,6 +154,7 @@ struct WinnerOverlay: View {
         }
     }
 
+    /// Stops and releases the transient cheer audio graph when the overlay leaves the screen.
     private func stopCrowdCheer() {
         cheerPlayer.stop()
         cheerEngine?.stop()
@@ -144,6 +162,8 @@ struct WinnerOverlay: View {
     }
 }
 
+/// Shared capsule button styling for the winner actions so primary and secondary
+/// buttons keep the same shape and spacing.
 private struct WinnerCapsuleButtonStyle: PrimitiveButtonStyle {
     let colors: [Color]
     let foreground: Color

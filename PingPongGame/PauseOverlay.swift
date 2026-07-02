@@ -1,10 +1,19 @@
+// PauseOverlay.swift
+//
+// This view dims the gameplay scene and presents the paused-state UI. It is
+// intentionally lightweight: both the background tap target and the Resume
+// button funnel back into `GameState` so the scene can continue from the same
+// point it was paused.
 import SwiftUI
 
+/// Full-screen pause layer shown when the match is temporarily suspended.
 struct PauseOverlay: View {
     var gameState: GameState
 
     var body: some View {
         ZStack {
+            // Make the whole dimmed backdrop a resume target so the player can
+            // jump back into the rally with a single tap or click.
             Button {
                 withAnimation(.easeIn(duration: 0.15)) {
                     gameState.resumeGame()

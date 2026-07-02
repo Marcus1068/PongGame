@@ -1,5 +1,12 @@
+// ContentView.swift
+//
+// Root SwiftUI container for PingPong Retro.
+// It owns the single shared `GameState`, swaps between the loading screen and
+// live game, and coordinates overlays plus modal sheets for secondary screens.
+
 import SwiftUI
 
+/// Identifies which secondary screen is currently being presented as a sheet.
 private enum ActiveSheet: String, Identifiable {
     case about
     case options
@@ -8,11 +15,13 @@ private enum ActiveSheet: String, Identifiable {
     var id: String { rawValue }
 }
 
+/// Root view that wires the shared game state into the main game scene and supporting UI.
 struct ContentView: View {
     @State private var gameState = GameState()
     @State private var activeSheet: ActiveSheet?
     @State private var resumeAfterSheet = false
 
+    /// Builds the top-level loading flow, game scene, overlays, and modal sheets.
     var body: some View {
         ZStack {
             if gameState.gamePhase == .loading {
@@ -33,6 +42,8 @@ struct ContentView: View {
                 .transition(.opacity)
 
                 if gameState.gamePhase == .modeSelection {
+                    // Keep the mode picker above the initialized game scene so the
+                    // background visuals are already visible while choosing a match.
                     ModeSelectionOverlay(gameState: gameState, onShowOptions: { present(sheet: .options) })
                 }
             }
@@ -52,7 +63,10 @@ struct ContentView: View {
         #endif
     }
 
+    /// Presents a sheet and pauses live gameplay so background simulation does not continue off-screen.
     private func present(sheet: ActiveSheet) {
+        // Remember whether the sheet interrupted active play so dismissal only
+        // resumes matches that were actually running before presentation.
         resumeAfterSheet = gameState.gamePhase == .playing
         if resumeAfterSheet {
             gameState.pauseGame()
@@ -60,6 +74,7 @@ struct ContentView: View {
         activeSheet = sheet
     }
 
+    /// Dismisses the active sheet and resumes the match if it was paused for presentation.
     private func dismissSheet() {
         activeSheet = nil
         if resumeAfterSheet {

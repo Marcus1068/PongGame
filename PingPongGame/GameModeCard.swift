@@ -17,10 +17,15 @@
 //  PongGame
 //
 //  Created by Marcus Deuß on 25.02.26.
+//  Reusable selection card shown in the mode picker. It wraps an icon, title,
+//  and subtitle in a large button treatment so choosing between one-player and
+//  two-player modes feels like selecting an arcade cabinet menu item.
 //
 
 import SwiftUI
 
+/// Large, reusable mode-selection button used by the overlay that asks players
+/// which kind of match they want to start.
 struct GameModeCard: View {
     let icon: String
     let title: LocalizedStringKey

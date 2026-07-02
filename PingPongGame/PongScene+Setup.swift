@@ -1,7 +1,14 @@
+// PongScene+Setup.swift
+//
+// Contains the scene-construction and layout helpers for PongScene.
+// These methods build the visible nodes, apply live theme/settings changes,
+// reset rally state, and keep frame-dependent geometry in sync.
+
 import SpriteKit
 import AVFoundation
 
 extension PongScene {
+    /// Creates the persistent scene-level nodes and physics boundaries.
     func setupScene() {
         sceneBackground = SKShapeNode()
         sceneBackground.fillColor = currentVisualTheme.sceneBackgroundColor
@@ -17,11 +24,13 @@ extension PongScene {
         physicsWorld.gravity = .zero
     }
 
+    /// Updates the background shape so it always covers the current scene frame.
     func updateBackgroundPath() {
         sceneBackground.path = CGPath(rect: frame, transform: nil)
         sceneBackground.position = .zero
     }
 
+    /// Draws the dashed center divider by stacking short rectangular segments.
     func setupCenterLine() {
         let dashLength: CGFloat = 20
         let gapLength: CGFloat = 15
@@ -36,6 +45,7 @@ extension PongScene {
         }
     }
 
+    /// Builds the ball node and its optional particle trail emitter.
     func setupBall() {
         ball = SKShapeNode(circleOfRadius: ballRadius)
         ball.fillColor = .white
@@ -64,6 +74,7 @@ extension PongScene {
         addChild(ball)
     }
 
+    /// Creates and positions both paddles using the current edge inset rules.
     func setupPaddles() {
         let paddleInset = paddleEdgeInset
 
@@ -76,6 +87,7 @@ extension PongScene {
         addChild(opponentPaddle)
     }
 
+    /// Creates a paddle shape using the shared width and a caller-supplied height.
     func makePaddle(color: SKColor, height: CGFloat) -> SKShapeNode {
         let paddle = SKShapeNode(rectOf: CGSize(width: basePaddleWidth, height: height), cornerRadius: 10)
         paddle.fillColor = color
@@ -85,6 +97,7 @@ extension PongScene {
         return paddle
     }
 
+    /// Rebuilds an existing paddle path after a theme or height change.
     func updatePaddle(_ paddle: SKShapeNode, height: CGFloat, color: SKColor) {
         let rect = CGRect(x: -basePaddleWidth / 2, y: -height / 2, width: basePaddleWidth, height: height)
         paddle.path = CGPath(roundedRect: rect, cornerWidth: 10, cornerHeight: 10, transform: nil)
@@ -93,6 +106,8 @@ extension PongScene {
         paddle.glowWidth = currentVisualTheme.showsGlow ? 5 : 0
     }
 
+    /// Resets the ball to center court and launches a new serve with a shallow,
+    /// randomized angle so the rally starts quickly.
     func resetBall() {
         ball.position = CGPoint(x: frame.midX, y: frame.midY)
         rallyHitCount = 0
@@ -102,6 +117,8 @@ extension PongScene {
         removePowerUpNode()
         clearActivePowerUpVisuals()
 
+        // Keep the opening serve mostly horizontal so it reaches a paddle quickly
+        // instead of drifting in a near-vertical line.
         let randomAngle = CGFloat.random(in: -CGFloat.pi / 4 ... CGFloat.pi / 4)
         let baseSpeed = GameConfig.baseBallSpeed * CGFloat(gameState?.ballSpeed ?? 1)
         let direction: CGFloat = Bool.random() ? 1 : -1
@@ -115,10 +132,12 @@ extension PongScene {
         ball.run(pulse)
     }
 
+    /// Convenience accessor for the currently selected visual theme.
     var currentVisualTheme: VisualTheme {
         gameState?.visualTheme ?? .synthwave
     }
 
+    /// Reapplies colors and glow settings when the user switches themes.
     func applyVisualThemeIfNeeded() {
         let current = currentVisualTheme
         guard lastVisualTheme != current else { return }
@@ -126,6 +145,7 @@ extension PongScene {
         applyVisualTheme(theme: current)
     }
 
+    /// Pushes a theme's colors and effects into all already-created scene nodes.
     func applyVisualTheme(theme: VisualTheme) {
         sceneBackground.fillColor = theme.sceneBackgroundColor
         ball.strokeColor = theme.sceneBallStrokeColor
@@ -139,6 +159,8 @@ extension PongScene {
         }
     }
 
+    /// Responds to `GameState` phase changes that require scene-side resets or
+    /// cleanup, such as returning to mode selection or starting a fresh match.
     func handlePhaseTransitionIfNeeded() {
         guard let gameState else { return }
         guard lastObservedGamePhase != gameState.gamePhase else { return }
@@ -165,10 +187,14 @@ extension PongScene {
         }
     }
 
+    /// Applies settings that can change mid-rally, such as ball speed and sound
+    /// volume, without forcing a full scene rebuild.
     func applyLiveSettingsIfNeeded() {
         guard let gameState else { return }
 
         if lastBallSpeedSetting != gameState.ballSpeed, lastBallSpeedSetting > 0 {
+            // Preserve the ball's travel direction and only scale its magnitude
+            // when the user changes the speed setting during live play.
             let ratio = CGFloat(gameState.ballSpeed / lastBallSpeedSetting)
             ballVelocity.dx *= ratio
             ballVelocity.dy *= ratio
@@ -183,12 +209,16 @@ extension PongScene {
         }
     }
 
+    /// Returns how far each paddle should sit from the side wall on the current
+    /// device, accounting for iPhone landscape safe areas when needed.
     var paddleEdgeInset: CGFloat {
         #if os(iOS)
         if UIDevice.current.userInterfaceIdiom == .phone {
             let horizontalSafeAreaInset = max(view?.safeAreaInsets.left ?? 0, view?.safeAreaInsets.right ?? 0)
 
             if frame.width > frame.height {
+                // On landscape phones, keep paddles clear of the notch / Dynamic
+                // Island and rounded corners instead of hugging the literal edge.
                 let safeAreaDrivenInset = horizontalSafeAreaInset + basePaddleWidth / 2 + GameConfig.phoneSafeAreaPaddlePadding
                 return max(GameConfig.compactPhonePaddleEdgeInset, safeAreaDrivenInset)
             }
@@ -201,22 +231,26 @@ extension PongScene {
         return GameConfig.defaultPaddleEdgeInset
     }
 
+    /// Re-centers an existing power-up on resize while preserving its vertical position.
     func layoutPowerUpIfNeeded() {
         guard let node = powerUpNode, let label = powerUpLabel else { return }
         node.position.x = frame.midX
         label.position.x = node.position.x
     }
 
+    /// Clamps both paddles so they stay entirely inside the visible court.
     func clampPaddlesToBounds() {
         playerPaddle.position.y = clamp(playerPaddle.position.y, min: frame.minY + playerPaddleHeight / 2, max: frame.maxY - playerPaddleHeight / 2)
         opponentPaddle.position.y = clamp(opponentPaddle.position.y, min: frame.minY + opponentPaddleHeight / 2, max: frame.maxY - opponentPaddleHeight / 2)
     }
 
+    /// Clamps the ball back inside the court after a size change.
     func clampBallToBounds() {
         ball.position.x = clamp(ball.position.x, min: frame.minX + ballRadius, max: frame.maxX - ballRadius)
         ball.position.y = clamp(ball.position.y, min: frame.minY + ballRadius, max: frame.maxY - ballRadius)
     }
 
+    /// Returns `value` limited to the inclusive `min...max` range.
     func clamp(_ value: CGFloat, min minValue: CGFloat, max maxValue: CGFloat) -> CGFloat {
         Swift.max(minValue, Swift.min(maxValue, value))
     }

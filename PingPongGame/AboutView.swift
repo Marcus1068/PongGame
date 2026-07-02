@@ -1,5 +1,13 @@
+// AboutView.swift
+//
+// Informational sheet describing what PingPong Retro includes and how it is
+// controlled. It also gives a quick overview of the app's technology stack and
+// credits so the rest of the UI can stay focused on play.
+
 import SwiftUI
 
+/// Static about screen that explains the app's features, controls, technology,
+/// and authorship in the same card-based style as the other sheets.
 struct AboutView: View {
     let onDismiss: () -> Void
 
@@ -69,6 +77,8 @@ struct AboutView: View {
     private var controlsCard: some View {
         infoSection(title: "Controls") {
             VStack(alignment: .leading, spacing: 10) {
+                // The sheet mirrors the active platform so players see the
+                // control scheme that actually applies on this device.
                 #if os(macOS)
                 controlRow(title: "Player 1", detail: "W / S or Arrow Keys")
                 controlRow(title: "Player 2", detail: "I / K in two-player mode")
@@ -104,6 +114,8 @@ struct AboutView: View {
         }
     }
 
+    /// Reusable builder helpers below give each informational section the same
+    /// card framing while allowing the content rows to stay lightweight.
     private func infoSection<Content: View>(title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text(title)

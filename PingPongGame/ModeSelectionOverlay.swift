@@ -1,5 +1,12 @@
+// ModeSelectionOverlay.swift
+//
+// This overlay is the game's start screen that appears before a match begins.
+// It summarizes the currently selected rules and preferences, then lets the
+// player choose between solo and local multiplayer by calling
+// `gameState.startMatch(mode:)`.
 import SwiftUI
 
+/// Presents the pre-game mode picker and a quick summary of the current match settings.
 struct ModeSelectionOverlay: View {
     var gameState: GameState
     let onShowOptions: () -> Void
@@ -35,6 +42,8 @@ struct ModeSelectionOverlay: View {
                 }
 
                 VStack(spacing: 10) {
+                    // This snapshot reflects the current rules so players can
+                    // confirm their setup before committing to a new match.
                     Label(String(localized: "First to \(gameState.maxScore)"), systemImage: "target")
                     Label(gameState.matchDuration.title, systemImage: "timer")
                     Label(String(localized: "AI: \(gameState.aiStyle.title)"), systemImage: "brain")

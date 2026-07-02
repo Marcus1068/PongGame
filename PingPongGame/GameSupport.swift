@@ -1,8 +1,15 @@
+// GameSupport.swift
+//
+// Shared model and configuration types used throughout PingPong Retro.
+// It defines match modes, themes, persistence models, achievements, and the
+// gameplay constants consumed by both SwiftUI views and the SpriteKit scene.
+
 import Foundation
 import CoreGraphics
 import SwiftUI
 import SpriteKit
 
+/// Supported match modes for a game, including human-vs-AI and local multiplayer.
 enum GameMode: String, CaseIterable, Codable, Identifiable {
     case onePlayer
     case twoPlayers
@@ -23,6 +30,7 @@ enum GameMode: String, CaseIterable, Codable, Identifiable {
         }
     }
 
+    /// Returns the player-facing name for a side in the context of the current game mode.
     func displayName(for side: WinnerSide) -> String {
         switch (self, side) {
         case (.onePlayer, .playerOne): String(localized: "Player")
@@ -33,6 +41,7 @@ enum GameMode: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Difficulty presets that tune how quickly and accurately the AI tracks the ball.
 enum Difficulty: String, CaseIterable, Codable, Identifiable {
     case easy = "Easy"
     case medium = "Medium"
@@ -52,6 +61,7 @@ enum Difficulty: String, CaseIterable, Codable, Identifiable {
         LocalizedStringKey(rawValue)
     }
 
+    /// Base movement speed the AI paddle can use when following the ball.
     var trackingSpeed: CGFloat {
         switch self {
         case .easy: 220
@@ -60,6 +70,7 @@ enum Difficulty: String, CaseIterable, Codable, Identifiable {
         }
     }
 
+    /// Multiplier applied to the AI's reaction quality for this difficulty.
     var reactionBias: CGFloat {
         switch self {
         case .easy: 0.78
@@ -69,6 +80,7 @@ enum Difficulty: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// High-level AI behavior presets that shape how the computer approaches rallies.
 enum AIStyle: String, CaseIterable, Codable, Identifiable {
     case balanced
     case defensive
@@ -87,6 +99,7 @@ enum AIStyle: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Match clock presets, including the untimed score-only mode.
 enum MatchDuration: String, CaseIterable, Codable, Identifiable {
     case scoreOnly
     case oneMinute
@@ -104,6 +117,7 @@ enum MatchDuration: String, CaseIterable, Codable, Identifiable {
         }
     }
 
+    /// Length of the timed round, or `nil` when scoring alone determines the winner.
     var seconds: TimeInterval? {
         switch self {
         case .scoreOnly: nil
@@ -114,6 +128,7 @@ enum MatchDuration: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Visual theme palette shared by the SwiftUI menus and the SpriteKit game scene.
 enum VisualTheme: String, CaseIterable, Codable, Identifiable {
     case synthwave
     case retroGreenCRT
@@ -279,6 +294,7 @@ enum VisualTheme: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Identifies the left/player-one side versus the right/player-two side of the match.
 enum WinnerSide: String, Codable, Identifiable {
     case playerOne
     case playerTwo
@@ -286,6 +302,7 @@ enum WinnerSide: String, Codable, Identifiable {
     var id: String { rawValue }
 }
 
+/// High-level phases the app can move through while loading, playing, replaying, and finishing a match.
 enum GamePhase: Equatable {
     case loading
     case modeSelection
@@ -295,6 +312,7 @@ enum GamePhase: Equatable {
     case winner(WinnerSide)
 }
 
+/// Power-up variants that can temporarily alter paddle or ball behavior.
 enum PowerUpType: String, CaseIterable, Codable, Identifiable {
     case paddleExpand
     case slowMotion
@@ -327,6 +345,7 @@ enum PowerUpType: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Achievement identifiers used for persistence and player-facing unlock UI.
 enum AchievementID: String, CaseIterable, Codable, Identifiable {
     case firstVictory
     case rallyMaster
@@ -360,6 +379,7 @@ enum AchievementID: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+/// Snapshot of a finished match that appears in the local leaderboard history.
 struct LeaderboardEntry: Codable, Identifiable, Hashable {
     let id: UUID
     let date: Date
@@ -380,6 +400,7 @@ struct LeaderboardEntry: Codable, Identifiable, Hashable {
     }
 }
 
+/// Statistics gathered during a single match and reset whenever a new game starts.
 struct MatchStatistics: Codable, Hashable {
     var longestRally: Int = 0
     var totalHits: Int = 0
@@ -392,6 +413,7 @@ struct MatchStatistics: Codable, Hashable {
     var reachedOvertime: Bool = false
 }
 
+/// Lifetime totals that accumulate across all matches for the current player profile.
 struct LifetimeStatistics: Codable, Hashable {
     var gamesPlayed: Int = 0
     var wins: Int = 0
@@ -403,6 +425,7 @@ struct LifetimeStatistics: Codable, Hashable {
     var favoriteMode: GameMode = .onePlayer
 }
 
+/// User-adjustable settings that control visuals, difficulty, sound, and optional mechanics.
 struct GamePreferences: Codable, Hashable {
     var visualTheme: VisualTheme = .synthwave
     var baseBallSpeed: Double = 1.0
@@ -457,8 +480,11 @@ struct GamePreferences: Codable, Hashable {
         case enabledPowerUps
     }
 
+    /// Decodes the current preferences schema while migrating the old mono-mode flag to `visualTheme`.
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Older saves stored a simple boolean instead of the richer theme enum, so
+        // preserve that intent when `visualTheme` is missing during migration.
         let legacyMonoMode = try container.decodeIfPresent(Bool.self, forKey: .isBlackAndWhite) ?? false
 
         visualTheme = try container.decodeIfPresent(VisualTheme.self, forKey: .visualTheme) ?? (legacyMonoMode ? .minimalMono : .synthwave)
@@ -474,6 +500,7 @@ struct GamePreferences: Codable, Hashable {
         enabledPowerUps = try container.decodeIfPresent(Set<PowerUpType>.self, forKey: .enabledPowerUps) ?? Set(PowerUpType.allCases)
     }
 
+    /// Encodes only the current schema; the legacy `isBlackAndWhite` field is intentionally omitted.
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(visualTheme, forKey: .visualTheme)
@@ -490,12 +517,14 @@ struct GamePreferences: Codable, Hashable {
     }
 }
 
+/// Persisted player profile containing lifetime stats, leaderboard history, and unlocked achievements.
 struct PlayerProgress: Codable, Hashable {
     var lifetimeStats: LifetimeStatistics = LifetimeStatistics()
     var leaderboard: [LeaderboardEntry] = []
     var achievements: Set<AchievementID> = []
 }
 
+/// Tunable gameplay constants shared by the SpriteKit scene and supporting UI.
 enum GameConfig {
     static let defaultBallRadius: CGFloat = 10
     static let baseBallSpeed: CGFloat = 420

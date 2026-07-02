@@ -1,6 +1,14 @@
+// LoadingScreenView.swift
+//
+// Launch splash screen for PingPong Retro. It animates a simple arcade-style
+// intro, synthesizes a short startup jingle in code, and hands off to the main
+// game flow after a brief timed presentation.
+
 import SwiftUI
 import AVFoundation
 
+/// Animated startup screen that plays the app's retro audio sting before
+/// transitioning into mode selection and gameplay.
 struct LoadingScreenView: View {
     @State private var ballOffset: CGFloat = 0
     @State private var showContent = false
@@ -68,12 +76,16 @@ struct LoadingScreenView: View {
         }
         .onDisappear(perform: stopRetroArcadeSound)
         .task {
+            // Delay the bounce slightly so it starts after the initial fade-in,
+            // which makes the splash feel staged instead of instantaneous.
             try? await Task.sleep(for: .seconds(0.25))
             if !Task.isCancelled {
                 ballOffset = 50
             }
         }
         .task {
+            // Keep the splash visible long enough for the jingle and motion to
+            // read before handing control to the main app flow.
             try? await Task.sleep(for: .seconds(2.2))
             if !Task.isCancelled {
                 onComplete()
@@ -81,10 +93,14 @@ struct LoadingScreenView: View {
         }
     }
 
+    /// Procedurally renders and plays a short monophonic chiptune by writing
+    /// square-wave samples into a PCM buffer and feeding it to `AVAudioEngine`.
     private func playRetroArcadeSound() {
         guard soundEnabled else { return }
 
         let sampleRate: Double = 44_100
+        // A hand-authored ascending phrase gives the splash a quick "arcade
+        // boot-up" identity without needing bundled audio assets.
         let notes: [(freq: Double, dur: Double)] = [
             (261.63, 0.07),
             (329.63, 0.07),
@@ -108,6 +124,8 @@ struct LoadingScreenView: View {
             let attack = max(1, Int(0.005 * sampleRate))
             let release = max(1, Int(0.025 * sampleRate))
 
+            // Render each note as a square wave, then taper its start and end
+            // with a tiny linear envelope to avoid audible clicks.
             for frame in 0 ..< count {
                 let time = Double(frame) / sampleRate
                 let wave: Float = sin(2 * .pi * note.freq * time) >= 0 ? 0.28 : -0.28
@@ -136,6 +154,8 @@ struct LoadingScreenView: View {
         }
     }
 
+    /// Stops and tears down the one-shot splash audio engine when the screen
+    /// disappears or playback setup fails.
     private func stopRetroArcadeSound() {
         audioPlayer.stop()
         audioEngine?.stop()

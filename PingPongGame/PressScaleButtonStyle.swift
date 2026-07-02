@@ -17,10 +17,14 @@
 //  PongGame
 //
 //  Created by Marcus Deuß on 25.02.26.
+//  Shared button style that makes presses feel more tactile by briefly shrinking
+//  the label with a spring animation. It is reused by prominent controls such
+//  as the mode cards so interactions feel consistent across the app.
 //
 
 import SwiftUI
 
+/// Reusable `ButtonStyle` that adds a subtle press-down animation to buttons.
 struct PressScaleButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

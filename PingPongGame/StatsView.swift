@@ -1,5 +1,13 @@
+// StatsView.swift
+//
+// Stats and progression sheet for PingPong Retro. It summarizes lifetime
+// performance, surfaces the current match when relevant, and shows achievements
+// plus the local leaderboard stored in `GameState`.
+
 import SwiftUI
 
+/// Progress dashboard that presents match history, achievements, and leaderboard
+/// data in a single retro-styled sheet.
 struct StatsView: View {
     var gameState: GameState
     let onDismiss: () -> Void
@@ -9,6 +17,8 @@ struct StatsView: View {
         GridItem(.flexible(), spacing: 12)
     ]
 
+    /// Indicates whether enough persistent progress exists to show history-based
+    /// sections instead of the first-match empty state.
     private var hasHistory: Bool {
         gameState.lifetimeStats.gamesPlayed > 0 || !gameState.leaderboard.isEmpty || !gameState.achievements.isEmpty
     }
@@ -126,6 +136,8 @@ struct StatsView: View {
     private var leaderboardCard: some View {
         infoSection(title: "Local Leaderboard") {
             VStack(alignment: .leading, spacing: 12) {
+                // Enumerating the trimmed slice gives the UI a simple 1-based
+                // rank label without changing the underlying leaderboard data.
                 ForEach(Array(gameState.leaderboard.prefix(5).enumerated()), id: \.element.id) { index, entry in
                     VStack(alignment: .leading, spacing: 4) {
                         HStack {
@@ -184,6 +196,8 @@ struct StatsView: View {
         }
     }
 
+    /// Reusable builder helpers below keep the stats dashboard's cards, rows,
+    /// and tags styled consistently across very different data sections.
     private func summaryCard(title: LocalizedStringKey, value: String, symbol: String) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             Label(title, systemImage: symbol)

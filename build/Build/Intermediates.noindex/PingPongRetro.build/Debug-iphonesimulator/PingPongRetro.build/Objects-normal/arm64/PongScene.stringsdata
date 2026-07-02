@@ -1,0 +1,16 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Replaying last point",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 186
+        }
+      }
+    ]
+  },
+  "version": 1
+}

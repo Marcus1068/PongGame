@@ -1,0 +1,96 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/ModeSelectionOverlay.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "PingPong Retro",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pick a mode and jump in",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "First to %lld",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI: %@",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speed boosts enabled",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speed boosts disabled",
+        "location": {
+          "startingColumn": 121,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Player",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "vs Computer",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "2 Players",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Local Multiplayer",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 61
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,122 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/DerivedSources/GeneratedStringSymbols_Localizable.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld active",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 25
+        },
+        "value": "%lld"
+      },
+      {
+        "comment": "",
+        "key": "Amber Monitor",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Classic neon blues and magentas with bright arcade highlights.",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clean black-and-white visuals with glow and trails stripped back.",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "Minimal Mono",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Off",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "On",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "Phosphor greens, strong contrast, and a terminal-style glow.",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retro Green CRT",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "SPEED BOOST",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "Score %@, %@ %lld, %@ %lld",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 95
+        },
+        "value": "%@%@%lld%@%lld"
+      },
+      {
+        "comment": "",
+        "key": "Synthwave",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Theme",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 109
+        }
+      },
+      {
+        "comment": "",
+        "key": "Warm amber tones inspired by vintage monochrome monitors.",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 116
+        }
+      }
+    ]
+  },
+  "version": 1
+}

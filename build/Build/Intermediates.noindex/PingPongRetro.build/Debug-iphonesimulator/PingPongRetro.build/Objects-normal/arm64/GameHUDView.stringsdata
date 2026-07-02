@@ -1,0 +1,64 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/GameHUDView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "New Match",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Resume",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pause",
+        "location": {
+          "startingColumn": 107,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Replay",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stats",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "About",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 30
+        }
+      }
+    ]
+  },
+  "version": 1
+}

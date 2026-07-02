@@ -1,0 +1,328 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/OptionsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Settings",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "Target Score",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match Duration",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Difficulty",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI Style",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Visuals",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match Rules",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Gameplay",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "Power-Ups",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Audio",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 173
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Adjust visuals, rules, difficulty, power-ups, and audio without losing the retro dashboard feel.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Game Setup",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Boosts On",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Boosts Off",
+        "location": {
+          "startingColumn": 110,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sound On",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Muted",
+        "location": {
+          "startingColumn": 104,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Theme",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable Haptics",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Use tactile feedback on supported devices.",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Theme",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "End Score",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match Duration",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rally Speed Boosts",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Increase rally intensity every few alternating hits.",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "End Score",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 90
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match Duration",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 97
+        }
+      },
+      {
+        "comment": "",
+        "key": "Difficulty",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI Style",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "Difficulty",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI Style",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Base Ball Speed",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sets the baseline pace before boosts and power-ups kick in.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 146
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@x",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 140
+        }
+      },
+      {
+        "comment": "",
+        "key": "Base Ball Speed",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 137
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sound Effects",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable synthesized paddle hits, wall bounces, and celebration sounds.",
+        "location": {
+          "startingColumn": 66,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "Volume",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 178
+        }
+      },
+      {
+        "comment": "",
+        "key": "Muted",
+        "location": {
+          "startingColumn": 124,
+          "startingLine": 184
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,56 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/WinnerOverlay.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@ Wins!",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Replay Last Point",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Final Score: %lld - %lld",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Longest Rally: %lld   •   Boosts: %lld",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Play Again",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stats",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 48
+        }
+      }
+    ]
+  },
+  "version": 1
+}

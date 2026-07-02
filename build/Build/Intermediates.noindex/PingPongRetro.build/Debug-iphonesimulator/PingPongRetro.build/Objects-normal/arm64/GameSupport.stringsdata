@@ -1,0 +1,368 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/GameSupport.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "1 Player",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "2 Players",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 15
+        }
+      },
+      {
+        "comment": "",
+        "key": "vs Computer",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Local Multiplayer",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Player",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Computer",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Player 1",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Player 2",
+        "location": {
+          "startingColumn": 59,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Easy",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Medium",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hard",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Balanced",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Defensive",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Aggressive",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mirror",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Score Only",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "1 Minute",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "3 Minutes",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "5 Minutes",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Synthwave",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retro Green CRT",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Amber Monitor",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Minimal Mono",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Classic neon blues and magentas with bright arcade highlights.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "Phosphor greens, strong contrast, and a terminal-style glow.",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 137
+        }
+      },
+      {
+        "comment": "",
+        "key": "Warm amber tones inspired by vintage monochrome monitors.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clean black-and-white visuals with glow and trails stripped back.",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Paddle Boost",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 307
+        }
+      },
+      {
+        "comment": "",
+        "key": "Slow Ball",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 308
+        }
+      },
+      {
+        "comment": "",
+        "key": "Curve Shot",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 309
+        }
+      },
+      {
+        "comment": "",
+        "key": "Temporarily increases the collector's paddle height.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 323
+        }
+      },
+      {
+        "comment": "",
+        "key": "Temporarily slows the ball so rallies reset their pace.",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 324
+        }
+      },
+      {
+        "comment": "",
+        "key": "Adds extra spin to the next paddle deflection.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "First Victory",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 342
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rally Master",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 343
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speed Junkie",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 344
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tactician",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 345
+        }
+      },
+      {
+        "comment": "",
+        "key": "Marathon Match",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 346
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collector",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 347
+        }
+      },
+      {
+        "comment": "",
+        "key": "Win your first match.",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 353
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reach a 12-hit rally.",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 354
+        }
+      },
+      {
+        "comment": "",
+        "key": "Trigger three speed boosts in one match.",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 355
+        }
+      },
+      {
+        "comment": "",
+        "key": "Win with power-ups disabled.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 356
+        }
+      },
+      {
+        "comment": "",
+        "key": "Finish a timed match that reaches overtime.",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 357
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collect all power-up types.",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 358
+        }
+      }
+    ]
+  },
+  "version": 1
+}

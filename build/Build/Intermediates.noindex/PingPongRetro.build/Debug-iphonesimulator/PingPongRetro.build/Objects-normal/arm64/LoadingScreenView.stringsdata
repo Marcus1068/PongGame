@@ -1,0 +1,32 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/LoadingScreenView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "PingPong Retro",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "© 2026 Marcus Deuß",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "All Rights Reserved",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 55
+        }
+      }
+    ]
+  },
+  "version": 1
+}

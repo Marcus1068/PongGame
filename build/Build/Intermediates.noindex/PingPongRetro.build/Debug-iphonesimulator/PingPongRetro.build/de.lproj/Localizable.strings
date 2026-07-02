@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>#%lld</key>
+	<string>#%lld</string>
+	<key>%@ Wins!</key>
+	<string>%@ gewinnt!</string>
+	<key>%@x</key>
+	<string>%@x</string>
+	<key>%lld</key>
+	<string>%lld</string>
+	<key>%lld active</key>
+	<string>%lld aktiv</string>
+	<key>%lld%%</key>
+	<string>%lld%%</string>
+	<key>1 Minute</key>
+	<string>1 Minute</string>
+	<key>1 Player</key>
+	<string>1 Spieler</string>
+	<key>2 Players</key>
+	<string>2 Spieler</string>
+	<key>3 Minutes</key>
+	<string>3 Minuten</string>
+	<key>5 Minutes</key>
+	<string>5 Minuten</string>
+	<key>AI Style</key>
+	<string>KI-Stil</string>
+	<key>AI: %@</key>
+	<string>KI: %@</string>
+	<key>About</key>
+	<string>Info</string>
+	<key>Achievements</key>
+	<string>Erfolge</string>
+	<key>Adds extra spin to the next paddle deflection.</key>
+	<string>Verleiht der naechsten Paddle-Abwehr zusaetzlichen Spin.</string>
+	<key>Adjust visuals, rules, difficulty, power-ups, and audio without losing the retro dashboard feel.</key>
+	<string>Passe Grafik, Regeln, Schwierigkeit, Power-ups und Audio an, ohne den Retro-Dashboard-Look zu verlieren.</string>
+	<key>Aggressive</key>
+	<string>Aggressiv</string>
+	<key>All Rights Reserved</key>
+	<string>Alle Rechte vorbehalten</string>
+	<key>Amber Monitor</key>
+	<string>Bernsteinmonitor</string>
+	<key>Audio</key>
+	<string>Audio</string>
+	<key>B/W Mode</key>
+	<string>S/W-Modus</string>
+	<key>Balanced</key>
+	<string>Ausgewogen</string>
+	<key>Ball Speed</key>
+	<string>Ballgeschwindigkeit</string>
+	<key>Base Ball Speed</key>
+	<string>Grundgeschwindigkeit des Balls</string>
+	<key>Black &amp; White Mode</key>
+	<string>Schwarz-Weiß-Modus</string>
+	<key>Black/White</key>
+	<string>Schwarz/Weiß</string>
+	<key>Boosts Off</key>
+	<string>Boosts aus</string>
+	<key>Boosts On</key>
+	<string>Boosts an</string>
+	<key>Built with SwiftUI · SpriteKit · AVFoundation</key>
+	<string>Entwickelt mit SwiftUI · SpriteKit · AVFoundation</string>
+	<key>Built with SwiftUI, SpriteKit, Observation, and AVFoundation.</key>
+	<string>Entwickelt mit SwiftUI, SpriteKit, Observation und AVFoundation.</string>
+	<key>Choose both AI difficulty and play style for more varied matches.</key>
+	<string>Waehle sowohl KI-Schwierigkeit als auch Spielstil fuer abwechslungsreichere Matches.</string>
+	<key>Classic Pong reimagined with a retro-neon look, synthesised arcade sounds, and a speed-boost rally system.</key>
+	<string>Klassisches Pong mit Retro-Neon-Look, synthetisierten Arcade-Sounds und Rally-Geschwindigkeitssystem.</string>
+	<key>Classic neon blues and magentas with bright arcade highlights.</key>
+	<string>Klassische Neon-Blautöne und Magenta mit leuchtenden Arcade-Akzenten.</string>
+	<key>Clean black-and-white visuals with glow and trails stripped back.</key>
+	<string>Klare Schwarz-Weiß-Optik mit reduziertem Glow und dezenten Schweifen.</string>
+	<key>Clock</key>
+	<string>Uhr</string>
+	<key>Clock: %@</key>
+	<string>Uhr: %@</string>
+	<key>Close</key>
+	<string>Schließen</string>
+	<key>Collect all power-up types.</key>
+	<string>Sammle alle Power-up-Typen ein.</string>
+	<key>Collect paddle boost, slow motion, and curve shot power-ups during rallies.</key>
+	<string>Sammle Paddle-Boost-, Zeitlupen- und Kurvenschuss-Power-ups waehrend der Ballwechsel.</string>
+	<key>Collected %@</key>
+	<string>%@ eingesammelt</string>
+	<key>Collector</key>
+	<string>Sammler</string>
+	<key>Color</key>
+	<string>Farbe</string>
+	<key>Color Mode</key>
+	<string>Farbmodus</string>
+	<key>Complete a match to save it to the local leaderboard</key>
+	<string>Beende ein Match, um es in der lokalen Bestenliste zu speichern</string>
+	<key>Computer</key>
+	<string>Computer</string>
+	<key>Computer Wins!</key>
+	<string>Computer gewinnt!</string>
+	<key>Controls</key>
+	<string>Steuerung</string>
+	<key>Credits</key>
+	<string>Credits</string>
+	<key>Current Match</key>
+	<string>Aktuelles Match</string>
+	<key>Current Setup</key>
+	<string>Aktuelle Einstellungen</string>
+	<key>Curve Shot</key>
+	<string>Kurvenschuss</string>
+	<key>Curve shot released</key>
+	<string>Kurvenschuss ausgeloest</string>
+	<key>Defensive</key>
+	<string>Defensiv</string>
+	<key>Difficulty</key>
+	<string>Schwierigkeitsgrad</string>
+	<key>Distinct opponents</key>
+	<string>Unterschiedliche Gegner</string>
+	<key>Done</key>
+	<string>Fertig</string>
+	<key>Drag on the left side in two-player mode</key>
+	<string>Ziehe im Zwei-Spieler-Modus auf der linken Seite</string>
+	<key>Drag on the right side</key>
+	<string>Ziehe auf der rechten Seite</string>
+	<key>Easy</key>
+	<string>Leicht</string>
+	<key>Enable Haptics</key>
+	<string>Haptik aktivieren</string>
+	<key>Enable synthesized paddle hits, wall bounces, and celebration sounds.</key>
+	<string>Aktiviere synthetische Paddle-Treffer, Bandenabpraller und Jubel-Sounds.</string>
+	<key>End Score</key>
+	<string>Endpunktzahl</string>
+	<key>Favorite Mode</key>
+	<string>Bevorzugter Modus</string>
+	<key>Final Score: %lld - %lld</key>
+	<string>Endergebnis: %lld - %lld</string>
+	<key>Finish a timed match that reaches overtime.</key>
+	<string>Beende ein Zeitmatch, das in die Verlaengerung geht.</string>
+	<key>First Victory</key>
+	<string>Erster Sieg</string>
+	<key>First player to reach %lld points wins. Every 3 alternating rally hits triggers a speed boost!</key>
+	<string>Wer zuerst %lld Punkte erreicht, gewinnt. Jede 3. abwechselnde Ballrückgabe aktiviert einen Geschwindigkeitsschub!</string>
+	<key>First to %lld</key>
+	<string>Bis %lld</string>
+	<key>Flexible matches</key>
+	<string>Flexible Matches</string>
+	<key>Game Paused</key>
+	<string>Spiel pausiert</string>
+	<key>Game Setup</key>
+	<string>Spieleinstellungen</string>
+	<key>Gameplay</key>
+	<string>Spiel</string>
+	<key>Games Played</key>
+	<string>Gespielte Spiele</string>
+	<key>Hard</key>
+	<string>Schwer</string>
+	<key>Highlights</key>
+	<string>Highlights</string>
+	<key>I / K in two-player mode</key>
+	<string>I / K im Zwei-Spieler-Modus</string>
+	<key>Increase rally intensity every few alternating hits.</key>
+	<string>Erhoehe die Intensitaet des Ballwechsels nach einigen abwechselnden Treffern.</string>
+	<key>Left side controls Player 2   •   Right side controls Player 1</key>
+	<string>Linke Seite steuert Spieler 2   •   Rechte Seite steuert Spieler 1</string>
+	<key>Left side: Player 2  •  Right side: Player 1</key>
+	<string>Links: Spieler 2  •  Rechts: Spieler 1</string>
+	<key>Lifetime Stats</key>
+	<string>Gesamtstatistik</string>
+	<key>Local Leaderboard</key>
+	<string>Lokale Bestenliste</string>
+	<key>Local Multiplayer</key>
+	<string>Lokaler Mehrspieler</string>
+	<key>Longest Rally</key>
+	<string>Laengster Ballwechsel</string>
+	<key>Longest Rally: %lld   •   Boosts: %lld</key>
+	<string>Längste Rallye: %lld   •   Boosts: %lld</string>
+	<key>Losses</key>
+	<string>Niederlagen</string>
+	<key>Marathon Match</key>
+	<string>Marathon-Match</string>
+	<key>Match Duration</key>
+	<string>Matchdauer</string>
+	<key>Match Rules</key>
+	<string>Matchregeln</string>
+	<key>Medium</key>
+	<string>Mittel</string>
+	<key>Minimal Mono</key>
+	<string>Minimal Monochrom</string>
+	<key>Mirror</key>
+	<string>Spiegelnd</string>
+	<key>Moment-to-moment variety</key>
+	<string>Abwechslung im Spielverlauf</string>
+	<key>Muted</key>
+	<string>Stumm</string>
+	<key>New Game</key>
+	<string>Neues Spiel</string>
+	<key>New Match</key>
+	<string>Neues Match</string>
+	<key>No Match History Yet</key>
+	<string>Noch keine Match-Historie</string>
+	<key>Off</key>
+	<string>Aus</string>
+	<key>On</key>
+	<string>Ein</string>
+	<key>One-player and local two-player modes with score targets, timers, and optional speed boosts.</key>
+	<string>Einzelspieler- und lokaler Zwei-Spieler-Modus mit Zielpunktzahl, Timer und optionalen Tempoboosts.</string>
+	<key>Options</key>
+	<string>Einstellungen</string>
+	<key>Overtime: next point wins</key>
+	<string>Verlaengerung: Der naechste Punkt gewinnt</string>
+	<key>Paddle Boost</key>
+	<string>Paddle-Boost</string>
+	<key>Pause</key>
+	<string>Pause</string>
+	<key>Phosphor greens, strong contrast, and a terminal-style glow.</key>
+	<string>Phosphorgrün, starker Kontrast und ein Glow im Terminal-Stil.</string>
+	<key>Pick a mode and jump in</key>
+	<string>Wähle einen Modus und leg los</string>
+	<key>PingPong Retro</key>
+	<string>PingPong Retro</string>
+	<key>Play Again</key>
+	<string>Nochmal spielen</string>
+	<key>Play your first match to unlock achievements, populate the leaderboard, and build a stat history.</key>
+	<string>Spiele dein erstes Match, um Erfolge freizuschalten, die Bestenliste zu fuellen und eine Statistik-Historie aufzubauen.</string>
+	<key>Player</key>
+	<string>Spieler</string>
+	<key>Player 1</key>
+	<string>Spieler 1</string>
+	<key>Player 1 Wins!</key>
+	<string>Spieler 1 gewinnt!</string>
+	<key>Player 1: W/S or ↑↓   •   Player 2: I/K   •   Space pauses</key>
+	<string>Spieler 1: W/S oder ↑↓   •   Spieler 2: I/K   •   Leertaste pausiert</string>
+	<key>Player 1: W/S or ↑↓  •  Player 2: I/K</key>
+	<string>Spieler 1: W/S oder ↑↓  •  Spieler 2: I/K</string>
+	<key>Player 2</key>
+	<string>Spieler 2</string>
+	<key>Player 2 Wins!</key>
+	<string>Spieler 2 gewinnt!</string>
+	<key>Player Wins!</key>
+	<string>Spieler gewinnt!</string>
+	<key>Player settings, stats, achievements, and leaderboard entries are stored locally and mirrored through Apple’s ubiquitous key-value store when available.</key>
+	<string>Spielereinstellungen, Statistiken, Erfolge und Bestenlisteneinträge werden lokal gespeichert und – wenn verfügbar – über Apples ubiquitären Schlüssel-Wert-Speicher gespiegelt.</string>
+	<key>Power-Ups</key>
+	<string>Power-ups</string>
+	<key>Power-Ups Collected</key>
+	<string>Eingesammelte Power-ups</string>
+	<key>Progression</key>
+	<string>Fortschritt</string>
+	<key>Rally Master</key>
+	<string>Ballwechsel-Meister</string>
+	<key>Rally Speed Boosts</key>
+	<string>Rallye-Temposteigerungen</string>
+	<key>Reach a 12-hit rally.</key>
+	<string>Erreiche einen Ballwechsel mit 12 Treffern.</string>
+	<key>Replay</key>
+	<string>Wiederholung</string>
+	<key>Replay Last Point</key>
+	<string>Letzten Punkt wiederholen</string>
+	<key>Replaying last point</key>
+	<string>Letzten Punkt erneut abspielen</string>
+	<key>Replays Viewed</key>
+	<string>Angesehene Wiederholungen</string>
+	<key>Resume</key>
+	<string>Fortsetzen</string>
+	<key>Retro Green CRT</key>
+	<string>Retro-Gruen-CRT</string>
+	<key>Retro Progress</key>
+	<string>Retro-Fortschritt</string>
+	<key>Retro arcade Pong rebuilt with SwiftUI, SpriteKit, replay highlights, power-ups, and long-term progression.</key>
+	<string>Retro-Arcade-Pong neu aufgebaut mit SwiftUI, SpriteKit, Replay-Highlights, Power-ups und langfristigem Fortschritt.</string>
+	<key>SPEED BOOST</key>
+	<string>TEMPOBOOST</string>
+	<key>Score</key>
+	<string>Punktestand</string>
+	<key>Score %@  •  Longest Rally %lld  •  Boosts %lld</key>
+	<string>Spielstand %@  •  Längste Rallye %lld  •  Boosts %lld</string>
+	<key>Score %@ %lld, %@ %lld</key>
+	<string>Spielstand %@ %lld, %@ %lld</string>
+	<key>Score %@, %@ %lld, %@ %lld</key>
+	<string>Punktestand %@, %@ %lld, %@ %lld</string>
+	<key>Score Only</key>
+	<string>Nur Punkte</string>
+	<key>Select Game Mode</key>
+	<string>Spielmodus wählen</string>
+	<key>Sets the baseline pace before boosts and power-ups kick in.</key>
+	<string>Legt das Grundtempo fest, bevor Boosts und Power-ups eingreifen.</string>
+	<key>Settings</key>
+	<string>Einstellungen</string>
+	<key>Slow Ball</key>
+	<string>Langsamer Ball</string>
+	<key>Sound Effects</key>
+	<string>Soundeffekte</string>
+	<key>Sound On</key>
+	<string>Sound an</string>
+	<key>Space</key>
+	<string>Leertaste</string>
+	<key>Speed Boosts</key>
+	<string>Tempoboosts</string>
+	<key>Speed Junkie</key>
+	<string>Tempojunkie</string>
+	<key>Speed boost x%@</key>
+	<string>Tempoboost x%@</string>
+	<key>Speed boosts disabled</key>
+	<string>Tempoboosts deaktiviert</string>
+	<key>Speed boosts enabled</key>
+	<string>Tempoboosts aktiviert</string>
+	<key>SpriteKit</key>
+	<string>SpriteKit</string>
+	<key>Stats</key>
+	<string>Statistik</string>
+	<key>Stats &amp; Progress</key>
+	<string>Statistik &amp; Fortschritt</string>
+	<key>Swap the neon palette for a monochrome arcade look.</key>
+	<string>Wechsle von der Neon-Palette zu einem monochromen Arcade-Look.</string>
+	<key>SwiftUI</key>
+	<string>SwiftUI</string>
+	<key>Synthwave</key>
+	<string>Synthwave</string>
+	<key>Tactician</key>
+	<string>Taktiker</string>
+	<key>Target Score</key>
+	<string>Zielpunktzahl</string>
+	<key>Technology</key>
+	<string>Technik</string>
+	<key>Temporarily increases the collector's paddle height.</key>
+	<string>Erhoeht voruebergehend die Paddle-Hoehe des Einsammlers.</string>
+	<key>Temporarily slows the ball so rallies reset their pace.</key>
+	<string>Verlangsamt den Ball voruebergehend, damit sich das Tempo des Ballwechsels zuruecksetzt.</string>
+	<key>The stats screen will start filling up after your first finished match.</key>
+	<string>Der Statistikbildschirm fuellt sich nach deinem ersten beendeten Match.</string>
+	<key>Theme</key>
+	<string>Thema</string>
+	<key>Total Hits</key>
+	<string>Gesamttreffer</string>
+	<key>Touch and drag to move</key>
+	<string>Zum Bewegen beruehren und ziehen</string>
+	<key>Track lifetime stats, unlock achievements, and build a local leaderboard history.</key>
+	<string>Verfolge Gesamtstatistiken, schalte Erfolge frei und baue eine lokale Bestenlisten-Historie auf.</string>
+	<key>Trigger three speed boosts in one match.</key>
+	<string>Loese drei Tempoboosts in einem Match aus.</string>
+	<key>Unlock achievements by reaching longer rallies and different rule combinations</key>
+	<string>Schalte Erfolge frei, indem du laengere Ballwechsel und verschiedene Regelkombinationen erreichst</string>
+	<key>Use W / S or the Arrow Keys to move your paddle on macOS. Drag on screen to play on iOS.</key>
+	<string>W / S oder Pfeiltasten zum Bewegen auf macOS. Auf dem Bildschirm ziehen zum Spielen auf iOS.</string>
+	<key>Use W/S or Arrow Keys to move</key>
+	<string>W/S oder Pfeiltasten zum Bewegen</string>
+	<key>Use W/S or Arrow Keys to move   •   Space pauses</key>
+	<string>Mit W/S oder Pfeiltasten bewegen   •   Leertaste pausiert</string>
+	<key>Use tactile feedback on supported devices.</key>
+	<string>Nutze haptisches Feedback auf unterstuetzten Geraeten.</string>
+	<key>Use the HUD button</key>
+	<string>Nutze die HUD-Taste</string>
+	<key>Use the replay button after a point to review highlights</key>
+	<string>Nutze nach einem Punkt die Wiederholungstaste, um Highlights anzusehen</string>
+	<key>Visuals</key>
+	<string>Grafik</string>
+	<key>Volume</key>
+	<string>Lautstärke</string>
+	<key>W / S or Arrow Keys</key>
+	<string>W / S oder Pfeiltasten</string>
+	<key>Warm amber tones inspired by vintage monochrome monitors.</key>
+	<string>Warme Bernsteintöne, inspiriert von klassischen monochromen Monitoren.</string>
+	<key>Win with power-ups disabled.</key>
+	<string>Gewinne mit deaktivierten Power-ups.</string>
+	<key>Win your first match.</key>
+	<string>Gewinne dein erstes Match.</string>
+	<key>Wins</key>
+	<string>Siege</string>
+	<key>Your recent matches, achievements, and milestone progress all live here.</key>
+	<string>Hier findest du deine letzten Matches, Erfolge und Fortschritte auf einen Blick.</string>
+	<key>macOS + iOS</key>
+	<string>macOS + iOS</string>
+	<key>vs Computer</key>
+	<string>gegen Computer</string>
+	<key>© 2026 Marcus Deuß</key>
+	<string>© 2026 Marcus Deuß</string>
+	<key>⚡ SPEED BOOST! ⚡</key>
+	<string>⚡ TEMPO-BOOST! ⚡</string>
+</dict>
+</plist>

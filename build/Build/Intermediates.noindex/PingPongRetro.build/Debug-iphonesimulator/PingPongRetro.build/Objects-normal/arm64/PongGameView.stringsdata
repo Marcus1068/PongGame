@@ -1,0 +1,40 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/PongGameView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Score %@ %lld, %@ %lld",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Left side controls Player 2   •   Right side controls Player 1",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "Touch and drag to move",
+        "location": {
+          "startingColumn": 160,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 120
+        }
+      }
+    ]
+  },
+  "version": 1
+}

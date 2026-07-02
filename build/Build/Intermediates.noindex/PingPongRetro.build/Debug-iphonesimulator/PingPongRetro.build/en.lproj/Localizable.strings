@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%lld active</key>
+	<string>%lld active</string>
+	<key>Amber Monitor</key>
+	<string>Amber Monitor</string>
+	<key>Classic neon blues and magentas with bright arcade highlights.</key>
+	<string>Classic neon blues and magentas with bright arcade highlights.</string>
+	<key>Clean black-and-white visuals with glow and trails stripped back.</key>
+	<string>Clean black-and-white visuals with glow and trails stripped back.</string>
+	<key>Minimal Mono</key>
+	<string>Minimal Mono</string>
+	<key>Off</key>
+	<string>Off</string>
+	<key>On</key>
+	<string>On</string>
+	<key>Phosphor greens, strong contrast, and a terminal-style glow.</key>
+	<string>Phosphor greens, strong contrast, and a terminal-style glow.</string>
+	<key>Retro Green CRT</key>
+	<string>Retro Green CRT</string>
+	<key>SPEED BOOST</key>
+	<string>SPEED BOOST</string>
+	<key>Score %@, %@ %lld, %@ %lld</key>
+	<string>Score %@, %@ %lld, %@ %lld</string>
+	<key>Synthwave</key>
+	<string>Synthwave</string>
+	<key>Theme</key>
+	<string>Theme</string>
+	<key>Warm amber tones inspired by vintage monochrome monitors.</key>
+	<string>Warm amber tones inspired by vintage monochrome monitors.</string>
+</dict>
+</plist>

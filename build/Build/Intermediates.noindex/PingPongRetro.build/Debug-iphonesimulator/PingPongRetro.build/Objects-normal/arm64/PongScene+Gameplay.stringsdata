@@ -1,0 +1,32 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene+Gameplay.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Curve shot released",
+        "location": {
+          "startingColumn": 64,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speed boost x%@",
+        "location": {
+          "startingColumn": 64,
+          "startingLine": 98
+        }
+      },
+      {
+        "comment": "",
+        "key": "SPEED BOOST",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 115
+        }
+      }
+    ]
+  },
+  "version": 1
+}

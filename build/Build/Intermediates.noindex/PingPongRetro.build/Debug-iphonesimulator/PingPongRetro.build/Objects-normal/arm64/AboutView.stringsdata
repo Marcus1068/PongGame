@@ -1,0 +1,216 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/AboutView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "About",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Highlights",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "Controls",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Technology",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "Credits",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 97
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "PingPong Retro",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retro arcade Pong rebuilt with SwiftUI, SpriteKit, replay highlights, power-ups, and long-term progression.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "Flexible matches",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "One-player and local two-player modes with score targets, timers, and optional speed boosts.",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Distinct opponents",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose both AI difficulty and play style for more varied matches.",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Moment-to-moment variety",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collect paddle boost, slow motion, and curve shot power-ups during rallies.",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Progression",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Track lifetime stats, unlock achievements, and build a local leaderboard history.",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Player 1",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Drag on the right side",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Player 2",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 78
+        }
+      },
+      {
+        "comment": "",
+        "key": "Drag on the left side in two-player mode",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 78
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pause",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Use the HUD button",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Built with SwiftUI, SpriteKit, Observation, and AVFoundation.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "Player settings, stats, achievements, and leaderboard entries are stored locally and mirrored through Apple’s ubiquitous key-value store when available.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "© 2026 Marcus Deuß",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "All Rights Reserved",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 100
+        }
+      }
+    ]
+  },
+  "version": 1
+}

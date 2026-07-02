@@ -1,0 +1,344 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/StatsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Stats & Progress",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Games Played",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wins",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Longest Rally",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Replays Viewed",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Current Match",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lifetime Stats",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 90
+        }
+      },
+      {
+        "comment": "",
+        "key": "Achievements",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Local Leaderboard",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "No Match History Yet",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "Current Setup",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 174
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retro Progress",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "Your recent matches, achievements, and milestone progress all live here.",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Play your first match to unlock achievements, populate the leaderboard, and build a stat history.",
+        "location": {
+          "startingColumn": 108,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Score",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 78
+        }
+      },
+      {
+        "comment": "",
+        "key": "Longest Rally",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speed Boosts",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "Power-Ups",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clock",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Wins",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Losses",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Total Hits",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "Power-Ups Collected",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 95
+        }
+      },
+      {
+        "comment": "",
+        "key": "Favorite Mode",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Score %@  •  Longest Rally %lld  •  Boosts %lld",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 142
+        }
+      },
+      {
+        "comment": "",
+        "key": "#%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "The stats screen will start filling up after your first finished match.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 162
+        }
+      },
+      {
+        "comment": "",
+        "key": "Complete a match to save it to the local leaderboard",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 165
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unlock achievements by reaching longer rallies and different rule combinations",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "Use the replay button after a point to review highlights",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "On",
+        "location": {
+          "startingColumn": 105,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "Off",
+        "location": {
+          "startingColumn": 131,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "Off",
+        "location": {
+          "startingColumn": 106,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld active",
+        "location": {
+          "startingColumn": 133,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": "Theme",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "Target Score",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match Duration",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 178
+        }
+      },
+      {
+        "comment": "",
+        "key": "Difficulty",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 179
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI Style",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 180
+        }
+      },
+      {
+        "comment": "",
+        "key": "Speed Boosts",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "Power-Ups",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 182
+        }
+      }
+    ]
+  },
+  "version": 1
+}

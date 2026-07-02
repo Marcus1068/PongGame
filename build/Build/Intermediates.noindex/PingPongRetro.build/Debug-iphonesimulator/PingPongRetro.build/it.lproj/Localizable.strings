@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1 Player</key>
+	<string>1 Giocatore</string>
+	<key>2 Players</key>
+	<string>2 Giocatori</string>
+	<key>About</key>
+	<string>Info</string>
+	<key>All Rights Reserved</key>
+	<string>Tutti i diritti riservati</string>
+	<key>Ball Speed</key>
+	<string>Velocità della palla</string>
+	<key>Black/White</key>
+	<string>Bianco/Nero</string>
+	<key>Built with SwiftUI · SpriteKit · AVFoundation</key>
+	<string>Sviluppato con SwiftUI · SpriteKit · AVFoundation</string>
+	<key>Classic Pong reimagined with a retro-neon look, synthesised arcade sounds, and a speed-boost rally system.</key>
+	<string>Il classico Pong reinventato con un look retro neon, suoni arcade sintetizzati e un sistema di accelerazione rally.</string>
+	<key>Close</key>
+	<string>Chiudi</string>
+	<key>Color</key>
+	<string>Colore</string>
+	<key>Computer</key>
+	<string>Computer</string>
+	<key>Computer Wins!</key>
+	<string>Vince il computer!</string>
+	<key>Difficulty</key>
+	<string>Difficoltà</string>
+	<key>Easy</key>
+	<string>Facile</string>
+	<key>End Score</key>
+	<string>Punteggio finale</string>
+	<key>Final Score: %lld - %lld</key>
+	<string>Punteggio finale: %lld - %lld</string>
+	<key>First player to reach %lld points wins. Every 3 alternating rally hits triggers a speed boost!</key>
+	<string>Il primo a raggiungere %lld punti vince. Ogni 3 scambi alternati attiva un turbo di velocità!</string>
+	<key>Game Paused</key>
+	<string>Gioco in pausa</string>
+	<key>Hard</key>
+	<string>Difficile</string>
+	<key>Left side: Player 2  •  Right side: Player 1</key>
+	<string>Sinistra: Giocatore 2  •  Destra: Giocatore 1</string>
+	<key>Local Multiplayer</key>
+	<string>Multigiocatore locale</string>
+	<key>Medium</key>
+	<string>Medio</string>
+	<key>New Game</key>
+	<string>Nuova partita</string>
+	<key>Options</key>
+	<string>Opzioni</string>
+	<key>Pause</key>
+	<string>Pausa</string>
+	<key>Play Again</key>
+	<string>Gioca ancora</string>
+	<key>Player</key>
+	<string>Giocatore</string>
+	<key>Player 1</key>
+	<string>Giocatore 1</string>
+	<key>Player 1 Wins!</key>
+	<string>Vince il giocatore 1!</string>
+	<key>Player 1: W/S or ↑↓  •  Player 2: I/K</key>
+	<string>Giocatore 1: W/S o ↑↓  •  Giocatore 2: I/K</string>
+	<key>Player 2</key>
+	<string>Giocatore 2</string>
+	<key>Player 2 Wins!</key>
+	<string>Vince il giocatore 2!</string>
+	<key>Player Wins!</key>
+	<string>Vince il giocatore!</string>
+	<key>Resume</key>
+	<string>Riprendi</string>
+	<key>Select Game Mode</key>
+	<string>Seleziona modalità di gioco</string>
+	<key>Settings</key>
+	<string>Impostazioni</string>
+	<key>Touch and drag to move</key>
+	<string>Tocca e trascina per muoverti</string>
+	<key>Use W / S or the Arrow Keys to move your paddle on macOS. Drag on screen to play on iOS.</key>
+	<string>Usa W / S o i tasti freccia per muovere la racchetta su macOS. Trascina sullo schermo per giocare su iOS.</string>
+	<key>Use W/S or Arrow Keys to move</key>
+	<string>W/S o tasti freccia per muoversi</string>
+	<key>vs Computer</key>
+	<string>contro il computer</string>
+	<key>⚡ SPEED BOOST! ⚡</key>
+	<string>⚡ TURBO! ⚡</string>
+</dict>
+</plist>

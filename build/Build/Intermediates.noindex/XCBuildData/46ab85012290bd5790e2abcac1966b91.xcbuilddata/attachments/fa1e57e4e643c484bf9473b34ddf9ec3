@@ -1,0 +1,239 @@
+{
+  "" : {
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PingPongRetro-primary.dia",
+    "emit-module-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PingPongRetro-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PingPongRetro-primary-emit-module.dia",
+    "pch" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PingPongRetro-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PingPongRetro-primary.swiftdeps"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/AboutView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/AboutView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/ContentView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/GameHUDView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameHUDView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/GameModeCard.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameModeCard~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/GameState.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameState~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/GameSupport.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GameSupport~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/LoadingScreenView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/LoadingScreenView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/ModeSelectionOverlay.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/ModeSelectionOverlay~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/OptionsView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/OptionsView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PauseOverlay.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PauseOverlay~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongGameApp.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameApp~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongGameView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongGameView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene+EffectsAudio.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+EffectsAudio~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene+Gameplay.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Gameplay~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene+Input.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Input~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene+ReplayPowerUps.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+ReplayPowerUps~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene+Setup.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene+Setup~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PongScene.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PongScene~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/PressScaleButtonStyle.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/PressScaleButtonStyle~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/StatsView.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/StatsView~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/PingPongGame/WinnerOverlay.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/WinnerOverlay~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/DerivedSources/GeneratedStringSymbols_Localizable.swift" : {
+    "const-values" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.swiftconstvalues",
+    "dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.d",
+    "diagnostics" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.dia",
+    "index-unit-output-path" : "/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.o",
+    "llvm-bc" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.bc",
+    "object" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.o",
+    "swift-dependencies" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable.swiftdeps",
+    "swiftmodule" : "/Users/marcus/Projekte/PongGame/build/Build/Intermediates.noindex/PingPongRetro.build/Debug-iphonesimulator/PingPongRetro.build/Objects-normal/arm64/GeneratedStringSymbols_Localizable~partial.swiftmodule"
+  }
+}

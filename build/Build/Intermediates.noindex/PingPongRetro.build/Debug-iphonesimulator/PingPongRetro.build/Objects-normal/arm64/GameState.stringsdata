@@ -1,0 +1,32 @@
+{
+  "source": "/Users/marcus/Projekte/PongGame/PingPongGame/GameState.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@ Wins!",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 296
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collected %@",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "Overtime: next point wins",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 276
+        }
+      }
+    ]
+  },
+  "version": 1
+}

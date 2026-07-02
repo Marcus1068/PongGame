@@ -243,11 +243,15 @@ final class GameState {
         currentMatchStats.speedBoostsTriggered += 1
     }
 
-    func registerPowerUpCollected(_ powerUp: PowerUpType) {
+    func registerPowerUpCollected(_ powerUp: PowerUpType, collectedBy owner: WinnerSide) {
+        latestHighlightText = String(localized: "Collected \(powerUp.title)")
+        // Only credit the tracked player's (playerOne's) stats/achievements. Lifetime
+        // stats and achievements are always from playerOne's perspective (see
+        // finalizeProgress), so a power-up grabbed by the AI/Player 2 must not count.
+        guard owner == .playerOne else { return }
         currentMatchStats.powerUpsCollected += 1
         currentMatchStats.lastPowerUpsCollected.insert(powerUp)
         lifetimeStats.totalPowerUpsCollected += 1
-        latestHighlightText = String(localized: "Collected \(powerUp.title)")
         if currentMatchStats.lastPowerUpsCollected.count == PowerUpType.allCases.count {
             unlock(.collector)
         }
@@ -303,6 +307,9 @@ final class GameState {
         if winner == .playerOne {
             lifetimeStats.wins += 1
             unlock(.firstVictory)
+            if !isSpeedBoostEnabled && enabledPowerUps.isEmpty {
+                unlock(.tactician)
+            }
         } else {
             lifetimeStats.losses += 1
         }
@@ -312,9 +319,6 @@ final class GameState {
         }
         if currentMatchStats.speedBoostsTriggered >= 3 {
             unlock(.speedJunkie)
-        }
-        if !isSpeedBoostEnabled && enabledPowerUps.isEmpty {
-            unlock(.tactician)
         }
         if currentMatchStats.reachedOvertime {
             unlock(.marathon)

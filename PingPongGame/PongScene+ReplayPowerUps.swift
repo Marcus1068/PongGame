@@ -58,7 +58,7 @@ extension PongScene {
         guard distance <= 28, let owner = lastHitter else { return }
 
         applyPowerUp(type, to: owner, currentTime: currentTime)
-        gameState?.registerPowerUpCollected(type)
+        gameState?.registerPowerUpCollected(type, collectedBy: owner)
         removePowerUpNode()
         spawnedPowerUp = nil
     }

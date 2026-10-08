@@ -289,6 +289,12 @@ final class GameState {
         canReplayLastPoint = available
     }
 
+    /// Adds live (unpaused) frame time to the current match's played duration.
+    func registerPlayTime(_ deltaTime: TimeInterval) {
+        guard case .playing = gamePhase else { return }
+        currentMatchStats.matchDurationPlayed += deltaTime
+    }
+
     /// Decrements the match clock and decides whether time expiration causes overtime or a winner.
     func updateRemainingMatchTime(elapsed deltaTime: TimeInterval) {
         guard let remainingMatchTime, case .playing = gamePhase else { return }
@@ -330,22 +336,26 @@ final class GameState {
 
     /// Folds the completed match into lifetime stats, achievements, and the local leaderboard.
     private func finalizeProgress(winner: WinnerSide) {
-        currentMatchStats.matchDurationPlayed = Date().timeIntervalSince(currentMatchStats.matchStartDate)
+        // `matchDurationPlayed` is accumulated per live frame via `registerPlayTime`,
+        // so paused time is excluded.
         lifetimeStats.gamesPlayed += 1
         lifetimeStats.totalHits += currentMatchStats.totalHits
         lifetimeStats.longestRally = max(lifetimeStats.longestRally, currentMatchStats.longestRally)
-        lifetimeStats.favoriteMode = gameMode
+        lifetimeStats.gamesPlayedByMode[gameMode.rawValue, default: 0] += 1
 
-        // Lifetime progress is tracked from player one's perspective, so only that
-        // side can earn wins and the related victory-based achievements.
-        if winner == .playerOne {
-            lifetimeStats.wins += 1
-            unlock(.firstVictory)
-            if !isSpeedBoostEnabled && enabledPowerUps.isEmpty {
-                unlock(.tactician)
+        // Wins, losses, and victory achievements only count against the computer.
+        // In local multiplayer "Player 1" is not necessarily the profile owner, so
+        // those matches would otherwise inflate wins and record Player 2 wins as losses.
+        if gameMode == .onePlayer {
+            if winner == .playerOne {
+                lifetimeStats.wins += 1
+                unlock(.firstVictory)
+                if !isSpeedBoostEnabled && enabledPowerUps.isEmpty {
+                    unlock(.tactician)
+                }
+            } else {
+                lifetimeStats.losses += 1
             }
-        } else {
-            lifetimeStats.losses += 1
         }
 
         if currentMatchStats.longestRally >= 12 {

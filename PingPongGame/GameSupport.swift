@@ -422,7 +422,29 @@ struct LifetimeStatistics: Codable, Hashable {
     var totalHits: Int = 0
     var totalPowerUpsCollected: Int = 0
     var totalReplaysViewed: Int = 0
-    var favoriteMode: GameMode = .onePlayer
+    /// Finished matches per `GameMode.rawValue`; drives `favoriteMode`.
+    var gamesPlayedByMode: [String: Int] = [:]
+
+    init() {}
+
+    // Decode every field optionally so saves written by older versions (which
+    // lack newer keys) still load instead of resetting all progress.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        gamesPlayed = try container.decodeIfPresent(Int.self, forKey: .gamesPlayed) ?? 0
+        wins = try container.decodeIfPresent(Int.self, forKey: .wins) ?? 0
+        losses = try container.decodeIfPresent(Int.self, forKey: .losses) ?? 0
+        longestRally = try container.decodeIfPresent(Int.self, forKey: .longestRally) ?? 0
+        totalHits = try container.decodeIfPresent(Int.self, forKey: .totalHits) ?? 0
+        totalPowerUpsCollected = try container.decodeIfPresent(Int.self, forKey: .totalPowerUpsCollected) ?? 0
+        totalReplaysViewed = try container.decodeIfPresent(Int.self, forKey: .totalReplaysViewed) ?? 0
+        gamesPlayedByMode = try container.decodeIfPresent([String: Int].self, forKey: .gamesPlayedByMode) ?? [:]
+    }
+
+    /// The mode with the most finished matches; defaults to 1 Player until data exists.
+    var favoriteMode: GameMode {
+        GameMode.allCases.max { (gamesPlayedByMode[$0.rawValue] ?? 0) < (gamesPlayedByMode[$1.rawValue] ?? 0) } ?? .onePlayer
+    }
 }
 
 /// User-adjustable settings that control visuals, difficulty, sound, and optional mechanics.

@@ -100,9 +100,10 @@ extension PongScene {
         // steeper angles than hits near the center.
         let hitPosition = max(-1, min(1, (ball.position.y - paddle.position.y) / paddleHalfHeight))
         let horizontalDirection: CGFloat = side == .playerOne ? -1 : 1
-        // Preserve at least the configured base speed so a shallow bounce never
-        // slows the rally below the intended pace.
-        let baseMagnitude = max(hypot(ballVelocity.dx, ballVelocity.dy), GameConfig.baseBallSpeed * CGFloat(gameState?.ballSpeed ?? 1))
+        // Every return leaves the paddle at exactly the configured base speed; only
+        // the angle changes. Rally speed-ups come from `currentSpeedMultiplier`,
+        // which is capped, so the speed cannot compound on off-center hits.
+        let baseMagnitude = GameConfig.baseBallSpeed * CGFloat(gameState?.ballSpeed ?? 1)
         var verticalComponent = hitPosition * baseMagnitude * 0.82
 
         if pendingCurveOwner == side {
@@ -113,8 +114,10 @@ extension PongScene {
             gameState?.latestHighlightText = String(localized: "Curve shot released")
         }
 
-        ballVelocity.dx = abs(baseMagnitude) * horizontalDirection
-        ballVelocity.dy = verticalComponent
+        // Rescale (dx, dy) back to the base speed, keeping the chosen angle.
+        let scale = baseMagnitude / hypot(baseMagnitude, verticalComponent)
+        ballVelocity.dx = baseMagnitude * scale * horizontalDirection
+        ballVelocity.dy = verticalComponent * scale
         // Snap the ball just outside the paddle face so the next frame does not
         // start with the ball still intersecting the same paddle.
         ball.position.x = paddle.position.x + (side == .playerOne ? -(basePaddleWidth / 2 + ballRadius) : (basePaddleWidth / 2 + ballRadius))

@@ -52,6 +52,9 @@ final class PongScene: SKScene {
     var lastSoundEnabled: Bool?
     var lastSoundVolume: Double?
     var lastObservedGamePhase: GamePhase?
+    /// Accumulated time spent in `.playing`. Unlike SpriteKit's `currentTime`, it
+    /// does not advance during pause or replay, so timers based on it freeze too.
+    var playTime: TimeInterval = 0
 
     // MARK: - Replay State
 
@@ -186,10 +189,12 @@ final class PongScene: SKScene {
             return
         }
 
+        gameState.registerPlayTime(deltaTime)
         gameState.updateRemainingMatchTime(elapsed: deltaTime)
         guard case .playing = gameState.gamePhase else { return }
 
-        updateActivePowerUpState(currentTime: currentTime)
+        playTime += deltaTime
+        updateActivePowerUpState(currentTime: playTime)
         updateBallPosition(deltaTime: CGFloat(deltaTime))
 
         if gameState.gameMode == .twoPlayers {
@@ -204,7 +209,7 @@ final class PongScene: SKScene {
         updatePlayerPaddleForKeyboard(deltaTime: CGFloat(deltaTime))
         #endif
 
-        checkPowerUpCollection(currentTime: currentTime)
+        checkPowerUpCollection(currentTime: playTime)
         checkCollisions(currentTime: currentTime)
         checkScore()
         captureReplayFrame()

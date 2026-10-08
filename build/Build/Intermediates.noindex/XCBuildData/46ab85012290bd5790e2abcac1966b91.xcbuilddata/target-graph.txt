@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'PingPongRetro' in project 'PingPongRetro' (no dependencies)

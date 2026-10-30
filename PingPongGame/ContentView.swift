@@ -38,7 +38,6 @@ struct ContentView: View {
                     onShowOptions: { present(sheet: .options) },
                     onShowStats: { present(sheet: .stats) }
                 )
-                .ignoresSafeArea()
                 .transition(.opacity)
 
                 if gameState.gamePhase == .modeSelection {
@@ -48,6 +47,7 @@ struct ContentView: View {
                 }
             }
         }
+        .publishesScreenReservations()
         .sheet(item: $activeSheet, onDismiss: dismissSheet) { sheet in
             switch sheet {
             case .about:

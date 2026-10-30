@@ -14,6 +14,8 @@ struct GameHUDView: View {
     let onShowAbout: () -> Void
     let onShowOptions: () -> Void
 
+    @Environment(\.screenReservations) private var reservations
+
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -48,7 +50,8 @@ struct GameHUDView: View {
 
             Spacer()
         }
-        .padding(.horizontal, 16)
+        .padding(.leading, reservations.primaryLeadingMargin)
+        .padding(.trailing, reservations.trailingMargin)
     }
 
     /// Lays the toolbar low enough to avoid colliding with macOS window chrome

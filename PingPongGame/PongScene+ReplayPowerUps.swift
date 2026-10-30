@@ -50,7 +50,7 @@ extension PongScene {
         node.strokeColor = currentVisualTheme.sceneBallStrokeColor
         node.lineWidth = 2
         node.glowWidth = currentVisualTheme.showsGlow ? 6 : 0
-        node.position = CGPoint(x: frame.midX, y: CGFloat.random(in: frame.minY + 80 ... frame.maxY - 80))
+        node.position = CGPoint(x: positionAvoidingFold(frame.midX), y: CGFloat.random(in: frame.minY + 80 ... frame.maxY - 80))
         node.zPosition = 3
         addChild(node)
         powerUpNode = node

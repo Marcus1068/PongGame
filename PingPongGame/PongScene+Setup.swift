@@ -120,7 +120,8 @@ extension PongScene {
         // Keep the opening serve mostly horizontal so it reaches a paddle quickly
         // instead of drifting in a near-vertical line.
         let randomAngle = CGFloat.random(in: -CGFloat.pi / 4 ... CGFloat.pi / 4)
-        let baseSpeed = GameConfig.baseBallSpeed * CGFloat(gameState?.ballSpeed ?? 1)
+        appliedSpeedScale = courtSpeedScale
+        let baseSpeed = scaledBaseBallSpeed
         let direction: CGFloat = Bool.random() ? 1 : -1
         ballVelocity = CGVector(dx: cos(randomAngle) * baseSpeed * direction, dy: sin(randomAngle) * baseSpeed)
         lastBallSpeedSetting = gameState?.ballSpeed ?? 1
@@ -214,7 +215,9 @@ extension PongScene {
     var paddleEdgeInset: CGFloat {
         #if os(iOS)
         if UIDevice.current.userInterfaceIdiom == .phone {
-            let horizontalSafeAreaInset = max(view?.safeAreaInsets.left ?? 0, view?.safeAreaInsets.right ?? 0)
+            let safeAreaInsets = view?.safeAreaInsets ?? .zero
+            // Cameras reported as reserved regions can reach further in than the safe area.
+            let horizontalSafeAreaInset = max(safeAreaInsets.left, safeAreaInsets.right, sideOcclusionInset)
 
             if frame.width > frame.height {
                 // On landscape phones, keep paddles clear of the notch / Dynamic
@@ -234,7 +237,7 @@ extension PongScene {
     /// Re-centers an existing power-up on resize while preserving its vertical position.
     func layoutPowerUpIfNeeded() {
         guard let node = powerUpNode, let label = powerUpLabel else { return }
-        node.position.x = frame.midX
+        node.position.x = positionAvoidingFold(frame.midX)
         label.position.x = node.position.x
     }
 

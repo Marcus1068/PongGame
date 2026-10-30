@@ -50,10 +50,14 @@ struct GameModeCard: View {
                 VStack(spacing: 4) {
                     Text(title)
                         .font(.title2.bold())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                         .foregroundStyle(.white)
 
                     Text(subtitle)
                         .font(.subheadline)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                         .foregroundStyle(.white.opacity(0.55))
                 }
             }

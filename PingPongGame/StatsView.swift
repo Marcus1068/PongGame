@@ -53,7 +53,7 @@ struct StatsView: View {
                 .frame(maxWidth: 760, alignment: .leading)
                 .frame(maxWidth: .infinity)
             }
-            .background(backgroundGradient)
+            .background(RetroSheetBackground())
             .navigationTitle("Stats & Progress")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -61,6 +61,7 @@ struct StatsView: View {
                 }
             }
         }
+        .preferredColorScheme(.dark)
     }
 
     private var headerCard: some View {
@@ -70,7 +71,7 @@ struct StatsView: View {
                 .foregroundStyle(.white)
 
             Text(hasHistory ? "Your recent matches, achievements, and milestone progress all live here." : "Play your first match to unlock achievements, populate the leaderboard, and build a stat history.")
-                .foregroundStyle(.white.opacity(0.78))
+                .foregroundStyle(.retroBodyText)
 
             HStack(spacing: 10) {
                 tag(text: gameState.gameMode.title, symbol: "person.2.fill")
@@ -79,7 +80,7 @@ struct StatsView: View {
             }
         }
         .padding(20)
-        .background(cardBackground(colors: [.cyan.opacity(0.35), .purple.opacity(0.3)]))
+        .background(RetroCardBackground(colors: [.cyan.opacity(0.35), .purple.opacity(0.3)]))
     }
 
     private var currentMatchCard: some View {
@@ -157,7 +158,7 @@ struct StatsView: View {
 
                         Text(entry.date.formatted(date: .abbreviated, time: .shortened))
                             .font(.caption)
-                            .foregroundStyle(.tertiary)
+                            .foregroundStyle(.secondary)
                     }
 
                     if index < min(gameState.leaderboard.count, 5) - 1 {
@@ -202,16 +203,16 @@ struct StatsView: View {
         VStack(alignment: .leading, spacing: 10) {
             Label(title, systemImage: symbol)
                 .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.white.opacity(0.78))
+                .foregroundStyle(.retroBodyText)
 
             Text(value)
-                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .font(.system(.title, design: .rounded, weight: .bold))
                 .foregroundStyle(.white)
                 .monospacedDigit()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(18)
-        .background(cardBackground(colors: [.white.opacity(0.12), .white.opacity(0.04)]))
+        .background(RetroCardBackground(colors: [.white.opacity(0.14), .white.opacity(0.08)]))
     }
 
     private func infoSection<Content: View>(title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
@@ -223,7 +224,7 @@ struct StatsView: View {
             content()
         }
         .padding(18)
-        .background(cardBackground(colors: [.white.opacity(0.1), .black.opacity(0.18)]))
+        .background(RetroCardBackground(colors: [.white.opacity(0.1), .black.opacity(0.18)]))
     }
 
     private func statRow(title: LocalizedStringKey, value: String) -> some View {
@@ -250,19 +251,7 @@ struct StatsView: View {
         .foregroundStyle(.white)
     }
 
-    private var backgroundGradient: some View {
-        LinearGradient(colors: [.black, .purple.opacity(0.16), .cyan.opacity(0.14), .black], startPoint: .topLeading, endPoint: .bottomTrailing)
-            .ignoresSafeArea()
-    }
 
-    private func cardBackground(colors: [Color]) -> some View {
-        RoundedRectangle(cornerRadius: 22, style: .continuous)
-            .fill(LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing))
-            .overlay(
-                RoundedRectangle(cornerRadius: 22, style: .continuous)
-                    .strokeBorder(.white.opacity(0.08), lineWidth: 1)
-            )
-    }
 }
 
 #Preview {

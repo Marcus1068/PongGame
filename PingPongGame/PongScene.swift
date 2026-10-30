@@ -80,6 +80,14 @@ final class PongScene: SKScene {
     let basePaddleHeight: CGFloat
     let ballRadius = GameConfig.defaultBallRadius
 
+    // MARK: - Reserved Regions
+
+    var lastReservedRegionCheck: TimeInterval = 0
+    var appliedPaddleInset: CGFloat = 0
+    var appliedFoldRange: ClosedRange<CGFloat>?
+    /// Court speed factor the current ball velocity was computed with.
+    var appliedSpeedScale: CGFloat = 1
+
     // MARK: - Audio
 
     var blipEngine: AVAudioEngine?
@@ -148,8 +156,21 @@ final class PongScene: SKScene {
         centerLineContainer.removeAllChildren()
         setupCenterLine()
 
-        playerPaddle.position.x = frame.maxX - paddleEdgeInset
-        opponentPaddle.position.x = frame.minX + paddleEdgeInset
+        // Keep a rally going at the same crossing time when the court is resized,
+        // for example when a dual-screen iPhone opens or closes.
+        let newSpeedScale = courtSpeedScale
+        if appliedSpeedScale > 0 {
+            let ratio = newSpeedScale / appliedSpeedScale
+            ballVelocity.dx *= ratio
+            ballVelocity.dy *= ratio
+        }
+        appliedSpeedScale = newSpeedScale
+
+        appliedPaddleInset = paddleEdgeInset
+        appliedFoldRange = activeFoldRange
+        playerPaddle.position.x = frame.maxX - appliedPaddleInset
+        opponentPaddle.position.x = frame.minX + appliedPaddleInset
+        updateCenterLineVisibility()
         clampPaddlesToBounds()
         clampBallToBounds()
         layoutPowerUpIfNeeded()
@@ -174,6 +195,7 @@ final class PongScene: SKScene {
         }
         lastUpdateTime = currentTime
 
+        refreshReservedRegionLayoutIfNeeded(currentTime: currentTime)
         applyLiveSettingsIfNeeded()
         applyVisualThemeIfNeeded()
         handlePhaseTransitionIfNeeded()

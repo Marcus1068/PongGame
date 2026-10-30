@@ -40,7 +40,7 @@ struct OptionsView: View {
                 .frame(maxWidth: 760, alignment: .leading)
                 .frame(maxWidth: .infinity)
             }
-            .background(backgroundGradient)
+            .background(RetroSheetBackground())
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -48,6 +48,7 @@ struct OptionsView: View {
                 }
             }
         }
+        .preferredColorScheme(.dark)
     }
 
     private var heroCard: some View {
@@ -57,7 +58,7 @@ struct OptionsView: View {
                 .foregroundStyle(.white)
 
             Text("Adjust visuals, rules, difficulty, power-ups, and audio without losing the retro dashboard feel.")
-                .foregroundStyle(.white.opacity(0.78))
+                .foregroundStyle(.retroBodyText)
 
             HStack(spacing: 10) {
                 tag(text: gameState.visualTheme.title, symbol: "paintpalette.fill")
@@ -66,7 +67,7 @@ struct OptionsView: View {
             }
         }
         .padding(20)
-        .background(cardBackground(colors: gameState.visualTheme.previewGradientColors))
+        .background(RetroCardBackground(colors: gameState.visualTheme.previewGradientColors))
     }
 
     private var visualsCard: some View {
@@ -203,17 +204,17 @@ struct OptionsView: View {
         VStack(alignment: .leading, spacing: 10) {
             Label(title, systemImage: symbol)
                 .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.white.opacity(0.78))
+                .foregroundStyle(.retroBodyText)
 
             Text(value)
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .font(.system(.title2, design: .rounded, weight: .bold))
                 .foregroundStyle(.white)
                 .minimumScaleFactor(0.85)
                 .lineLimit(2)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(18)
-        .background(cardBackground(colors: [.white.opacity(0.12), .white.opacity(0.04)]))
+        .background(RetroCardBackground(colors: [.white.opacity(0.14), .white.opacity(0.08)]))
     }
 
     private func infoSection<Content: View>(title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
@@ -225,7 +226,7 @@ struct OptionsView: View {
             content()
         }
         .padding(18)
-        .background(cardBackground(colors: [.white.opacity(0.1), .black.opacity(0.18)]))
+        .background(RetroCardBackground(colors: [.white.opacity(0.1), .black.opacity(0.18)]))
     }
 
     private func settingsToggle(title: LocalizedStringKey, subtitle: LocalizedStringKey, isOn: Binding<Bool>) -> some View {
@@ -261,19 +262,7 @@ struct OptionsView: View {
         .foregroundStyle(.white)
     }
 
-    private var backgroundGradient: some View {
-        LinearGradient(colors: [.black, .purple.opacity(0.16), .cyan.opacity(0.14), .black], startPoint: .topLeading, endPoint: .bottomTrailing)
-            .ignoresSafeArea()
-    }
 
-    private func cardBackground(colors: [Color]) -> some View {
-        RoundedRectangle(cornerRadius: 22, style: .continuous)
-            .fill(LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing))
-            .overlay(
-                RoundedRectangle(cornerRadius: 22, style: .continuous)
-                    .strokeBorder(.white.opacity(0.08), lineWidth: 1)
-            )
-    }
 
     /// Creates a Boolean binding for one power-up inside the enabled-power-up
     /// set so each toggle can edit a single option independently.

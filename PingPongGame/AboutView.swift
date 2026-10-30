@@ -25,7 +25,7 @@ struct AboutView: View {
                 .frame(maxWidth: 760, alignment: .leading)
                 .frame(maxWidth: .infinity)
             }
-            .background(backgroundGradient)
+            .background(RetroSheetBackground())
             .navigationTitle("About")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -33,6 +33,7 @@ struct AboutView: View {
                 }
             }
         }
+        .preferredColorScheme(.dark)
     }
 
     private var heroCard: some View {
@@ -50,7 +51,7 @@ struct AboutView: View {
 
                 Text("Retro arcade Pong rebuilt with SwiftUI, SpriteKit, replay highlights, power-ups, and long-term progression.")
                     .font(.body)
-                    .foregroundStyle(.white.opacity(0.78))
+                    .foregroundStyle(.retroBodyText)
 
                 HStack(spacing: 10) {
                     tag(text: "SwiftUI", symbol: "swift")
@@ -60,7 +61,7 @@ struct AboutView: View {
             }
         }
         .padding(22)
-        .background(cardBackground(colors: [.cyan.opacity(0.34), .purple.opacity(0.28)]))
+        .background(RetroCardBackground(colors: [.cyan.opacity(0.34), .purple.opacity(0.28)]))
     }
 
     private var highlightsCard: some View {
@@ -124,7 +125,7 @@ struct AboutView: View {
             content()
         }
         .padding(18)
-        .background(cardBackground(colors: [.white.opacity(0.1), .black.opacity(0.18)]))
+        .background(RetroCardBackground(colors: [.white.opacity(0.1), .black.opacity(0.18)]))
     }
 
     private func featureRow(title: LocalizedStringKey, detail: LocalizedStringKey, symbol: String) -> some View {
@@ -174,19 +175,7 @@ struct AboutView: View {
         .foregroundStyle(.white)
     }
 
-    private var backgroundGradient: some View {
-        LinearGradient(colors: [.black, .purple.opacity(0.16), .cyan.opacity(0.14), .black], startPoint: .topLeading, endPoint: .bottomTrailing)
-            .ignoresSafeArea()
-    }
 
-    private func cardBackground(colors: [Color]) -> some View {
-        RoundedRectangle(cornerRadius: 22, style: .continuous)
-            .fill(LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing))
-            .overlay(
-                RoundedRectangle(cornerRadius: 22, style: .continuous)
-                    .strokeBorder(.white.opacity(0.08), lineWidth: 1)
-            )
-    }
 }
 
 #Preview {

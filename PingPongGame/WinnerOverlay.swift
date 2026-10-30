@@ -17,55 +17,36 @@ struct WinnerOverlay: View {
     @State private var cheerEngine: AVAudioEngine?
     @State private var cheerPlayer = AVAudioPlayerNode()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @ScaledMetric private var winnerFontSize: CGFloat = 56
+    @Environment(\.screenReservations) private var reservations
 
     var body: some View {
         ZStack {
             Color.black.opacity(0.82)
                 .ignoresSafeArea()
 
-            VStack(spacing: 24) {
-                Image(systemName: "trophy.fill")
-                    .font(.system(size: 74))
-                    .foregroundStyle(LinearGradient(colors: winner == .playerOne ? [.cyan, .blue] : [.purple, .pink], startPoint: .top, endPoint: .bottom))
-                    .accessibilityHidden(true)
-
-                Text(String(localized: "\(gameState.gameMode.displayName(for: winner)) Wins!"))
-                    .font(.system(size: winnerFontSize, weight: .bold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(LinearGradient(colors: winner == .playerOne ? [.cyan, .blue] : [.purple, .pink], startPoint: .leading, endPoint: .trailing))
-
-                VStack(spacing: 8) {
-                    Text(String(localized: "Final Score: \(gameState.playerScore) - \(gameState.opponentScore)"))
-                        .font(.title2)
-                        .foregroundStyle(.white.opacity(0.95))
-                    Text(String(localized: "Longest Rally: \(gameState.currentMatchStats.longestRally)   •   Boosts: \(gameState.currentMatchStats.speedBoostsTriggered)"))
-                        .font(.headline)
-                        .foregroundStyle(.white.opacity(0.72))
-                }
-
-                HStack(spacing: 12) {
-                    Button("Play Again") {
-                        withAnimation {
-                            gameState.resetToMenu()
-                        }
+            Group {
+                if reservations.fold != nil {
+                    // Keep the headline and the actions on their own halves so
+                    // the fold does not cut through either.
+                    content(.sideBySide)
+                } else {
+                    ViewThatFits(in: .vertical) {
+                        content(.stacked)
+                        content(.sideBySide)
+                        ScrollView { content(.sideBySide) }
                     }
-                    .buttonStyle(WinnerCapsuleButtonStyle(colors: [.cyan, .purple], foreground: .white))
-
-                    Button("Stats", action: onShowStats)
-                        .buttonStyle(WinnerCapsuleButtonStyle(colors: [.white.opacity(0.16), .white.opacity(0.08)], foreground: .white))
-                }
-
-                if gameState.canReplayLastPoint {
-                    Button("Replay Last Point", action: onReplay)
-                        .buttonStyle(WinnerCapsuleButtonStyle(colors: [.orange, .pink], foreground: .white))
                 }
             }
-            .padding(32)
+            .centeredOnDisplay(minimumMargin: 32)
+            .padding(.vertical, 32)
         }
         .transition(reduceMotion ? .opacity : .opacity.combined(with: .scale))
         .onAppear { playCrowdCheer() }
         .onDisappear(perform: stopCrowdCheer)
+    }
+
+    private func content(_ arrangement: WinnerContent.Arrangement) -> WinnerContent {
+        WinnerContent(winner: winner, gameState: gameState, arrangement: arrangement, onReplay: onReplay, onShowStats: onShowStats)
     }
 
     /// Builds and plays a brief one-shot celebration made from synthesized
@@ -164,7 +145,7 @@ struct WinnerOverlay: View {
 
 /// Shared capsule button styling for the winner actions so primary and secondary
 /// buttons keep the same shape and spacing.
-private struct WinnerCapsuleButtonStyle: PrimitiveButtonStyle {
+struct WinnerCapsuleButtonStyle: PrimitiveButtonStyle {
     let colors: [Color]
     let foreground: Color
 

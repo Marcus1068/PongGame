@@ -28,7 +28,7 @@ extension PongScene {
     func updateComputerAI(deltaTime: CGFloat) {
         guard let gameState else { return }
 
-        let speed = gameState.difficulty.trackingSpeed * deltaTime
+        let speed = gameState.difficulty.trackingSpeed * courtSpeedScale * deltaTime
         let targetY: CGFloat
 
         switch gameState.aiStyle {
@@ -103,7 +103,7 @@ extension PongScene {
         // Every return leaves the paddle at exactly the configured base speed; only
         // the angle changes. Rally speed-ups come from `currentSpeedMultiplier`,
         // which is capped, so the speed cannot compound on off-center hits.
-        let baseMagnitude = GameConfig.baseBallSpeed * CGFloat(gameState?.ballSpeed ?? 1)
+        let baseMagnitude = scaledBaseBallSpeed
         var verticalComponent = hitPosition * baseMagnitude * 0.82
 
         if pendingCurveOwner == side {
@@ -147,13 +147,16 @@ extension PongScene {
         triggerPaddleHaptics()
     }
 
-    /// Displays a short center-screen banner when a rally speed boost activates.
+    /// Displays a short banner in the middle of the court when a rally speed
+    /// boost activates, clear of the score header and the controls.
     func showSpeedBoostEffect() {
         let label = SKLabelNode(text: String(localized: "SPEED BOOST"))
         label.fontName = "AvenirNext-Bold"
         label.fontSize = 30
         label.fontColor = currentVisualTheme.speedBoostTextColor
-        label.position = CGPoint(x: frame.midX, y: frame.midY + 120)
+        // Center the glyphs on the node so the text sits inside the banner box.
+        label.verticalAlignmentMode = .center
+        label.position = CGPoint(x: bannerCenterX, y: frame.midY)
         label.zPosition = 999
 
         let background = SKShapeNode(rectOf: CGSize(width: 250, height: 52), cornerRadius: 18)

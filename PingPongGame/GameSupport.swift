@@ -275,7 +275,9 @@ enum VisualTheme: String, CaseIterable, Codable, Identifiable {
     var speedBoostBackgroundColor: SKColor {
         switch self {
         case .synthwave:
-            .yellow
+            // Violet instead of yellow: it matches the cyan/magenta palette and
+            // keeps the white banner text readable.
+            SKColor(red: 0.55, green: 0.2, blue: 0.95, alpha: 1)
         case .retroGreenCRT:
             SKColor(red: 0.76, green: 1.0, blue: 0.56, alpha: 1)
         case .amberMonitor:
@@ -550,6 +552,10 @@ struct PlayerProgress: Codable, Hashable {
 enum GameConfig {
     static let defaultBallRadius: CGFloat = 10
     static let baseBallSpeed: CGFloat = 420
+    /// Court width at which `baseBallSpeed` applies unscaled (a landscape iPhone).
+    static let referenceCourtWidth: CGFloat = 852
+    /// Limits how far court width may speed up or slow down the ball.
+    static let courtSpeedScaleRange: ClosedRange<CGFloat> = 0.8...1.6
     static let maxRallySpeedMultiplier: CGFloat = 2.35
     static let speedBoostStep: CGFloat = 1.10
     static let speedBoostEveryHits = 3
@@ -565,4 +571,12 @@ enum GameConfig {
     static let defaultPaddleEdgeInset: CGFloat = 40
     static let compactPhonePaddleEdgeInset: CGFloat = 56
     static let phoneSafeAreaPaddlePadding: CGFloat = 16
+
+    /// Factor applied to ball and computer-paddle speed so a ball crosses a wide
+    /// court in about the same time as a narrow one.
+    static func courtSpeedScale(forWidth width: CGFloat) -> CGFloat {
+        guard width > 0 else { return 1 }
+        let scale = width / referenceCourtWidth
+        return min(max(scale, courtSpeedScaleRange.lowerBound), courtSpeedScaleRange.upperBound)
+    }
 }

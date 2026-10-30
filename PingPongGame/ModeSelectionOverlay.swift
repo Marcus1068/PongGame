@@ -11,77 +11,39 @@ struct ModeSelectionOverlay: View {
     var gameState: GameState
     let onShowOptions: () -> Void
 
+    @Environment(\.screenReservations) private var reservations
+
     var body: some View {
         ZStack {
             Color.black.opacity(0.82)
                 .ignoresSafeArea()
 
-            VStack(spacing: 28) {
-                VStack(spacing: 8) {
-                    Text("PingPong Retro")
-                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
-                        .foregroundStyle(
-                            LinearGradient(colors: [.cyan, .purple], startPoint: .leading, endPoint: .trailing)
-                        )
-
-                    HStack(spacing: 12) {
-                        Text("Pick a mode and jump in")
-                            .font(.title3)
-                            .foregroundStyle(.white.opacity(0.72))
-
-                        Button(action: onShowOptions) {
-                            Label("Settings", systemImage: "gearshape.fill")
-                                .font(.subheadline.weight(.semibold))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 14)
-                                .padding(.vertical, 8)
-                                .background(.ultraThinMaterial, in: Capsule())
-                        }
-                        .buttonStyle(.plain)
-                    }
-                }
-
-                VStack(spacing: 10) {
-                    // This snapshot reflects the current rules so players can
-                    // confirm their setup before committing to a new match.
-                    Label(String(localized: "First to \(gameState.maxScore)"), systemImage: "target")
-                    Label(gameState.matchDuration.title, systemImage: "timer")
-                    Label(String(localized: "AI: \(gameState.aiStyle.title)"), systemImage: "brain")
-                    Label(gameState.isSpeedBoostEnabled ? String(localized: "Speed boosts enabled") : String(localized: "Speed boosts disabled"), systemImage: "bolt")
-                }
-                .font(.subheadline)
-                .foregroundStyle(.white.opacity(0.75))
-
-                HStack(spacing: 20) {
-                    GameModeCard(
-                        icon: "person.fill",
-                        title: "1 Player",
-                        subtitle: "vs Computer",
-                        accentColors: [.cyan, .blue]
-                    ) {
-                        withAnimation(.easeIn(duration: 0.25)) {
-                            gameState.startMatch(mode: .onePlayer)
-                        }
-                    }
-
-                    GameModeCard(
-                        icon: "person.2.fill",
-                        title: "2 Players",
-                        subtitle: "Local Multiplayer",
-                        accentColors: [.purple, .pink]
-                    ) {
-                        withAnimation(.easeIn(duration: 0.25)) {
-                            gameState.startMatch(mode: .twoPlayers)
-                        }
+            Group {
+                if reservations.fold != nil {
+                    // The fold would cut a centered stack in two, so put the
+                    // title and rules on one half and the cards on the other.
+                    content(.sideBySide)
+                } else {
+                    // Prefer the roomy layout, falling back to two columns and
+                    // finally scrolling on short displays.
+                    ViewThatFits(in: .vertical) {
+                        content(.stacked)
+                        content(.sideBySide)
+                        ScrollView { content(.sideBySide) }
                     }
                 }
             }
-            .padding(40)
+            .centeredOnDisplay(minimumMargin: reservations.fold == nil ? 24 : 40)
+            .padding(.vertical, 24)
         }
         .transition(.opacity)
     }
+
+    private func content(_ arrangement: ModeSelectionContent.Arrangement) -> ModeSelectionContent {
+        ModeSelectionContent(gameState: gameState, arrangement: arrangement, onShowOptions: onShowOptions)
+    }
 }
 
-#Preview {
+#Preview("Landscape", traits: .landscapeLeft) {
     ModeSelectionOverlay(gameState: GameState(), onShowOptions: { })
 }

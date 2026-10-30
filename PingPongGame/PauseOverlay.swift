@@ -54,6 +54,8 @@ struct PauseOverlay: View {
                 }
                 .buttonStyle(.plain)
             }
+            // Stay on the net line, and out of the fold on a partially open device.
+            .inPrimaryArea()
         }
         .transition(.opacity)
     }

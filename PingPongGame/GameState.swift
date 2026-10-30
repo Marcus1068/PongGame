@@ -78,17 +78,23 @@ final class GameState {
 
     @ObservationIgnored private let preferencesKey = "PingPongRetro.preferences"
     @ObservationIgnored private let progressKey = "PingPongRetro.progress"
-    @ObservationIgnored private let defaults = UserDefaults.standard
+    @ObservationIgnored private let defaults: UserDefaults
+    @ObservationIgnored private let syncsToCloud: Bool
     @ObservationIgnored private var preferencesSaveTask: Task<Void, Never>?
 
     /// Loads saved preferences and progress, then seeds the initial menu state.
-    init() {
+    /// - Parameters:
+    ///   - defaults: Local store for preferences and progress; tests inject an isolated suite.
+    ///   - syncsToCloud: Whether to also read/write the iCloud key-value store.
+    init(defaults: UserDefaults = .standard, syncsToCloud: Bool = true) {
+        self.defaults = defaults
+        self.syncsToCloud = syncsToCloud
         // Prefer the current Codable preferences payload when available, but keep
         // supporting the older standalone `endScore` value as a migration fallback.
-        let preferences = Self.load(GamePreferences.self, key: "PingPongRetro.preferences") ?? GamePreferences(
-            maxScore: UserDefaults.standard.object(forKey: "endScore") as? Int ?? 5
+        let preferences = Self.load(GamePreferences.self, key: "PingPongRetro.preferences", defaults: defaults, syncsToCloud: syncsToCloud) ?? GamePreferences(
+            maxScore: defaults.object(forKey: "endScore") as? Int ?? 5
         )
-        let progress = Self.load(PlayerProgress.self, key: "PingPongRetro.progress") ?? PlayerProgress()
+        let progress = Self.load(PlayerProgress.self, key: "PingPongRetro.progress", defaults: defaults, syncsToCloud: syncsToCloud) ?? PlayerProgress()
 
         visualTheme = preferences.visualTheme
         ballSpeed = preferences.baseBallSpeed
@@ -406,10 +412,10 @@ final class GameState {
         let scoreToPersist = maxScore
 
         preferencesSaveTask?.cancel()
-        preferencesSaveTask = Task { [preferencesKey, defaults] in
+        preferencesSaveTask = Task { [preferencesKey, defaults, syncsToCloud] in
             try? await Task.sleep(for: .milliseconds(300))
             guard !Task.isCancelled else { return }
-            Self.save(preferences, key: preferencesKey)
+            Self.save(preferences, key: preferencesKey, defaults: defaults, syncsToCloud: syncsToCloud)
             defaults.set(scoreToPersist, forKey: "endScore")
         }
     }
@@ -421,27 +427,27 @@ final class GameState {
             leaderboard: leaderboard,
             achievements: achievements
         )
-        Self.save(progress, key: progressKey)
+        Self.save(progress, key: progressKey, defaults: defaults, syncsToCloud: syncsToCloud)
     }
 
     /// Loads a Codable value from iCloud key-value storage, falling back to local defaults when needed.
-    private static func load<T: Decodable>(_ type: T.Type, key: String) -> T? {
-        let defaults = UserDefaults.standard
-        let cloudStore = NSUbiquitousKeyValueStore.default
+    private static func load<T: Decodable>(_ type: T.Type, key: String, defaults: UserDefaults, syncsToCloud: Bool) -> T? {
         // Prefer the cloud copy when one exists so settings/progress can roam
         // across devices, while still working offline from local storage.
-        let data = cloudStore.data(forKey: key) ?? defaults.data(forKey: key)
-        guard let data else { return nil }
+        let cloudData = syncsToCloud ? NSUbiquitousKeyValueStore.default.data(forKey: key) : nil
+        guard let data = cloudData ?? defaults.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(type, from: data)
     }
 
-    /// Encodes and writes a Codable value to both local defaults and iCloud key-value storage.
-    private static func save<T: Encodable>(_ value: T, key: String) {
+    /// Encodes and writes a Codable value to local defaults and, when enabled, iCloud key-value storage.
+    private static func save<T: Encodable>(_ value: T, key: String, defaults: UserDefaults, syncsToCloud: Bool) {
         guard let data = try? JSONEncoder().encode(value) else { return }
-        UserDefaults.standard.set(data, forKey: key)
+        defaults.set(data, forKey: key)
         // NSUbiquitousKeyValueStore syncs to iCloud on its own schedule. Calling
         // `synchronize()` here is redundant (Apple's docs call it unnecessary) and
         // forces an expensive synchronous flush on the calling thread/actor.
-        NSUbiquitousKeyValueStore.default.set(data, forKey: key)
+        if syncsToCloud {
+            NSUbiquitousKeyValueStore.default.set(data, forKey: key)
+        }
     }
 }

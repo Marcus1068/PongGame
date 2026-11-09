@@ -86,6 +86,9 @@ struct OptionsView: View {
                         .foregroundStyle(.secondary)
                 }
                 settingsToggle(title: "Enable Haptics", subtitle: "Use tactile feedback on supported devices.", isOn: $gameState.isHapticsEnabled)
+                #if os(macOS)
+                FullScreenToggleRow()
+                #endif
             }
         }
     }

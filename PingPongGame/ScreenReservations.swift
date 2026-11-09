@@ -120,7 +120,7 @@ nonisolated struct ScreenReservations: Equatable, Sendable {
     init(proxy: GeometryProxy) {
         var occlusions: [CGRect] = []
         var divisions: [CGRect] = []
-        if #available(iOS 27.1, *) {
+        if #available(iOS 27.1, macOS 27.1, *) {
             occlusions = proxy.reservedRegions(kind: .occlusion).filter(\.isActive).map(\.frame)
             divisions = proxy.reservedRegions(kind: .division).filter(\.isActive).map(\.frame)
         }

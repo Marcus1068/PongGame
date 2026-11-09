@@ -58,6 +58,11 @@ struct ContentView: View {
                 StatsView(gameState: gameState, onDismiss: dismissSheet)
             }
         }
+        #if os(iOS)
+        // Fullscreen: hide the status bar and auto-hide the home indicator.
+        .statusBarHidden()
+        .persistentSystemOverlays(.hidden)
+        #endif
         #if os(macOS)
         .frame(minWidth: 900, minHeight: 640)
         #endif
